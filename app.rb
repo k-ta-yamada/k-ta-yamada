@@ -19,7 +19,7 @@ get '/readme' do
   erb markdown(:readme)
 end
 
-get '/qiita' do
+get '/qiita_items' do
   https = Net::HTTP.new('qiita.com', '443')
   https.use_ssl = true
   https.start do |http|
@@ -27,13 +27,6 @@ get '/qiita' do
     items = JSON.parse(res.body, { symbolize_names: true })
     limit = res.to_hash['x-ratelimit-limit']
     remaining = res.to_hash['x-ratelimit-remaining']
-
-    # puts '*' * 100
-    # pp items
-    # pp res.to_hash
-    # pp remaining
-    # pp limit
-    # puts '*' * 100
 
     erb :qiita_items, locals: { items: items, remaining: remaining, limit: limit }
   end
