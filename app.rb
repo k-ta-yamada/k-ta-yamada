@@ -2,6 +2,7 @@ require 'sinatra'
 require 'redcarpet'
 require 'net/https'
 require 'json'
+require './lib/qiita_item'
 # require 'sinatra/json'
 # require 'mongo'
 if development?
@@ -24,16 +25,10 @@ get '/readme' do
 end
 
 get '/qiita_items' do
-  https = Net::HTTP.new('qiita.com', '443')
-  https.use_ssl = true
-  https.start do |http|
-    res = http.get('/api/v1/users/k-ta-yamada/items')
-    items = JSON.parse(res.body, { symbolize_names: true })
-    limit = res.to_hash['x-ratelimit-limit']
-    remaining = res.to_hash['x-ratelimit-remaining']
-
-    erb :qiita_items, locals: { items: items, remaining: remaining, limit: limit }
-  end
+  erb :qiita_items,
+      locals: { items: QiitaItem.result_cache,
+                remaining: QiitaItem.ratelimit_remaining,
+                limit: QiitaItem.ratelimit_limit }
 end
 
 get '*' do
