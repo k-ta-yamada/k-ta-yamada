@@ -5,6 +5,7 @@ gem 'sinatra'
 gem 'redcarpet'
 # gem 'mongo'
 # gem 'bson_ext'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'sinatra-contrib'

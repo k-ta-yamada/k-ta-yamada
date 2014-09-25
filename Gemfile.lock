@@ -10,6 +10,7 @@ GEM
     debugger-linecache (1.2.0)
     method_source (0.8.2)
     multi_json (1.10.1)
+    newrelic_rpm (3.9.4.245)
     pry (0.10.0)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -43,6 +44,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  newrelic_rpm
   pry
   pry-doc
   redcarpet
