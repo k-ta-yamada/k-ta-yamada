@@ -6,7 +6,7 @@ Bundler.require(Sinatra::Base.environment)
 before do
   request.env.each do |k, v|
     puts "  #{k.ljust(25)} => [#{v}]"
-  end
+  end if development?
 end
 
 get '/' do
