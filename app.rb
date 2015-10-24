@@ -4,9 +4,9 @@ Bundler.require(Sinatra::Base.environment)
 # require './lib/qiita_item'
 
 before do
-  request.env.each do |k, v|
-    puts "  #{k.ljust(25)} => [#{v}]"
-  end if development?
+  # request.env.each do |k, v|
+  #   puts "  #{k.ljust(25)} => [#{v}]"
+  # end if development?
 end
 
 get '/' do
