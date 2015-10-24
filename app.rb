@@ -1,16 +1,8 @@
-require 'sinatra'
-require 'redcarpet'
+require 'bundler'
+Bundler.require
 require 'net/https'
-require 'json'
+require 'sinatra/reloader' if development?
 require './lib/qiita_item'
-# require 'sinatra/json'
-# require 'mongo'
-if development?
-  require 'sinatra/reloader'
-  require 'pry'
-  require 'pry-doc'
-  require 'byebug'
-end
 
 configure :production do
   require 'newrelic_rpm'
@@ -25,10 +17,10 @@ get '/readme' do
 end
 
 get '/qiita_items' do
-  erb :qiita_items,
-      locals: { items: QiitaItem.result_cache,
-                remaining: QiitaItem.ratelimit_remaining,
-                limit: QiitaItem.ratelimit_limit }
+  locals = { items: QiitaItem.result_cache,
+             remaining: QiitaItem.ratelimit_remaining,
+             limit: QiitaItem.ratelimit_limit }
+  erb :qiita_items, locals: locals
 end
 
 get '*' do

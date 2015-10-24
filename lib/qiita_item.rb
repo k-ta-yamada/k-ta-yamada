@@ -34,7 +34,7 @@ class QiitaItem
     # @return [Array-of-Hash]
     # @note rubocopでattr_readerへの変更を警告されるが
     #       クラスインスタンス変数を使用したいためにわざとやってる
-    def result_cache        # rubocop:disable Style/TrivialAccessors
+    def result_cache
       reloading_items if @result_cache.empty?
       @result_cache
     end
