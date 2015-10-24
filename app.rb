@@ -1,28 +1,22 @@
 require 'bundler'
-Bundler.require
-require 'net/https'
-require 'sinatra/reloader' if development?
-require './lib/qiita_item'
+Bundler.require(:default)
+Bundler.require(Sinatra::Base.environment)
+# require './lib/qiita_item'
 
-configure :production do
-  require 'newrelic_rpm'
+before do
+  request.env.each do |k, v|
+    puts "  #{k.ljust(25)} => [#{v}]"
+  end
 end
 
 get '/' do
-  erb markdown(:index)
+  slim markdown(:index), locals: { path: 'index.md' }
 end
 
 get '/readme' do
-  erb markdown(:readme)
+  slim markdown(:readme), locals: { path: 'README.md' }
 end
 
-get '/qiita_items' do
-  locals = { items: QiitaItem.result_cache,
-             remaining: QiitaItem.ratelimit_remaining,
-             limit: QiitaItem.ratelimit_limit }
-  erb :qiita_items, locals: locals
-end
-
-get '*' do
-  erb markdown(:dummy)
+get '/ping' do
+  { status: 'ok' }.to_json
 end

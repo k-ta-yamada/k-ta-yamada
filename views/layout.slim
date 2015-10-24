@@ -1,0 +1,21 @@
+html
+  head
+    link rel="stylesheet" href='/css/bootstrap.min.css'
+    style
+      | body { padding-top: 50px; }
+      | ul.nav { background-color: #FFF; }
+  body
+    ul.nav.nav-tabs.nav-justified.navbar-fixed-top
+      == slim(:_nav)
+
+    .container
+      .panel.panel-default
+        .panel-heading
+          h6 =path
+        .panel-body
+          == yield
+
+    / .nav.nav-tabs.nav-justified.navbar-fixed-bottom
+    p.text-center
+      | Copyright 2014,
+      a href="https://github.com/k-ta-yamada" title="GitHub" k-ta-yamada

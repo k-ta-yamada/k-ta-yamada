@@ -1,2 +1,0 @@
-- [readme](readme)
-- [qiita items](qiita_items)

@@ -17,9 +17,9 @@ class QiitaItem
 
       @result_cache = []
       https = Net::HTTP.new('qiita.com', '443')
-      https.use_ssl = true
+      # https.use_ssl = true
       https.start do |http|
-        res = http.get('/api/v1/users/k-ta-yamada/items')
+        res = http.get('/api/v2/users/k-ta-yamada/items')
         # items = JSON.parse(res.body, { symbolize_names: true })
         @result_cache = JSON.parse(res.body, symbolize_names: true)
         @ratelimit_limit = res.to_hash['x-ratelimit-limit']
