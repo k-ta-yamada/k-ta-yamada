@@ -17,6 +17,10 @@ get '/readme' do
   slim markdown(:readme), locals: { path: 'README.md' }
 end
 
+get '/list' do
+  slim markdown(:list), locals: { path: 'list.md' }
+end
+
 get '/ping' do
   { status: 'ok' }.to_json
 end
