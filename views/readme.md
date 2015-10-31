@@ -5,6 +5,7 @@
 - D.O.B. : Spring 1980
 - on the web
   - [GitHub](https://github.com/k-ta-yamada)
+  - [Bitbucket](https://bitbucket.org/k-ta-yamada/)
   - [Qiita](http://qiita.com/k-ta-yamada)
   - [SoundCloud](https://soundcloud.com/keita-yamada-3/)
 
