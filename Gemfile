@@ -1,10 +1,12 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
+ruby '2.1.5'
 
 gem 'sinatra'
 gem 'slim'
 gem 'redcarpet'
+# gem 'activesupport', require: false
+gem 'activesupport', require: 'active_support/core_ext/hash/conversions'
 
 group :production do
   gem 'newrelic_rpm'

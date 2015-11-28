@@ -24,3 +24,12 @@ end
 get '/ping' do
   { status: 'ok' }.to_json
 end
+
+# require 'active_support/core_ext/hash/conversions'
+require 'open-uri'
+require 'json'
+BILLBOARD_RSS_URL = 'http://www.billboard.com/rss/charts/hot-100'
+get '/billboard_rss_to_json' do
+  xml = open(BILLBOARD_RSS_URL).read
+  Hash.from_xml(xml).to_json
+end
