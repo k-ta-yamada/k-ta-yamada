@@ -3,8 +3,15 @@ source 'https://rubygems.org'
 ruby '2.1.5'
 
 gem 'sinatra'
+
 gem 'slim'
-gem 'redcarpet'
+# gem 'redcarpet'
+gem 'kramdown'
+
+gem 'chartkick'
+
+gem 'rest-client', require: false
+
 # gem 'activesupport', require: false
 gem 'activesupport', require: 'active_support/core_ext/hash/conversions'
 

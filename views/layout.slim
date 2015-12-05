@@ -4,6 +4,9 @@ html
     style
       | body { padding-top: 50px; }
       | ul.nav { background-color: #FFF; }
+    <script src="//www.google.com/jsapi"></script>
+    / <script src="chartkick.js"></script>
+    <script src="chartkick.js"></script>
   body
     ul.nav.nav-tabs.nav-justified.navbar-fixed-top
       == slim(:_nav)
@@ -11,7 +14,7 @@ html
     .container
       .panel.panel-default
         .panel-heading
-          h6 =path
+          h6 =@path
         .panel-body
           == yield
 
