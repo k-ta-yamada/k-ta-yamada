@@ -21,8 +21,10 @@ get '/list' do
   slim markdown(:list), locals: { path: 'list.md' }
 end
 
+UPDATED_AT = Time.now
 get '/ping' do
-  { status: 'ok' }.to_json
+  { status: 'ok',
+    updated_at: UPDATED_AT }.to_json
 end
 
 # require 'active_support/core_ext/hash/conversions'
