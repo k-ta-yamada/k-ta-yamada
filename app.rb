@@ -47,17 +47,19 @@ end
 
 get '/gem' do
   hash = JSON.parse(restclient_get(URL_TEE_LOGGER), symbolize_names: true)
-  # @data = hash.map { |v| [v[:built_at], v[:downloads_count]] }
+  @total_dl = hash.map { |v| v[:downloads_count] }.inject(:+)
+
   @data = hash.reverse.map { |v| [v[:number], v[:downloads_count]] }
   @data.select! { |v| v.first.split('.').first.to_i >= 2 }
+
   slim :chart
 end
 
 __END__
 @@chart
-a href='https://rubygems.org/gems/tee_logger' target='new' tee_logger
-hr
-p align='center' DL by verions
-== column_chart @data
+p :a href='https://rubygems.org/gems/tee_logger' target='new' tee_logger
+p total download count [#{@total_dl}]
+p download count by verions (latest 10)
+== column_chart @data.last(10)
 / == line_chart [{ name: 'data_num', data: @data_num }, { name: 'data_cnt', data: @data_cnt }]
 / == line_chart @data_cnt
