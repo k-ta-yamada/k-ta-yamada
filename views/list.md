@@ -5,6 +5,9 @@
 
 ## AT40
 
+### [AT40::December 19, 2015][20151219]
+<iframe width="400" height="300" src="https://www.youtube.com/embed/videoseries?list=PLSRbdL3cNYaVCIqAyeKJ-m5mIU1FBqCB8" frameborder="0" allowfullscreen></iframe>
+
 ### [AT40::December 12, 2015][20151212]
 <iframe width="400" height="300" src="https://www.youtube.com/embed/videoseries?list=PLSRbdL3cNYaUrGHEGqZ5SUqC9zSuYx5Eo" frameborder="0" allowfullscreen></iframe>
 
@@ -24,6 +27,7 @@
 - [to_json](/billboard_rss_to_json)
 
 
+[20151219]: http://www.at40.com/top-40/chart/39233
 [20151212]: http://www.at40.com/top-40/chart/39185
 [20151205]: http://www.at40.com/top-40/chart/39098
 [20151128]: http://www.at40.com/top-40/chart/39004
