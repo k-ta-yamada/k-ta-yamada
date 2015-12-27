@@ -63,3 +63,4 @@ p download count by verions (latest 10)
 == column_chart @data.last(10)
 / == line_chart [{ name: 'data_num', data: @data_num }, { name: 'data_cnt', data: @data_cnt }]
 / == line_chart @data_cnt
+p :a href='http://bestgems.org/gems/tee_logger' target='new' tee_logger -- BestGems
