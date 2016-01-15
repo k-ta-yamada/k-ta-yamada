@@ -59,7 +59,8 @@ end
 
 get '/sitemap.txt' do
   content_type :text
-  %w(/ /readme /list /ping /billboard_rss_to_json /gem).join("\n")
+  routes = %w(/ /readme /list /ping /billboard_rss_to_json /gem)
+  routes.map { |v| "https://k-ta-yamada.herokuapp.com#{v}" }.join("\n")
 end
 
 __END__
