@@ -17,6 +17,7 @@ gem 'activesupport', require: 'active_support/core_ext/hash/conversions'
 
 group :production do
   gem 'newrelic_rpm'
+  gem 'heroku-deflater'
 end
 
 group :development do
