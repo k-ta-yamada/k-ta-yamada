@@ -3,6 +3,8 @@ Bundler.require(:default)
 Bundler.require(Sinatra::Base.environment)
 require 'json'
 
+use Rack::Deflater
+
 before do
   # request.env.each do |k, v|
   #   puts "  #{k.ljust(25)} => [#{v}]"
