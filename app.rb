@@ -57,6 +57,10 @@ get '/gem' do
   slim :chart
 end
 
+get '/sitemap' do
+  %w(/ /readme /list /ping /billboard_rss_to_json /gem).join("\n")
+end
+
 __END__
 @@chart
 p :a href='https://rubygems.org/gems/tee_logger' target='new' tee_logger
