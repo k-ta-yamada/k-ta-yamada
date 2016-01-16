@@ -65,6 +65,8 @@ end
 
 __END__
 @@chart
+script src="//www.google.com/jsapi"
+script src="chartkick.js"
 p :a href='https://rubygems.org/gems/tee_logger' target='new' tee_logger
 p total download count [#{@total_dl}]
 p download count by verions (latest 10)
