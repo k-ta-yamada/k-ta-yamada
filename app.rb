@@ -67,10 +67,10 @@ __END__
 @@chart
 script src="//www.google.com/jsapi"
 script src="chartkick.js"
-p :a href='https://rubygems.org/gems/tee_logger' target='new' tee_logger
+p :a href='https://rubygems.org/gems/tee_logger' target='_blank' tee_logger
 p total download count [#{@total_dl}]
 p download count by verions (latest 10)
 == column_chart @data.last(10)
 / == line_chart [{ name: 'data_num', data: @data_num }, { name: 'data_cnt', data: @data_cnt }]
 / == line_chart @data_cnt
-p :a href='http://bestgems.org/gems/tee_logger' target='new' tee_logger -- BestGems
+p :a href='http://bestgems.org/gems/tee_logger' target='_blank' tee_logger -- BestGems
