@@ -1,0 +1,29 @@
+{
+  "name": "k-ta-yamada",
+  "scripts": {
+  },
+  "env": {
+    "LANG": {
+      "required": true
+    },
+    "NEW_RELIC_APP_NAME": {
+      "required": true
+    },
+    "RACK_ENV": {
+      "required": true
+    },
+    "TZ": {
+      "required": true
+    }
+  },
+  "addons": [
+    "newrelic",
+    "process-scheduler",
+    "papertrail"
+  ],
+  "buildpacks": [
+    {
+      "url": "urn:buildpack:heroku/ruby"
+    }
+  ]
+}
