@@ -4,22 +4,22 @@
   },
   "env": {
     "LANG": {
-      "required": true
+      "required": false
     },
     "NEW_RELIC_APP_NAME": {
-      "required": true
+      "required": false
     },
     "RACK_ENV": {
-      "required": true
+      "required": false
     },
     "TZ": {
       "required": true
     }
   },
   "addons": [
-    "newrelic",
-    "process-scheduler",
-    "papertrail"
+    // "newrelic",
+    // "process-scheduler",
+    // "papertrail"
   ],
   "buildpacks": [
     {
