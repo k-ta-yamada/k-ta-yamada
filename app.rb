@@ -12,8 +12,9 @@ before do
   @path = request.path
 end
 
-URL_BILLBOARD_RSS = 'http://www.billboard.com/rss/charts/hot-100'
-URL_TEE_LOGGER    = 'https://rubygems.org/api/v1/versions/tee_logger.json'
+URL_BILLBOARD_RSS = 'http://www.billboard.com/rss/charts/hot-100'.freeze
+URL_TEE_LOGGER    = 'https://rubygems.org/api/v1/versions/tee_logger.json'.freeze
+URL_TEE_RENC      = 'https://rubygems.org/api/v1/versions/renc.json'.freeze
 helpers do
   def restclient_get(uri)
     # TODO: なんかsinatra起動しなくなるのでここでrequire
@@ -48,13 +49,22 @@ get '/billboard_rss_to_json' do
 end
 
 get '/gem' do
-  hash = JSON.parse(restclient_get(URL_TEE_LOGGER), symbolize_names: true)
-  @total_dl = hash.map { |v| v[:downloads_count] }.inject(:+)
+  @total_dl = {}
+  @data     = {}
 
-  @data = hash.reverse.map { |v| [v[:number], v[:downloads_count]] }
-  @data.select! { |v| v.first.split('.').first.to_i >= 2 }
+  tee_logger = JSON.parse(restclient_get(URL_TEE_LOGGER), symbolize_names: true)
+  renc       = JSON.parse(restclient_get(URL_TEE_RENC), symbolize_names: true)
 
-  slim :chart
+  @total_dl[:tee_logger] = tee_logger.map { |v| v[:downloads_count] }.inject(:+)
+  @total_dl[:renc]       = renc.map { |v| v[:downloads_count] }.inject(:+)
+
+  data = tee_logger.reverse.map { |v| [v[:number], v[:downloads_count]] }
+  @data[:tee_logger] = data.select { |v| v.first.split('.').first.to_i >= 0 }
+
+  data = renc.reverse.map { |v| [v[:number], v[:downloads_count]] }
+  @data[:renc] = data.select { |v| v.first.split('.').first.to_i >= 0 }
+
+  slim :gem
 end
 
 get '/sitemap.txt' do

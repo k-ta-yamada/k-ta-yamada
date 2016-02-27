@@ -1,0 +1,24 @@
+script src="//www.google.com/jsapi"
+script src="chartkick.js"
+
+p
+  a href='https://rubygems.org/gems/renc' target='_blank' renc
+p
+  total download count [#{@total_dl[:renc]}]
+p
+  download count by verions (latest 10)
+== column_chart @data[:renc].last(10)
+p
+  a href='http://bestgems.org/gems/renc' target='_blank' renc -- BestGems
+
+hr
+
+p
+  a href='https://rubygems.org/gems/tee_logger' target='_blank' tee_logger
+p
+  total download count [#{@total_dl[:tee_logger]}]
+p
+  download count by verions (latest 10)
+== column_chart @data[:tee_logger].last(10)
+p
+  a href='http://bestgems.org/gems/tee_logger' target='_blank' tee_logger -- BestGems
