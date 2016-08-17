@@ -1,1 +1,4 @@
-こんにちは。
+hello
+
+- [prof](/prof)
+- [rubygems](/rubygems)

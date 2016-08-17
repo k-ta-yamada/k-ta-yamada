@@ -1,5 +1,6 @@
 html
   head
+    title k-ta-yamada#{@path == '/' ? nil : @path}
     <meta name=viewport content="width=device-width, initial-scale=1">
 
     <!-- Latest compiled and minified CSS -->
@@ -13,13 +14,14 @@ html
       |   body { padding-top: 60px; }
       | }
       | ul.nav { background-color: #FFF; }
+      | .bar { margin-top: 50px;}
   body
     .container-fluid
       == slim(:_nav)
 
     .container
       .panel.panel-default
-        .panel-heading
+        / .panel-heading
           h6 =@path
         .panel-body
           == yield

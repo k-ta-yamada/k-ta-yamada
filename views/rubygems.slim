@@ -1,0 +1,69 @@
+/ c3
+link [href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css"
+      rel='stylesheet' type="text/css"]
+/ angular-loading-bar
+link [href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.8.0/loading-bar.min.css'
+      rel='stylesheet' type='text/css' media='all']
+/ mine
+link href="/css/rubygems.css" rel='stylesheet' type="text/css"
+
+
+
+h3 RubyGems
+div ng-app="myApp"
+  div ng-controller="myController"
+    div ng-repeat="data in data_set"
+      hr
+      h4: a href="{{data.project_uri}}" target="_blank" {{data.name}}
+      p ng-bind="data.info"
+      dl.dl-horizontal
+        dt project_uri
+        dd: a href="{{data.project_uri}}" target="_blank" {{data.project_uri}}
+        dt source_code_uri
+        dd: a href="{{data.source_code_uri}}" target="_blank" {{data.source_code_uri}}
+        dt documentation_uri
+        dd: a href="{{data.documentation_uri}}" target="_blank" {{data.documentation_uri}}
+        dt version
+        dd ng-bind="data.version"
+        dt version_downloads
+        dd ng-bind="data.version_downloads | number"
+        dt downloads
+        dd ng-bind="data.downloads | number"
+        dt chart
+        dd
+          button.btn.btn-link.btn-xs [
+            ng-click="toggleChart(data.name)"
+            ng-bind="chart[data.name].isShow ? 'hide chart' : 'show chart'"
+          ]
+        div.animate-show-hide ng-show="chart[data.name].isShow"
+          dt chart.transform
+          dd
+            button.btn.btn-link.btn-xs ng-click="transformChart(data.name, 'line')" to line
+            | |
+            button.btn.btn-link.btn-xs ng-click="transformChart(data.name, 'spline')" to spline
+            | |
+            button.btn.btn-link.btn-xs ng-click="transformChart(data.name, 'bar')" to bar
+            | |
+            button.btn.btn-link.btn-xs ng-click="transformChart(data.name, 'area')" to area
+          div id="chart-{{data.name}}"
+          small: p.text-right
+            a href="http://c3js.org/" target="_blank"
+              | C3.js | D3-based reusable chart library
+              | &nbsp;
+              span class="glyphicon glyphicon-link" aria-hidden="true"
+
+
+/ angular
+script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"
+/ angular-animate
+script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-animate.min.js"
+/ angular-loading-bar
+script src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.8.0/loading-bar.min.js'
+/ lodash
+/ script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.2/lodash.min.js"
+/ d3
+script src="https://d3js.org/d3.v3.min.js"
+/ c3
+script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"
+/ mine
+script src="js/rubygems.js"
