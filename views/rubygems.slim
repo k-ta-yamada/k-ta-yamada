@@ -11,16 +11,16 @@ link href="/css/rubygems.css" rel='stylesheet' type="text/css"
 
 h3 RubyGems
 div ng-app="myApp"
-  div ng-controller="myController"
+  div ng-controller="myController as myCtrl"
 
-    div.bg-danger ng-if="isError"
-      dl.dl-horizontal ng-repeat="error in errors"
+    div.bg-danger ng-if="myCtrl.isError"
+      dl.dl-horizontal ng-repeat="error in myCtrl.errors"
         dt status
         dd ng-bind="error.status"
         dt function
         dd ng-bind="error.function"
 
-    div ng-repeat="data in data_set"
+    div ng-repeat="data in myCtrl.data_set"
       hr
       h4: a href="{{data.project_uri}}" target="_blank" {{data.name}}
       p ng-bind="data.info"
@@ -40,19 +40,19 @@ div ng-app="myApp"
         dt chart
         dd
           button.btn.btn-link.btn-xs [
-            ng-click="toggleChart(data.name)"
-            ng-bind="chart[data.name].isShow ? 'hide chart' : 'show chart'"
+            ng-click="myCtrl.toggleChart(data.name)"
+            ng-bind="myCtrl.chart[data.name].isShow ? 'hide chart' : 'show chart'"
           ]
-        div.animate-show-hide ng-show="chart[data.name].isShow"
+        div.animate-show-hide ng-show="myCtrl.chart[data.name].isShow"
           dt chart.transform
           dd
-            button.btn.btn-link.btn-xs ng-click="transformChart(data.name, 'line')" to line
+            button.btn.btn-link.btn-xs ng-click="myCtrl.transformChart(data.name, 'line')" to line
             | |
-            button.btn.btn-link.btn-xs ng-click="transformChart(data.name, 'spline')" to spline
+            button.btn.btn-link.btn-xs ng-click="myCtrl.transformChart(data.name, 'spline')" to spline
             | |
-            button.btn.btn-link.btn-xs ng-click="transformChart(data.name, 'bar')" to bar
+            button.btn.btn-link.btn-xs ng-click="myCtrl.transformChart(data.name, 'bar')" to bar
             | |
-            button.btn.btn-link.btn-xs ng-click="transformChart(data.name, 'area')" to area
+            button.btn.btn-link.btn-xs ng-click="myCtrl.transformChart(data.name, 'area')" to area
           div id="chart-{{data.name}}"
           small: p.text-right
             a href="http://c3js.org/" target="_blank"

@@ -1,26 +1,15 @@
 angular.module('myApp', ['angular-loading-bar', 'ngAnimate'])
-  .controller('myController', ['$scope', '$http', function($scope, $http) {
-    $scope.getGemList = () => {
-      $scope.isError = false;
-      $http.get('/rubygems.json')
-        .success(function(data) {
-          // console.table(data);
-          $scope.data_set = data;
-          $scope.generateChart('renc');
-          $scope.generateChart('tee_logger');
-        })
-        .error(function(data, status, headers, config) {
-          $scope.errors.push({status: status, function: 'getGemList'});
-          $scope.isError = true;
-        });
-    };
+  // .controller('myController', ['$scope', '$http', function($scope, $http)
+  .controller('myController', myController);
+  function myController($scope, $http) {
+    var _this = this;
+    this.errors = [];
+    this.chart = {};
+    this.isError = false;
 
-    $scope.errors = [];
-    $scope.chart = {};
-
-    $scope.generateChart = (name) => {
+    this.generateChart = function(name) {
       // console.log(name);
-      $scope.isError = false;
+      _this.isError = false;
       $http.get('/rubygems/' + name)
         .success(function(data) {
           var chart = c3.generate({
@@ -41,28 +30,43 @@ angular.module('myApp', ['angular-loading-bar', 'ngAnimate'])
             bar:  { zerobased: false, width: { ratio: 0.4 } }
           });
 
-          $scope.chart[name] = { isShow: true, chart: chart };
+          _this.chart[name] = { isShow: true, chart: chart };
         })
         .error(function(data, status, headers, config) {
-          $scope.errors.push({status: status, function: 'generateChart(' + name + ')'});
-          $scope.isError = true;
+          _this.errors.push({status: status, function: 'generateChart(' + name + ')'});
+          _this.isError = true;
         });
     };
 
-    $scope.toggleChart = (name) => {
-      if (angular.isUndefined($scope.chart[name])) {
-        $scope.generateChart(name);
+    this.toggleChart = function(name) {
+      if (angular.isUndefined(_this.chart[name])) {
+        _this.generateChart(name);
         return;
       }
-      var isShow = $scope.chart[name].isShow;
-      $scope.chart[name].isShow = !isShow;
+      var isShow = _this.chart[name].isShow;
+      _this.chart[name].isShow = !isShow;
     };
 
-    $scope.transformChart = (name, form) => {
-      var chart = $scope.chart[name].chart
+    this.transformChart = function(name, form) {
+      var chart = _this.chart[name].chart
       chart.transform(form);
       chart.load({ labels: false });
     };
 
-    $scope.getGemList();
-  }]);
+    this.getGemList = function() {
+      _this.isError = false;
+      $http.get('/rubygems.json')
+        .success(function(data) {
+          // console.table(data);
+          _this.data_set = data;
+          _this.generateChart('renc');
+          _this.generateChart('tee_logger');
+        })
+        .error(function(data, status, headers, config) {
+          _this.errors.push({status: status, function: 'getGemList'});
+          _this.isError = true;
+        });
+    };
+
+    this.getGemList();
+  };
