@@ -12,6 +12,14 @@ link href="/css/rubygems.css" rel='stylesheet' type="text/css"
 h3 RubyGems
 div ng-app="myApp"
   div ng-controller="myController"
+
+    div.bg-danger ng-if="isError"
+      dl.dl-horizontal ng-repeat="error in errors"
+        dt status
+        dd ng-bind="error.status"
+        dt function
+        dd ng-bind="error.function"
+
     div ng-repeat="data in data_set"
       hr
       h4: a href="{{data.project_uri}}" target="_blank" {{data.name}}
