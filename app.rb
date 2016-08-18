@@ -12,26 +12,9 @@ before do
   @path = request.path
 end
 
-URL_TEE_LOGGER    = 'https://rubygems.org/api/v1/versions/tee_logger.json'.freeze
-URL_RENC          = 'https://rubygems.org/api/v1/versions/renc.json'.freeze
-URL_BASE          = 'https://rubygems.org/api/v1/versions'.freeze
-
-helpers do
-  def restclient_get(uri)
-    # TODO: なんかsinatra起動しなくなるのでここでrequire
-    require 'rest-client'
-    RestClient.get(uri)
-  end
-
-  def to_c3(url)
-    json = JSON.parse(restclient_get(url), symbolize_names: true)
-    json.sort_by! { |v| v[:number] }
-    json.last(10).to_json
-  end
-end
+RUBYGEMS_ORG       = 'https://rubygems.org/api/v1'.freeze
 
 get '/' do
-  slim :prof
   slim markdown(:index)
 end
 
@@ -40,26 +23,32 @@ get '/prof' do
 end
 
 get '/rubygems' do
-  # json = JSON.parse(restclient_get('https://rubygems.org/api/v1/owners/k-ta-yamada/gems.json'), symbolize_names: true)
   slim :rubygems
 end
 
 get '/rubygems.json' do
-  json = JSON.parse(restclient_get('https://rubygems.org/api/v1/owners/k-ta-yamada/gems.json'),
-                    symbolize_names: true)
-  json.to_json
+  content_type :json
+  uri = "#{RUBYGEMS_ORG}/owners/k-ta-yamada/gems.json"
+  data = JSON.parse(RestClient.get(uri), symbolize_names: true)
+  data.to_json
 end
 
 get '/rubygems/:gem_name' do |gem_name|
-  to_c3("#{URL_BASE}/#{gem_name}.json")
+  content_type :json
+  uri = "#{RUBYGEMS_ORG}/versions/#{gem_name}.json"
+  data = JSON.parse(RestClient.get(uri), symbolize_names: true)
+  data.sort_by! { |v| v[:number] }
+  data.last(10).to_json
 end
 
 get '/gem' do
   @total_dl = {}
   @data     = {}
 
-  tee_logger = JSON.parse(restclient_get(URL_TEE_LOGGER), symbolize_names: true)
-  renc       = JSON.parse(restclient_get(URL_RENC), symbolize_names: true)
+  uri = "#{RUBYGEMS_ORG}/versions/tee_logger.json"
+  tee_logger = JSON.parse(RestClient.get(uri), symbolize_names: true)
+  uri = "#{RUBYGEMS_ORG}/versions/renc.json"
+  renc       = JSON.parse(RestClient.get(uri), symbolize_names: true)
 
   @total_dl[:tee_logger] = tee_logger.map { |v| v[:downloads_count] }.inject(:+)
   @total_dl[:renc]       = renc.map { |v| v[:downloads_count] }.inject(:+)
@@ -82,6 +71,6 @@ end
 
 get '/sitemap.txt' do
   content_type :text
-  routes = %w(/ /readme /list /ping /billboard_rss_to_json /gem)
+  routes = %w(/ /prof /rubygems /ping /gem)
   routes.map { |v| "https://k-ta-yamada.herokuapp.com#{v}" }.join("\n")
 end

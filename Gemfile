@@ -10,7 +10,7 @@ gem 'kramdown'
 
 gem 'chartkick'
 
-gem 'rest-client', require: false
+gem 'rest-client'
 
 # gem 'activesupport', require: false
 gem 'activesupport', require: 'active_support/core_ext/hash/conversions'
