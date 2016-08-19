@@ -10,7 +10,7 @@ angular.module('myApp', ['angular-loading-bar', 'ngAnimate'])
     this.generateChart = function(name) {
       // console.log(name);
       _this.isError = false;
-      $http.get('/rubygems/' + name)
+      $http.get('/rubygems/' + name, {timeout: 5000})
         .success(function(data) {
           var chart = c3.generate({
             bindto: '#chart-' + name,
@@ -23,11 +23,12 @@ angular.module('myApp', ['angular-loading-bar', 'ngAnimate'])
               // types: { downloads_count: 'area' },
               names: { downloads_count: 'downloads/version' }
             },
-            axis: { x: { type: 'category' }, },
+            axis: { x: { type: 'category' } },
             grid: { y: { show: true } },
             line: { connectNull: true },
             area: { zerobased: false },
-            bar:  { zerobased: false, width: { ratio: 0.4 } }
+            bar:  { zerobased: false, width: { ratio: 0.4 } },
+            // legend: { position: 'right' }
           });
 
           _this.chart[name] = { isShow: true, chart: chart };
@@ -55,7 +56,7 @@ angular.module('myApp', ['angular-loading-bar', 'ngAnimate'])
 
     this.getGemList = function() {
       _this.isError = false;
-      $http.get('/rubygems.json')
+      $http.get('/rubygems.json', {timeout: 5000})
         .success(function(data) {
           // console.table(data);
           _this.data_set = data;

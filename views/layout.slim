@@ -1,44 +1,38 @@
 html
   head
-    title k-ta-yamada#{@path == '/' ? nil : @path}
+    / title k-ta-yamada#{@path == '/' ? nil : @path}
     meta name="viewport" content="width=device-width, initial-scale=1"
-
-    <!-- Latest compiled and minified CSS -->
-    link rel="stylesheet" href="/css/bootstrap.css"
 
     <!-- bower:css -->
     <!-- endbower -->
+    link rel="stylesheet" href="/css/bootstrap.css"
+    - if request.path == '/rubygems'
+      link href="/css/c3.css" rel='stylesheet' type="text/css"
+      link href='/css/loading-bar.css' rel='stylesheet'
+      link href="/css/rubygems.css" rel='stylesheet' type="text/css"
+    link rel="stylesheet" href="/css/app.css"
 
-    style
-      | @media (min-width: 767px) {
-      |   body { padding-top: 60px; }
-      | }
-      | @media (max-width: 767px) {
-      |   body { padding-top: 60px; }
-      | }
-      | ul.nav { background-color: #FFF; }
-      | .bar { margin-top: 50px;}
   body
-    .container-fluid
+    .container
       == slim(:_nav)
 
     .container
-      .panel.panel-default
-        / .panel-heading
-          h6 =@path
-        .panel-body
-          == yield
+      == yield
 
-    / .nav.nav-tabs.nav-justified.navbar-fixed-bottom
     p.text-center
       | Copyright 2014-2016,
       a href="https://github.com/k-ta-yamada" title="GitHub" k-ta-yamada
 
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-      script src="/js/jquery.js"
-      <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <!-- Latest compiled and minified JavaScript -->
-      script src="/js/bootstrap.js"
+    script src="/js/jquery.js"
+    script src="/js/bootstrap.js"
 
-      <!-- bower:js -->
-      <!-- endbower -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    - if request.path == '/rubygems'
+      script src="/js/angular.js"
+      script src="/js/angular-animate.js"
+      script src='/js/loading-bar.js'
+      / script src="/js/lodash.js"
+      script src="/js/d3.js"
+      script src="/js/c3.js"
+      script src="/js/rubygems.js"

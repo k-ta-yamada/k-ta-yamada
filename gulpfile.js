@@ -2,6 +2,7 @@
 // define
 // **********************************************************************
 var _ = require('lodash');
+var del = require('del');
 
 var gulp = require('gulp');
 
@@ -92,4 +93,21 @@ gulp.task('wiredep', function() {
     .pipe(logger({ beforeEach: '[wiredep] ' }));
 });
 
-gulp.task('default', ['bower', 'orig']);
+// ref: https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpwatchglob--opts-tasks-or-gulpwatchglob--opts-cb
+gulp.task('watch', function() {
+  var watcher = gulp.watch('sources/**/*', ['default']);
+  watcher.on('change', function(event) {
+    console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+  });
+});
+
+// TODO
+gulp.task('clean', function() {
+  del('public/css/*');
+  del('public/fonts/bootstrap/*');
+  del('public/js/*');
+});
+
+gulp.task('default', ['clean'], function() {
+  gulp.start(['bower', 'orig']);
+});

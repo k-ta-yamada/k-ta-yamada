@@ -1,0 +1,8 @@
+@media (min-width: 767px) {
+  body { padding-top: 60px; }
+}
+@media (max-width: 767px) {
+  body { padding-top: 60px; }
+}
+ul.nav { background-color: #FFF; }
+.bar { margin-top: 50px;}
