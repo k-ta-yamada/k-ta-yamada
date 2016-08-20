@@ -1,3 +1,6 @@
+bower_components/
+node_modules/
+
 .tags*
 
 ### https://raw.github.com/github/gitignore/master/Global/OSX.gitignore
