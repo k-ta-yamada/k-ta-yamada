@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "bower install"
+    "postinstall": "bower install && gulp"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,13 @@
   },
   "homepage": "https://github.com/k-ta-yamada/k-ta-yamada#readme",
   "dependencies": {
-    "bower": "^1.7.9"
+    "bower": "^1.7.9",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-filter": "^4.0.0",
+    "gulp-logger": "0.0.2",
+    "gulp-sass": "^2.3.2",
+    "main-bower-files": "^2.13.1",
+    "wiredep": "^4.0.0"
   }
 }
