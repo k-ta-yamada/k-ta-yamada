@@ -1,76 +1,51 @@
-/ c3
-link href="/css/c3.css" rel='stylesheet' type="text/css"
-/ angular-loading-bar
-link [href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.8.0/loading-bar.min.css' rel='stylesheet' type='text/css' media='all']
-/ mine
-link href="/css/rubygems.css" rel='stylesheet' type="text/css"
+div ng-app="myApp" ng-controller="myController as myCtrl"
 
+  .row
+    .col-md-12.col-xs-12
+      h3 RubyGems
 
+  .row ng-repeat="data in myCtrl.data_set"
+    .col-md-12.col-xs-12
+      hr
+      h4 ng-bind="data.name"
+      p.lead ng-bind="data.info"
 
-h3 RubyGems
-div ng-app="myApp"
-  div ng-controller="myController as myCtrl"
+    / .row
+    .col-md-4.col-xs-12
+      dl
+        - %i(project_uri source_code_uri documentation_uri).each do |key|
+          dt #{key}
+          dd: a href="{{data.#{key}}}" target="_blank" {{data.#{key}}}
+        dt version
+        dd ng-bind="data.version"
+        - %i(version_downloads downloads).each do |download|
+          dt #{download}
+          dd ng-bind="data.#{download} | number"
+      dl
+        dt BestGems
+        dd
+          a href="http://bestgems.org/gems/{{data.name}}" target='_blank'
+            | http://bestgems.org/gems/{{data.name}}&nbsp;
+            span.glyphicon.glyphicon-link aria-hidden="true"
 
-    div.bg-danger ng-if="myCtrl.isError"
+    .col-md-8.col-xs-12
+      button.btn.btn-default.btn-xs ng-click="myCtrl.toggleChart(data.name)"
+         | {{myCtrl.chart[data.name].isShow ? 'hide chart' : 'show chart'}}
+      div.animate-show-hide ng-show="myCtrl.chart[data.name].isShow"
+        ul.list-inline
+          - %i(line spline bar area).each do |type|
+            li: button.btn.btn-link.btn-xs ng-click="myCtrl.transformChart(data.name, '#{type}')" to #{type}
+
+        div id="chart-{{data.name}}"
+        small: p.text-right
+          a href="http://c3js.org/" target="_blank"
+            | C3.js | D3-based reusable chart library&nbsp;
+            span.glyphicon.glyphicon-link aria-hidden="true"
+
+  .row.bg-danger ng-if="myCtrl.isError" display="none"
+    .col-md-12.col-xs-12
       dl.dl-horizontal ng-repeat="error in myCtrl.errors"
         dt status
         dd ng-bind="error.status"
         dt function
         dd ng-bind="error.function"
-
-    div ng-repeat="data in myCtrl.data_set"
-      hr
-      h4: a href="{{data.project_uri}}" target="_blank" {{data.name}}
-      p ng-bind="data.info"
-      dl.dl-horizontal
-        dt project_uri
-        dd: a href="{{data.project_uri}}" target="_blank" {{data.project_uri}}
-        dt source_code_uri
-        dd: a href="{{data.source_code_uri}}" target="_blank" {{data.source_code_uri}}
-        dt documentation_uri
-        dd: a href="{{data.documentation_uri}}" target="_blank" {{data.documentation_uri}}
-        dt version
-        dd ng-bind="data.version"
-        dt version_downloads
-        dd ng-bind="data.version_downloads | number"
-        dt downloads
-        dd ng-bind="data.downloads | number"
-        dt chart
-        dd
-          button.btn.btn-link.btn-xs [
-            ng-click="myCtrl.toggleChart(data.name)"
-            ng-bind="myCtrl.chart[data.name].isShow ? 'hide chart' : 'show chart'"
-          ]
-        div.animate-show-hide ng-show="myCtrl.chart[data.name].isShow"
-          dt chart.transform
-          dd
-            button.btn.btn-link.btn-xs ng-click="myCtrl.transformChart(data.name, 'line')" to line
-            | |
-            button.btn.btn-link.btn-xs ng-click="myCtrl.transformChart(data.name, 'spline')" to spline
-            | |
-            button.btn.btn-link.btn-xs ng-click="myCtrl.transformChart(data.name, 'bar')" to bar
-            | |
-            button.btn.btn-link.btn-xs ng-click="myCtrl.transformChart(data.name, 'area')" to area
-          div id="chart-{{data.name}}"
-          small: p.text-right
-            a href="http://c3js.org/" target="_blank"
-              | C3.js | D3-based reusable chart library
-              | &nbsp;
-              span class="glyphicon glyphicon-link" aria-hidden="true"
-
-
-
-/ angular
-script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"
-/ angular-animate
-script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-animate.min.js"
-/ angular-loading-bar
-script src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.8.0/loading-bar.min.js'
-/ lodash
-/ script src="/js/lodash.js"
-/ d3
-script src="/js/d3.js"
-/ c3
-script src="/js/c3.js"
-/ mine
-script src="/js/rubygems.js"

@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 
 gem 'sinatra'
+gem 'sinatra-contrib'
 
 gem 'slim'
 # gem 'redcarpet'
@@ -20,7 +21,6 @@ group :production do
 end
 
 group :development do
-  gem 'sinatra-contrib', require: 'sinatra/reloader'
   gem 'pry'
   gem 'pry-doc'
   gem 'pry-theme'
