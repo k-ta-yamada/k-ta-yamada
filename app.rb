@@ -6,14 +6,48 @@ require 'sinatra/reloader'
 require 'sinatra/json'
 require 'sinatra/namespace'
 
+# require_relative 'lib/ruby_gems_api'
+
 use Rack::Deflater
 
+configure do
+  loglevel = settings.development? ? Logger::DEBUG : Logger::INFO
+  set :logging, settings.development? ? Logger::DEBUG : Logger::INFO
+end
+
 before do
-  # request.env.each do |k, v|
-  #   puts "  #{k.ljust(25)} => [#{v}]"
-  # end if development?
-  puts Sinatra::Base.environment
+  request.env.each do |k, v|
+    logger.debug "  #{k.ljust(25)} => [#{v}]"
+  end
+
+  logger.info "Sinatra::Base.environment: #{Sinatra::Base.environment}"
   @path = request.path
+end
+
+# ##################################################
+# helpers
+# ##################################################
+helpers do
+  # for cache
+  set :gem_list, nil
+  RUBYGEMS_ORG_API = 'https://rubygems.org/api/v1'.freeze
+
+  def gem_list
+    logger.debug '-' * 50
+    logger.debug "settings.gem_list: #{settings.gem_list}"
+    uri = "#{RUBYGEMS_ORG_API}/owners/k-ta-yamada/gems.json"
+    settings.gem_list ||= JSON.parse(RestClient.get(uri), symbolize_names: true)
+  end
+
+  def clear_gem_list
+    settings.gem_list = nil
+  end
+
+  def gem_versions(gem_name)
+    uri = "#{RUBYGEMS_ORG_API}/versions/#{gem_name}.json"
+    data = JSON.parse(RestClient.get(uri), symbolize_names: true)
+    data.sort_by! { |v| v[:number] }
+  end
 end
 
 # ##################################################
@@ -33,7 +67,6 @@ end
 # ##################################################
 # /rubygems
 # ##################################################
-RUBYGEMS_ORG       = 'https://rubygems.org/api/v1'.freeze
 namespace '/rubygems' do
   get '' do
     slim :rubygems
@@ -41,17 +74,17 @@ namespace '/rubygems' do
 
   get '.json' do
     content_type :json
-    uri = "#{RUBYGEMS_ORG}/owners/k-ta-yamada/gems.json"
-    data = JSON.parse(RestClient.get(uri), symbolize_names: true)
-    json data
+    json gem_list
+  end
+
+  get '/clear-cache' do
+    clear_gem_list
+    redirect to(:rubygems)
   end
 
   get '/:gem_name' do |gem_name|
     content_type :json
-    uri = "#{RUBYGEMS_ORG}/versions/#{gem_name}.json"
-    data = JSON.parse(RestClient.get(uri), symbolize_names: true)
-    data.sort_by! { |v| v[:number] }
-    json data.last(10)
+    json gem_versions(gem_name).last(10)
   end
 end
 
@@ -63,9 +96,9 @@ namespace '/' do
     @total_dl = {}
     @data     = {}
 
-    uri = "#{RUBYGEMS_ORG}/versions/tee_logger.json"
+    uri = "#{RUBYGEMS_ORG_API}/versions/tee_logger.json"
     tee_logger = JSON.parse(RestClient.get(uri), symbolize_names: true)
-    uri = "#{RUBYGEMS_ORG}/versions/renc.json"
+    uri = "#{RUBYGEMS_ORG_API}/versions/renc.json"
     renc       = JSON.parse(RestClient.get(uri), symbolize_names: true)
 
     @total_dl[:tee_logger] = tee_logger.map { |v| v[:downloads_count] }.inject(:+)

@@ -60,8 +60,8 @@ angular.module('myApp', ['angular-loading-bar', 'ngAnimate'])
         .success(function(data) {
           // console.table(data);
           _this.data_set = data;
-          _this.generateChart('renc');
-          _this.generateChart('tee_logger');
+          // _this.generateChart('renc');
+          // _this.generateChart('tee_logger');
         })
         .error(function(data, status, headers, config) {
           _this.errors.push({status: status, function: 'getGemList'});
