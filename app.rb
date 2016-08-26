@@ -2,11 +2,10 @@ require 'bundler'
 Bundler.require(:default)
 Bundler.require(Sinatra::Base.environment)
 
+require 'json'
 require 'sinatra/reloader'
 require 'sinatra/json'
 require 'sinatra/namespace'
-
-# require_relative 'lib/ruby_gems_api'
 
 use Rack::Deflater
 
