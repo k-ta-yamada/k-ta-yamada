@@ -8,9 +8,6 @@ gem 'sinatra-contrib'
 gem 'slim'
 # gem 'redcarpet'
 gem 'kramdown'
-
-gem 'chartkick'
-
 gem 'rest-client'
 
 # gem 'activesupport', require: false
@@ -24,4 +21,5 @@ group :development do
   gem 'pry'
   gem 'pry-doc'
   gem 'pry-theme'
+  gem 'awesome_print'
 end
