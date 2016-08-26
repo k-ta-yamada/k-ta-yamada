@@ -98,7 +98,7 @@ gulp.task('wiredep', function() {
 
 // ref: https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpwatchglob--opts-tasks-or-gulpwatchglob--opts-cb
 gulp.task('watch', function() {
-  var watcher = gulp.watch('sources/**/*', ['default']);
+  var watcher = gulp.watch('sources/**/*', ['orig']);
   watcher.on('change', function(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
   });
