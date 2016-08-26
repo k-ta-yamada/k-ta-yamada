@@ -10,6 +10,7 @@ var mainBowerFiles = require('main-bower-files');
 var logger = require('gulp-logger');
 var concat = require('gulp-concat');
 var filter = require('gulp-filter');
+var uglify = require('gulp-uglify');
 
 var sass = require('gulp-sass');
 // var autoprefixer = require('gulp-autoprefixer');
@@ -22,6 +23,7 @@ gulp.task('bower:js', function() {
   return gulp
     .src(mainBowerFiles())
     .pipe(jsFilter)
+    .pipe(uglify())
     // .pipe(concat('_script.js'))
     // .pipe(gulp.dest('sources/js/'))
     .pipe(gulp.dest('public/js/'))
@@ -75,6 +77,7 @@ gulp.task('orig:css', function() {
 gulp.task('orig:js', function() {
   return gulp
     .src('sources/js/*')
+    .pipe(uglify())
     .pipe(gulp.dest('public/js/'))
     .pipe(logger({ beforeEach: '[orig:js] ' }));
 });
