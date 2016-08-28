@@ -15,7 +15,6 @@
     "tests"
   ],
   "dependencies": {
-    "lodash": "^4.15.0",
     "c3": "^0.4.11",
     "bootstrap-sass": "^3.3.7",
     "angular": "1.5.8",

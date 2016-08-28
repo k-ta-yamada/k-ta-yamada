@@ -7,39 +7,53 @@ var del = require('del');
 var gulp = require('gulp');
 
 var mainBowerFiles = require('main-bower-files');
-var logger = require('gulp-logger');
-var concat = require('gulp-concat');
-var filter = require('gulp-filter');
-var uglify = require('gulp-uglify');
-var cssmin = require('gulp-cssmin');
+var logger  = require('gulp-logger');
+var concat  = require('gulp-concat');
+var filter  = require('gulp-filter');
+var rename  = require('gulp-rename');
+var flatten = require('gulp-flatten');
 
-var sass = require('gulp-sass');
+var uglify = require('gulp-uglify');
+var sass   = require('gulp-sass');
+var cssmin = require('gulp-cssmin');
 // var autoprefixer = require('gulp-autoprefixer');
+
 
 // **********************************************************************
 // bower
 // **********************************************************************
 gulp.task('bower:js', function() {
-  jsFilter = filter('**/*.js');
   return gulp
-    .src(mainBowerFiles())
-    .pipe(jsFilter)
+    // .src(mainBowerFiles({ filter: '**/*.js' }))
+    // .pipe(uglify())
+
+    // .src('bower_components/**/*.min.js')
+    .src(mainBowerFiles({
+      filter: '**/*.js',
+      "overrides": {
+        "angular":             { "main": "./angular.min.js" },
+        "angular-animate":     { "main": "./angular-animate.min.js" },
+        "angular-loading-bar": { "main": "build/loading-bar.min.js" },
+        "bootstrap-sass":      { "main": "assets/javascripts/bootstrap.min.js" },
+        "c3":                  { "main": "c3.min.js" },
+        "d3":                  { "main": "d3.min.js" },
+        "jquery":              { "main": "dist/jquery.min.js" }
+      }
+    }))
+    .pipe(rename({ extname: '' }))
+    .pipe(rename({ extname: '' }))
+    .pipe(rename({ extname: '.js' }))
+    .pipe(flatten())
+
     // .pipe(concat('_script.js'))
     // .pipe(gulp.dest('sources/js/'))
-    .pipe(uglify())
     .pipe(gulp.dest('public/js/'))
     .pipe(logger({ beforeEach: '[bower:js] ' }));
 });
 
 gulp.task('bower:css', function() {
-  // styleFilter = filter(['**/*.scss', '**/*.css']);
-  styleFilter = filter('**/*.css');
   return gulp
-    .src(mainBowerFiles())
-    .pipe(styleFilter)
-    // .pipe(sass())
-    // .pipe(concat('_style.css'))
-    // .pipe(gulp.dest('sources/css/'))
+    .src(mainBowerFiles({ filter: '**/*.css' }))
     .pipe(cssmin())
     .pipe(gulp.dest('public/css/'))
     .pipe(logger({ beforeEach: '[bower:css] ' }));
