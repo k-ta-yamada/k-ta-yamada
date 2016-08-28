@@ -11,6 +11,7 @@ var logger = require('gulp-logger');
 var concat = require('gulp-concat');
 var filter = require('gulp-filter');
 var uglify = require('gulp-uglify');
+var cssmin = require('gulp-cssmin');
 
 var sass = require('gulp-sass');
 // var autoprefixer = require('gulp-autoprefixer');
@@ -23,22 +24,23 @@ gulp.task('bower:js', function() {
   return gulp
     .src(mainBowerFiles())
     .pipe(jsFilter)
-    .pipe(uglify())
     // .pipe(concat('_script.js'))
     // .pipe(gulp.dest('sources/js/'))
+    .pipe(uglify())
     .pipe(gulp.dest('public/js/'))
     .pipe(logger({ beforeEach: '[bower:js] ' }));
 });
 
 gulp.task('bower:css', function() {
   // styleFilter = filter(['**/*.scss', '**/*.css']);
-  styleFilter = filter(['**/*.css']);
+  styleFilter = filter('**/*.css');
   return gulp
     .src(mainBowerFiles())
     .pipe(styleFilter)
-    .pipe(sass())
+    // .pipe(sass())
     // .pipe(concat('_style.css'))
     // .pipe(gulp.dest('sources/css/'))
+    .pipe(cssmin())
     .pipe(gulp.dest('public/css/'))
     .pipe(logger({ beforeEach: '[bower:css] ' }));
 });
@@ -50,7 +52,8 @@ gulp.task('bower:bootstrap', function() {
   return gulp
     .src('sources/css/bootstrap.scss')
     .pipe(sass({includePaths: ["bower_components/bootstrap-sass/assets/stylesheets/"] })
-      .on('error', sass.logError))
+    .on('error', sass.logError))
+    .pipe(cssmin())
     .pipe(gulp.dest('public/css/'))
     .pipe(logger({ beforeEach: '[bower:bootstrap] ' }));
 });
@@ -70,6 +73,7 @@ gulp.task('bower', ['bower:js', 'bower:css', 'bower:bootstrap']);
 gulp.task('orig:css', function() {
   return gulp
     .src('sources/css/*.css')
+    .pipe(cssmin())
     .pipe(gulp.dest('public/css/'))
     .pipe(logger({ beforeEach: '[orig:css] ' }));
 });
