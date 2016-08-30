@@ -95,7 +95,7 @@ gulp.task('orig:css', function() {
 gulp.task('orig:js', function() {
   return gulp
     .src('sources/js/*')
-    // .pipe(uglify())
+    .pipe(uglify())
     .pipe(gulp.dest('public/js/'))
     .pipe(logger({ beforeEach: '[orig:js] ' }));
 });
