@@ -2,6 +2,10 @@ div ng-app="myApp" ng-controller="myController as myCtrl"
 
   .row
     .col-md-12.col-xs-12
+      flash-message
+
+  .row
+    .col-md-12.col-xs-12
       h3 RubyGems
 
   .row ng-repeat="data in myCtrl.data_set"
@@ -41,11 +45,3 @@ div ng-app="myApp" ng-controller="myController as myCtrl"
           a href="http://c3js.org/" target="_blank"
             | C3.js | D3-based reusable chart library&nbsp;
             span.glyphicon.glyphicon-link aria-hidden="true"
-
-  .row.bg-danger ng-if="myCtrl.isError" display="none"
-    .col-md-12.col-xs-12
-      dl.dl-horizontal ng-repeat="error in myCtrl.errors"
-        dt status
-        dd ng-bind="error.status"
-        dt function
-        dd ng-bind="error.function"
