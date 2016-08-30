@@ -1,13 +1,10 @@
-myApp = angular.module('myApp', ['angular-loading-bar', 'ngAnimate']);
-myApp.controller('myController', ['$scope', '$http', function($scope, $http) {
+myApp = angular.module('myApp', ['angular-loading-bar', 'ngFlash', 'ngAnimate']);
+myApp.controller('myController', ['$scope', '$http', 'Flash', function($scope, $http, Flash) {
   var _this = this;
-  this.errors = [];
   this.chart = {};
-  this.isError = false;
 
   this.generateChart = function(name) {
     // console.log(name);
-    _this.isError = false;
     $http.get('/rubygems/' + name, {timeout: 5000})
       .success(function(data) {
         var chart = c3.generate({
@@ -32,8 +29,7 @@ myApp.controller('myController', ['$scope', '$http', function($scope, $http) {
         _this.chart[name] = { isShow: true, chart: chart };
       })
       .error(function(data, status, headers, config) {
-        _this.errors.push({status: status, function: 'generateChart(' + name + ')'});
-        _this.isError = true;
+        var id = Flash.create('danger', '[' + status + ']' + 'generateChart(' + name + ')', 0);
       });
   };
 
@@ -53,17 +49,15 @@ myApp.controller('myController', ['$scope', '$http', function($scope, $http) {
   };
 
   this.getGemList = function() {
-    _this.isError = false;
     $http.get('/rubygems.json', {timeout: 5000})
       .success(function(data) {
         // console.table(data);
         _this.data_set = data;
-        // _this.generateChart('renc');
-        // _this.generateChart('tee_logger');
+        _this.generateChart('renc');
+        _this.generateChart('tee_logger');
       })
       .error(function(data, status, headers, config) {
-        _this.errors.push({status: status, function: 'getGemList'});
-        _this.isError = true;
+        var id = Flash.create('danger', '[' + status + ']' + 'getGemList', 0);
       });
   };
 

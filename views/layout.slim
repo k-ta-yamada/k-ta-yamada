@@ -8,6 +8,7 @@ html
     link rel="stylesheet" href="/css/bootstrap.css"
     - if request.path == '/rubygems'
       link href="/css/c3.css" rel='stylesheet' type="text/css"
+      link href='/css/angular-flash.css' rel='stylesheet'
       link href='/css/loading-bar.css' rel='stylesheet'
       link href="/css/rubygems.css" rel='stylesheet' type="text/css"
     link rel="stylesheet" href="/css/app.css"
@@ -30,6 +31,7 @@ html
     <!-- endbower -->
     - if request.path == '/rubygems'
       script src="/js/angular.js"
+      script src="/js/angular-flash.js"
       script src="/js/angular-animate.js"
       script src='/js/loading-bar.js'
       / script src="/js/lodash.js"
