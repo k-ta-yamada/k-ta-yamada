@@ -1,7 +1,5 @@
-angular.module('myApp', ['angular-loading-bar', 'ngAnimate'])
-  .controller('myController', ['$scope', '$http', myController])
-
-function myController($scope, $http) {
+myApp = angular.module('myApp', ['angular-loading-bar', 'ngAnimate']);
+myApp.controller('myController', ['$scope', '$http', function($scope, $http) {
   var _this = this;
   this.errors = [];
   this.chart = {};
@@ -70,4 +68,4 @@ function myController($scope, $http) {
   };
 
   this.getGemList();
-};
+}]);
