@@ -34,6 +34,7 @@ gulp.task('bower:js', function() {
         "angular":             { "main": "./angular.min.js" },
         "angular-animate":     { "main": "./angular-animate.min.js" },
         "angular-loading-bar": { "main": "build/loading-bar.min.js" },
+        "angular-flash-alert": { "main": "dist/angular-flash.min.js" },
         "bootstrap-sass":      { "main": "assets/javascripts/bootstrap.min.js" },
         "c3":                  { "main": "c3.min.js" },
         "d3":                  { "main": "d3.min.js" },
