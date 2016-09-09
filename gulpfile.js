@@ -23,7 +23,7 @@ var cssmin = require('gulp-cssmin');
 // bower
 // **********************************************************************
 gulp.task('bower:js', function() {
-  return gulp
+  gulp
     // .src(mainBowerFiles({ filter: '**/*.js' }))
     // .pipe(uglify())
 
@@ -48,6 +48,10 @@ gulp.task('bower:js', function() {
 
     // .pipe(concat('_script.js'))
     // .pipe(gulp.dest('sources/js/'))
+    .pipe(gulp.dest('public/js/'))
+    .pipe(logger({ beforeEach: '[bower:js] ' }));
+  gulp
+    .src('bower_components/lodash/dist/lodash.min.js')
     .pipe(gulp.dest('public/js/'))
     .pipe(logger({ beforeEach: '[bower:js] ' }));
 });
@@ -96,7 +100,7 @@ gulp.task('orig:css', function() {
 gulp.task('orig:js', function() {
   return gulp
     .src('sources/js/*')
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest('public/js/'))
     .pipe(logger({ beforeEach: '[orig:js] ' }));
 });

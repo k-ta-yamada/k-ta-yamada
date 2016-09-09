@@ -1,0 +1,53 @@
+div ng-app="myApp" ng-controller="myController as myCtrl" ng-init="myCtrl.init()"
+  .row
+    .col-md-12.col-xs-12
+      form method="post" enctype="multipart/form-data"
+            input.form-control type="text" name="message" ng-model="myCtrl.message" placeholder="message"
+            input.form-control type="text" name="pass" ng-model="myCtrl.pass" placeholder="pass"
+            input.btn.btn-default.btn-block.btn-lg [
+              type="file"
+              name="file"
+              id="file"
+              multiple=""]
+              / accept="image/*"]
+            / input.btn.btn-warning.btn-block.btn-lg type="submit" value="submit"
+            input.btn.btn-warning.btn-block.btn-lg type="button" value="upload" ng-click="myCtrl.upload()"
+
+  .row
+    .col-md-12.col-xs-12
+      flash-message
+
+  .row ng-repeat="file in myCtrl.files"
+    hr
+    / .col-md-1.col-xs-1
+    /   p.text-center ng-bind="$index + 1"
+    .col-md-5.col-xs-11
+      img.img-responsive.img-thumbnail ng-src="#{@path}/{{file.id}}"
+    .col-md-6.col-xs-12
+      dl
+        dt id
+        dd ng-bind="file.id"
+        dt message
+        dd ng-bind="file.message"
+        dt filename
+        dd ng-bind="file.filename"
+        dt type
+        dd ng-bind="file.type"
+        dt size(kb)
+        / dd #{file.size.to_s(:human_size)} (#{file.size.to_s(:delimited)} Bytes)
+        dd ng-bind="file.size / 1024 | number : 2"
+        dt created_at
+        dd ng-bind="file.created_at"
+      .row
+        col-md-4.col-xs-4
+          button.btn.btn-primary.btn-block ng-click="myCtrl.download(file.id)" download-button
+        col-md-4.col-xs-4
+          a.btn.btn-primary.btn-block href="#{@path}/{{file.id}}" download-link
+        col-md-4.col-xs-4
+          / button.btn.btn-warning.btn-block ng-click="myCtrl.hide(file.id)" hide
+          button.btn.btn-danger.btn-block ng-click="myCtrl.delete(file.id)" delete
+
+.row
+  hr
+  .col-md-12.col-xs-12
+    a.btn.btn-danger.bnt-block href="#{@path}/drop" drop all
