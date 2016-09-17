@@ -38,7 +38,7 @@ DB = Sequel.connect(DATABASE_URL,
                     logger: TeeLogger.new('db.log'))
 TABLE_NAME = :files
 FILES = DB[TABLE_NAME]
-LIMIT = 5
+LIMIT = 20
 namespace '/sample' do
   namespace '/img_upload' do
     get '' do

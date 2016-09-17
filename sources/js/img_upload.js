@@ -5,6 +5,9 @@ myApp.controller('myController', ['$scope', '$http', 'Flash', '$window', functio
 
   this.files = [];
   let temp_hide = [];
+  const FILE_SIZE_LIMIT = Math.pow(1024, 2);
+  const FILE_TYPE = /^image\/.*/;
+  const FILE_DATA_CHUNK_SIZE = 3;
 
   this.message = "";
   this.pass = "";
@@ -23,14 +26,12 @@ myApp.controller('myController', ['$scope', '$http', 'Flash', '$window', functio
     Flash.clear();
     let url = $window.location.pathname + '/list';
     $http.get(url, { timeout: 5000 })
-      .success((data) => _this.files = data)
+      .success((data) => _this.files = _.chunk(data, FILE_DATA_CHUNK_SIZE))
       .error((d, s, h, c) => xhrErrHandler(d, s, h, c, 'init'));
       // .finally(() => console.warn('--------------------------------------------------'));
   };
 
   function validation(files) {
-    const FILE_SIZE_LIMIT = Math.pow(1024, 2);
-    const FILE_TYPE = /^image\/.*/;
     let errMsgs = [];
 
     if (files.length == 0) {
@@ -64,7 +65,7 @@ myApp.controller('myController', ['$scope', '$http', 'Flash', '$window', functio
   };
 
   this.upload = function(id) {
-    let config = { timeout: 5000,
+    let config = { timeout: 10000,
                    headers: { "Content-type": undefined },
                    transformRequest: null };
     let files = $("#file").prop("files");
@@ -89,7 +90,7 @@ myApp.controller('myController', ['$scope', '$http', 'Flash', '$window', functio
 
   function deleteSuccess(data) {
     _this.init();
-    Flash.create('success', `id [${data.id}] is deleted.`, 0);
+    Flash.create('success', `id [${data.id}] is deleted.`, 3000);
   };
 
   this.delete = function(id) {
