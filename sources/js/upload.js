@@ -1,11 +1,10 @@
 "use strict";
-
 var myApp = angular.module('myApp', ['angular-loading-bar', 'ngFlash', 'ngAnimate']);
 myApp.controller('myController', ['$scope', '$http', 'Flash', '$window', function($scope, $http, Flash, $window) {
   let _this = this;
 
   this.files = [];
-  var temp_hide = [];
+  let temp_hide = [];
 
   this.message = "";
   this.pass = "";

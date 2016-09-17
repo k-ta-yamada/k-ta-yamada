@@ -1,4 +1,5 @@
-myApp = angular.module('myApp', ['angular-loading-bar', 'ngFlash', 'ngAnimate']);
+"use strict";
+var myApp = angular.module('myApp', ['angular-loading-bar', 'ngFlash', 'ngAnimate']);
 myApp.controller('myController', ['$scope', '$http', 'Flash', function($scope, $http, Flash) {
   var _this = this;
   this.chart = {};

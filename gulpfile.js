@@ -97,10 +97,15 @@ gulp.task('orig:css', function() {
     .pipe(logger({ beforeEach: '[orig:css] ' }));
 });
 
-gulp.task('orig:js', function() {
+var pump = require('pump');
+var babel = require('gulp-babel');
+gulp.task('orig:js', function(cb) {
   return gulp
     .src('sources/js/*')
-    // .pipe(uglify())
+      .pipe(babel({
+            presets: ['es2015']
+        }))
+    .pipe(uglify())
     .pipe(gulp.dest('public/js/'))
     .pipe(logger({ beforeEach: '[orig:js] ' }));
 });
