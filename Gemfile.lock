@@ -10,9 +10,8 @@ GEM
     backports (3.6.8)
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
-    domain_name (0.5.20160615)
+    domain_name (0.5.20160826)
       unf (>= 0.0.5, < 1.0.0)
-    ffi (1.9.14-x64-mingw32)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
@@ -26,8 +25,7 @@ GEM
     multi_json (1.12.1)
     netrc (0.11.0)
     newrelic_rpm (3.16.2.321)
-    pg (0.19.0.pre20160904200247)
-    pg (0.19.0.pre20160904200247-x64-mingw32)
+    pg (0.18.4)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -46,11 +44,6 @@ GEM
     rack-test (0.6.3)
       rack (>= 1.0)
     rest-client (2.0.0)
-      http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 4.0)
-      netrc (~> 0.8)
-    rest-client (2.0.0-x64-mingw32)
-      ffi (~> 1.9)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
@@ -79,19 +72,17 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
-    unf_ext (0.0.7.2-x64-mingw32)
     yard (0.9.5)
 
 PLATFORMS
   ruby
-  x64-mingw32
 
 DEPENDENCIES
   activesupport
   awesome_print
   kramdown
   newrelic_rpm
-  pg (>= 0.19.0.beta)
+  pg
   pry
   pry-doc
   pry-theme
