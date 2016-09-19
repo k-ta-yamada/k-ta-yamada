@@ -8,6 +8,12 @@ myApp.controller('myController', ['$scope', '$http', 'Flash', '$window', functio
   const FILE_SIZE_LIMIT = Math.pow(1024, 2);
   const FILE_TYPE = /^image\/.*/;
   const FILE_DATA_CHUNK_SIZE = 3;
+  const PATH = $window.location.pathname;
+
+  this.col = function() {
+    let size = parseInt(12 / FILE_DATA_CHUNK_SIZE);
+    return `col-md-${size} col-xs-${size}`;
+  }
 
   this.message = "";
   this.pass = "";
@@ -24,7 +30,7 @@ myApp.controller('myController', ['$scope', '$http', 'Flash', '$window', functio
 
   this.init = function() {
     Flash.clear();
-    let url = $window.location.pathname + '/list';
+    let url = PATH + '/list';
     $http.get(url, { timeout: 5000 })
       .success((data) => _this.files = _.chunk(data, FILE_DATA_CHUNK_SIZE))
       .error((d, s, h, c) => xhrErrHandler(d, s, h, c, 'init'));
@@ -74,6 +80,7 @@ myApp.controller('myController', ['$scope', '$http', 'Flash', '$window', functio
 
     let formData = new FormData();
     formData.append('message', _this.message || "");
+    formData.append('memo', _this.memo || "");
     formData.append('pass',    _this.pass);
     angular.forEach(files, (file) => formData.append('files[]', file));
 
@@ -84,7 +91,7 @@ myApp.controller('myController', ['$scope', '$http', 'Flash', '$window', functio
   };
 
   this.download = function(id) {
-    let url = 'img_upload/' + id;
+    let url = PATH + '/dl/' + id;
     $window.open(url, '_blank');
   };
 
@@ -96,7 +103,7 @@ myApp.controller('myController', ['$scope', '$http', 'Flash', '$window', functio
   this.delete = function(id) {
     Flash.clear();
     if (!$window.confirm('ok?')) return;
-    let url = 'img_upload/' + id;
+    let url = PATH + '/' + id;
     $http.delete(url, { timeout: 5000 })
       .success(data => deleteSuccess(data))
       .error((d, s, h, c) => xhrErrHandler(d, s, h, c, 'delete'));

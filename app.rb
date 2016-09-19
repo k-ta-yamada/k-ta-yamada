@@ -41,11 +41,12 @@ FILES = DB[TABLE_NAME]
 LIMIT = 20
 namespace '/sample' do
   namespace '/img_upload' do
-    get '' do
-      unless DB.table_exists?(TABLE_NAME)
+    helpers do
+      def create_table
         DB.create_table(TABLE_NAME) do
           primary_key :id
           String      :message
+          String      :memo
           String      :filename
           String      :type
           Bignum      :size
@@ -54,39 +55,46 @@ namespace '/sample' do
         end
       end
 
-      # @msg = params[:msg]
-      # @files = FILES
-      #          .select(:id, :message, :filename, :type, :size, :created_at)
-      #          .order(Sequel.desc(:id))
-      #          .map { |r| OpenStruct.new(r) }
+      def auth?
+        if params[:pass].blank? || params[:pass] != ENV['APP_PASS']
+          halt 403, 'access forbidden'
+        end
+      end
+
+      def attached?
+        halt 400, 'attached nothing' if Array(params[:files]).empty?
+      end
+
+      def allowed_type?(type)
+        halt 400, 'not allowed type of image' unless type =~ %r{^image/.*}
+      end
+
+      def size_over?(size)
+        halt 400, 'file size over' if size > 1.megabyte
+      end
+    end
+
+    get '' do
+      create_table unless DB.table_exists?(TABLE_NAME)
       slim :img_upload
     end
 
     get '/list' do
-      @files = FILES
-               .select(:id, :message, :filename, :type, :size, :created_at)
-               .order(Sequel.desc(:id))
-      @files.all.to_json
+      files = FILES
+              .select(:id, :message, :memo, :filename, :type, :size, :created_at)
+              .order(Sequel.desc(:id))
+      files.map { |r| r.merge( size_human: r[:size].to_s(:human_size) ) }.to_json
     end
 
     post '' do
       # auth
-      if params[:pass].blank? || params[:pass] != ENV['APP_PASS']
-        redirect to("#{@path}?msg=access_forbidden")
-      end unless settings.development?
-
-      # attached?
-      halt 400, 'attached nothing' if Array(params[:files]).empty?
+      auth? unless settings.development?
+      attached?
 
       files = params[:files].map do |file|
-        # filename, type, _name, tempfile, _head = params[:file].values
         filename, type, _name, tempfile, _head = file.values
-
-        # not allowed file type
-        halt 400, 'not allowed type of image' unless type =~ %r{^image/.*}
-        # size over
-        halt 400, 'file size over' if tempfile.size > 1.megabyte
-
+        allowed_type?(type)
+        size_over?(tempfile.size)
         { filename: filename, type: type, tempfile: tempfile }
       end
 
@@ -94,6 +102,7 @@ namespace '/sample' do
       files.each do |file|
         FILES << { filename:   file[:filename],
                    message:    params[:message],
+                   memo:       params[:memo],
                    type:       file[:type],
                    size:       file[:tempfile].size,
                    file:       Sequel.blob(file[:tempfile].read),
@@ -118,6 +127,14 @@ namespace '/sample' do
     end
 
     get %r{\/(\d*)} do |id|
+      row = FILES.where(id: id).first
+      not_found if row.nil?
+
+      content_type row[:type]
+      row[:file]
+    end
+
+    get %r{\/dl/(\d*)} do |id|
       row = FILES.where(id: id).first
       not_found if row.nil?
 
