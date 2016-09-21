@@ -35,7 +35,7 @@ DATABASE_URL =
   ENV['DATABASE_URL'] || 'postgres://postgres:postgres@localhost:5432/test'
 DB = Sequel.connect(DATABASE_URL,
                     max_connections: 10,
-                    logger: TeeLogger.new('db.log'))
+                    logger: TeeLogger.new('log/db.log'))
 TABLE_NAME = :files
 FILES = DB[TABLE_NAME]
 LIMIT = 20
