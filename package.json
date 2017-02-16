@@ -1,6 +1,9 @@
 {
   "name": "k-ta-yamada",
   "version": "1.0.0",
+  "engines": {
+    "node": "6.7.0"
+  },
   "description": "[http://k-ta-yamada.herokuapp.com/](http://k-ta-yamada.herokuapp.com/)",
   "main": "index.js",
   "scripts": {
