@@ -22,5 +22,8 @@
     "angular-animate": "^1.5.8",
     "angular-flash-alert": "^2.3.0",
     "lodash": "^4.15.0"
+  },
+  "resolutions": {
+    "angular": "1.5.8"
   }
 }
