@@ -32,8 +32,8 @@ myApp.controller('myController', ['$scope', '$http', 'Flash', '$window', functio
     Flash.clear();
     let url = PATH + '/list';
     $http.get(url, { timeout: 5000 })
-      .success((data) => _this.files = _.chunk(data, FILE_DATA_CHUNK_SIZE))
-      .error((d, s, h, c) => xhrErrHandler(d, s, h, c, 'init'));
+      .then((response) => _this.files = _.chunk(response.data, FILE_DATA_CHUNK_SIZE))
+      .catch((d, s, h, c) => xhrErrHandler(d, s, h, c, 'init'));
       // .finally(() => console.warn('--------------------------------------------------'));
   };
 
@@ -85,8 +85,8 @@ myApp.controller('myController', ['$scope', '$http', 'Flash', '$window', functio
     angular.forEach(files, (file) => formData.append('files[]', file));
 
     $http.post('img_upload', formData, config)
-      .success(_data => postSuccess())
-      .error((d, s, h, c) => xhrErrHandler(d, s, h, c, 'upload'));
+      .then(response => postSuccess())
+      .catch((d, s, h, c) => xhrErrHandler(d, s, h, c, 'upload'));
       // .finally(() => console.warn('--------------------------------------------------'));
   };
 
@@ -105,8 +105,8 @@ myApp.controller('myController', ['$scope', '$http', 'Flash', '$window', functio
     if (!$window.confirm('ok?')) return;
     let url = PATH + '/' + id;
     $http.delete(url, { timeout: 5000 })
-      .success(data => deleteSuccess(data))
-      .error((d, s, h, c) => xhrErrHandler(d, s, h, c, 'delete'));
+      .then(response => deleteSuccess(response.data))
+      .catch((d, s, h, c) => xhrErrHandler(d, s, h, c, 'delete'));
       // .finally(() => console.warn('--------------------------------------------------'));
   };
 

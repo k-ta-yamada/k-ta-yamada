@@ -7,12 +7,12 @@ myApp.controller('myController', ['$scope', '$http', 'Flash', function($scope, $
   this.generateChart = function(name) {
     // console.log(name);
     $http.get('/rubygems/' + name, {timeout: 5000})
-      .success(function(data) {
+      .then(function(response) {
         var chart = c3.generate({
           bindto: '#chart-' + name,
           data: {
             // url: '/c3/' + name, mimeType: 'json',
-            json: data,
+            json: response.data,
             keys: { value: ['number', 'downloads_count'] },
             x: 'number',
             labels: true,
@@ -29,7 +29,7 @@ myApp.controller('myController', ['$scope', '$http', 'Flash', function($scope, $
 
         _this.chart[name] = { isShow: true, chart: chart };
       })
-      .error(function(data, status, headers, config) {
+      .catch(function(data, status, headers, config) {
         var id = Flash.create('danger', '[' + status + ']' + 'generateChart(' + name + ')', 0);
       });
   };
@@ -51,13 +51,13 @@ myApp.controller('myController', ['$scope', '$http', 'Flash', function($scope, $
 
   this.getGemList = function() {
     $http.get('/rubygems.json', {timeout: 5000})
-      .success(function(data) {
+      .then(function(response) {
         // console.table(data);
-        _this.data_set = data;
+        _this.data_set = response.data;
         _this.generateChart('renc');
         _this.generateChart('tee_logger');
       })
-      .error(function(data, status, headers, config) {
+      .catch(function(data, status, headers, config) {
         var id = Flash.create('danger', '[' + status + ']' + 'getGemList', 0);
       });
   };
