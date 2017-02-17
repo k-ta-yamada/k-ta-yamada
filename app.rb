@@ -215,6 +215,17 @@ namespace '/rubygems' do
 end
 
 # ##################################################
+# /repo
+# ##################################################
+namespace '/repo' do
+  get '/commits' do
+    uri = "https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits"
+    @data = JSON.parse(RestClient.get(uri), symbolize_names: true)
+    slim :commits
+  end
+end
+
+# ##################################################
 # others
 # ##################################################
 namespace '/' do

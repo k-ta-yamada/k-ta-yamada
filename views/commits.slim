@@ -1,0 +1,13 @@
+.row
+  .col-md-12.col-xs-12
+    h3 site commit log
+
+.row
+  .col-md-12.col-xs-12
+    dl.dl-horizontal
+      - @data.each_with_index do |v, i|
+        dt #{i + 1}
+        dd.lead #{v[:commit][:message]}
+        dd #{v[:commit][:author][:date]} / #{v[:commit][:author][:name]}
+        dd: a href="#{v[:html_url]}" target="_blank" #{v[:sha]}
+        dd: hr
