@@ -179,8 +179,23 @@ end
 # ##################################################
 # /
 # ##################################################
-get '/' do
-  slim markdown(:index)
+namespace '/' do
+  get '' do
+    slim :index
+  end
+
+  UPDATED_AT = Time.now
+  get 'ping' do
+    content_type :json
+    { status:     'ok',
+      updated_at: UPDATED_AT }.to_json
+  end
+
+  get 'sitemap.txt' do
+    content_type :text
+    routes = %w(/ /prof /rubygems /ping /gem)
+    routes.map { |v| "https://k-ta-yamada.herokuapp.com#{v}" }.join("\n")
+  end
 end
 
 # ##################################################
@@ -222,44 +237,5 @@ namespace '/repo' do
     uri = "https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits"
     @data = JSON.parse(RestClient.get(uri), symbolize_names: true)
     slim :commits
-  end
-end
-
-# ##################################################
-# others
-# ##################################################
-namespace '/' do
-  get 'gem' do
-    @total_dl = {}
-    @data     = {}
-
-    uri = "#{RUBYGEMS_ORG_API}/versions/tee_logger.json"
-    tee_logger = JSON.parse(RestClient.get(uri), symbolize_names: true)
-    uri = "#{RUBYGEMS_ORG_API}/versions/renc.json"
-    renc = JSON.parse(RestClient.get(uri), symbolize_names: true)
-
-    @total_dl[:tee_logger] = tee_logger.map { |v| v[:downloads_count] }.inject(:+)
-    @total_dl[:renc]       = renc.map { |v| v[:downloads_count] }.inject(:+)
-
-    data = tee_logger.reverse.map { |v| [v[:number], v[:downloads_count]] }
-    @data[:tee_logger] = data.select { |v| v.first.split('.').first.to_i >= 0 }
-
-    data = renc.reverse.map { |v| [v[:number], v[:downloads_count]] }
-    @data[:renc] = data.select { |v| v.first.split('.').first.to_i >= 0 }
-
-    slim :gem
-  end
-
-  UPDATED_AT = Time.now
-  get 'ping' do
-    content_type :json
-    { status:     'ok',
-      updated_at: UPDATED_AT }.to_json
-  end
-
-  get 'sitemap.txt' do
-    content_type :text
-    routes = %w(/ /prof /rubygems /ping /gem)
-    routes.map { |v| "https://k-ta-yamada.herokuapp.com#{v}" }.join("\n")
   end
 end
