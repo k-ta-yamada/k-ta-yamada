@@ -2,54 +2,21 @@ html
   head
     title k-ta-yamada#{@path == '/' ? nil : @path}
     meta name="viewport" content="width=device-width, initial-scale=1"
-
-    <!-- bower:css -->
-    <!-- endbower -->
-    link rel="stylesheet" href="/css/bootstrap.css"
-    - if request.path == '/rubygems'
-      link href="/css/c3.css" rel='stylesheet' type="text/css"
-      link href='/css/angular-flash.css' rel='stylesheet'
-      link href='/css/loading-bar.css' rel='stylesheet'
-      link href="/css/rubygems.css" rel='stylesheet' type="text/css"
-    - if request.path == '/sample/img_upload'
-      / link href="/css/c3.css" rel='stylesheet' type="text/css"
-      link href='/css/angular-flash.css' rel='stylesheet'
-      link href='/css/loading-bar.css' rel='stylesheet'
-      / link href="/css/upload.css" rel='stylesheet' type="text/css"
-    link rel="stylesheet" href="/css/app.css"
+    script src="/js/app.bundle.js"
 
   body
     .container
       == slim(:_nav)
-
     .container
       == yield
-
     footer.footer
       p.text-center
         | Copyright 2014-#{Time.now.year},
-        a href="https://github.com/k-ta-yamada" title="GitHub" k-ta-yamada
+        a href="https://github.com/k-ta-yamada" title="GitHub"
+          = settings.production? ? "k-ta-yamada" : Sinatra::Base.environment
 
-    script src="/js/jquery.js"
-    script src="/js/bootstrap.js"
-
-    <!-- bower:js -->
-    <!-- endbower -->
     - if request.path == '/rubygems'
-      script src="/js/angular.js"
-      script src="/js/angular-flash.js"
-      script src="/js/angular-animate.js"
-      script src='/js/loading-bar.js'
-      / script src="/js/lodash.min.js"
-      script src="/js/d3.js"
-      script src="/js/c3.js"
-      script src="/js/rubygems.js"
+      script src="/js/rubygems.bundle.js"
+
     - if request.path == '/sample/img_upload'
-      script src="/js/angular.js"
-      script src="/js/angular-flash.js"
-      script src="/js/angular-animate.js"
-      script src='/js/loading-bar.js'
-      script src="/js/lodash.js"
-      / script src="/js/d3.js"
-      / script src="/js/c3.js"
-      script src="/js/img_upload.js"
+      script src="/js/img_upload.bundle.js"

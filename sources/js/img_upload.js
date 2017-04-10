@@ -1,4 +1,11 @@
 "use strict";
+
+import 'angular';
+import 'angular-flash-alert';
+import 'angular-animate';
+import 'angular-loading-bar';
+import 'lodash';
+
 var myApp = angular.module('myApp', ['angular-loading-bar', 'ngFlash', 'ngAnimate']);
 myApp.controller('myController', ['$scope', '$http', 'Flash', '$window', function($scope, $http, Flash, $window) {
   let _this = this;
