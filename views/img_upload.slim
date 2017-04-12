@@ -1,17 +1,17 @@
-div ng-app="myApp" ng-controller="myController as myCtrl" ng-init="myCtrl.init()" ng-cloak=""
+div ng-app="myApp" ng-controller="ImgUploadController as myCtrl" ng-init="myCtrl.init()" ng-cloak=""
   .row
     .col-md-12.col-xs-12
       form name="uploadForm" enctype="multipart/form-data"
-        / textarea.form-control [
-        /   name="memo"
-        /   ng-model="myCtrl.memo"
-        /   rows="3"
-        /   placeholder="memo"]
-        / input.form-control [
-        /   type="text"
-        /   name="message"
-        /   ng-model="myCtrl.message"
-        /   placeholder="message"]
+        input.form-control [
+          type="text"
+          name="message"
+          ng-model="myCtrl.message"
+          placeholder="message"]
+        input.form-control [
+          type="text"
+          name="memo"
+          ng-model="myCtrl.memo"
+          placeholder="memo"]
         input.form-control [
           type="password"
           name="pass"
@@ -44,24 +44,26 @@ div ng-app="myApp" ng-controller="myController as myCtrl" ng-init="myCtrl.init()
       button.btn.btn-danger.btn-block ng-click="myCtrl.delete(file.id)" delete
       a.btn.btn-primary.btn-block ng-click="myCtrl.download(file.id)" download
       hr
-      dl
-        / dt idx
-        / dd ng-bind="($index + 1) + (i)"
-        dt id
-        dd ng-bind="file.id"
-        dt message
-        dd ng-bind="file.message"
-        dt memo
-        dd ng-bind="file.memo"
-        dt filename
-        dd ng-bind="file.filename"
-        dt type
-        dd ng-bind="file.type"
-        dt size
-        dd
-         | {{file.size_human}} ({{file.size | number}} Byte)
-        dt created_at
-        dd ng-bind="file.created_at"
+      .word-wrap-break
+        dl.dl-horizontal
+          dt id
+          dd ng-bind="file.id"
+          dt type
+          dd ng-bind="file.type"
+          dt size
+          dd
+            | {{file.size_human}}
+            br
+            | ({{file.size | number}} Byte)
+        dl
+          dt filename
+          dd ng-bind="file.filename"
+          dt ng-if="file.message !== ''" message
+          dd ng-if="file.message !== ''" ng-bind="file.message"
+          dt ng-if="file.message !== ''" memo
+          dd ng-if="file.message !== ''" ng-bind="file.memo"
+          dt created_at
+          dd ng-bind="file.created_at"
       / .row
       /   / col-md-6.col-xs-6
       /   /   a.btn.btn-primary.btn-block href="#{@path}/{{file.id}}" link

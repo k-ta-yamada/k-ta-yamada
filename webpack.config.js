@@ -42,14 +42,17 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
-    })
+      _: 'lodash',
+      c3: 'c3',
+    }),
   ],
   // devtool: 'eval',
   // devtool: 'cheap-module-eval-source-map',
   devtool: 'cheap-module-source-map',
-  // resolve: {
-  //   alias: {
-  //     'vue$': 'vue/dist/vue.esm.js',
-  //   },
-  // },
+  resolve: {
+    alias: {
+      // 'vue$': 'vue/dist/vue.esm.js',
+      'c3-css': 'c3/c3.min.css',
+    },
+  },
 }
