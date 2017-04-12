@@ -1,4 +1,13 @@
 "use strict";
+
+import 'angular';
+import 'angular-flash-alert';
+import 'angular-animate';
+import 'angular-loading-bar';
+
+import c3 from 'c3';
+import 'c3/c3.min.css';
+
 var myApp = angular.module('myApp', ['angular-loading-bar', 'ngFlash', 'ngAnimate']);
 myApp.controller('myController', ['$scope', '$http', 'Flash', function($scope, $http, Flash) {
   var _this = this;
@@ -8,6 +17,7 @@ myApp.controller('myController', ['$scope', '$http', 'Flash', function($scope, $
     // console.log(name);
     $http.get('/rubygems/' + name, {timeout: 5000})
       .then(function(response) {
+        console.log("hello");
         var chart = c3.generate({
           bindto: '#chart-' + name,
           data: {
