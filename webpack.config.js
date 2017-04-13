@@ -3,17 +3,28 @@ const webpack = require('webpack')
 
 module.exports = {
   entry: {
-    app: './sources/app.bundle',
-    rubygems: './sources/rubygems.bundle',
+    app:        './sources/app.bundle.js',
+    index:      './sources/index.bundle.js',
+    rubygems:   './sources/rubygems.bundle.js',
+    repo:       './sources/repo.bundle.js',
     img_upload: './sources/img_upload.bundle.js',
   },
   output: {
     path: path.resolve(__dirname, './public/js/'),
-    // publicPath: '/dist/',
-    filename: '[name].bundle.js'
+    filename: '[name].js'
   },
   module: {
     rules: [
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        // https://github.com/vuejs/vue-loader/blob/master/docs/en/options.md#loaders
+        options: {
+          loaders: {
+            js: 'babel-loader?presets[]=env',
+          },
+        },
+      },
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
@@ -40,10 +51,11 @@ module.exports = {
   // http://stackoverflow.com/a/39283602/6622514
   plugins: [
     new webpack.ProvidePlugin({
-      $: 'jquery',
+      $:      'jquery',
       jQuery: 'jquery',
-      _: 'lodash',
-      c3: 'c3',
+      _:      'lodash',
+      c3:     'c3',
+      axios:  'axios',
     }),
   ],
   // devtool: 'eval',
@@ -51,7 +63,7 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   resolve: {
     alias: {
-      // 'vue$': 'vue/dist/vue.esm.js',
+      'vue$':   'vue/dist/vue.esm.js',
       'c3-css': 'c3/c3.min.css',
     },
   },

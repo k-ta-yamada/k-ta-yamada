@@ -2,13 +2,14 @@ html
   head
     title #{settings.production? ? "k-ta-yamada" : ""}#{@path == '/' ? nil : @path}
     meta name="viewport" content="width=device-width, initial-scale=1"
-    script src="/js/app.bundle.js"
+    script src="/js/app.js"
 
   body
 
     / header
     .container
-      == slim(:_nav)
+      / == slim(:_nav)
+      #my-nav
 
     / contents
     .container
@@ -24,10 +25,3 @@ html
         | Copyright 2014-#{Time.now.year},
         a href="https://github.com/k-ta-yamada" title="GitHub"
           = settings.production? ? "k-ta-yamada" : Sinatra::Base.environment
-
-    / script loading
-    - if request.path == '/rubygems'
-      script src="/js/rubygems.bundle.js"
-
-    - if request.path == '/sample/img_upload'
-      script src="/js/img_upload.bundle.js"

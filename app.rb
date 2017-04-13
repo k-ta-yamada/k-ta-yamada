@@ -39,114 +39,112 @@ DB = Sequel.connect(DATABASE_URL,
 TABLE_NAME = :files
 FILES = DB[TABLE_NAME]
 LIMIT = 20
-namespace '/sample' do
-  namespace '/img_upload' do
-    helpers do
-      def create_table
-        DB.create_table(TABLE_NAME) do
-          primary_key :id
-          String      :message
-          String      :memo
-          String      :filename
-          String      :type
-          Bignum      :size
-          File        :file
-          DateTime    :created_at
-        end
-      end
-
-      def auth?
-        if params[:pass].blank? || params[:pass] != ENV['APP_PASS']
-          halt 403, 'access forbidden'
-        end
-      end
-
-      def attached?
-        halt 400, 'attached nothing' if Array(params[:files]).empty?
-      end
-
-      def allowed_type?(type)
-        halt 400, 'not allowed type of image' unless type =~ %r{^image/.*}
-      end
-
-      def size_over?(size)
-        halt 400, 'file size over' if size > 1.megabyte
+namespace '/img_upload' do
+  helpers do
+    def create_table
+      DB.create_table(TABLE_NAME) do
+        primary_key :id
+        String      :message
+        String      :memo
+        String      :filename
+        String      :type
+        Bignum      :size
+        File        :file
+        DateTime    :created_at
       end
     end
 
-    get '' do
-      create_table unless DB.table_exists?(TABLE_NAME)
-      slim :img_upload
-    end
-
-    get '/list' do
-      files = FILES
-              .select(:id, :message, :memo, :filename, :type, :size, :created_at)
-              .order(Sequel.desc(:id))
-      files.map { |r| r.merge( size_human: r[:size].to_s(:human_size) ) }.to_json
-    end
-
-    post '' do
-      # auth
-      auth? unless settings.development?
-      attached?
-
-      files = params[:files].map do |file|
-        filename, type, _name, tempfile, _head = file.values
-        allowed_type?(type)
-        size_over?(tempfile.size)
-        { filename: filename, type: type, tempfile: tempfile }
+    def auth?
+      if params[:pass].blank? || params[:pass] != ENV['APP_PASS']
+        halt 403, 'access forbidden'
       end
-
-      # TODO: change to  bulk insert!
-      files.each do |file|
-        FILES << { filename:   file[:filename],
-                   message:    params[:message],
-                   memo:       params[:memo],
-                   type:       file[:type],
-                   size:       file[:tempfile].size,
-                   file:       Sequel.blob(file[:tempfile].read),
-                   created_at: Time.now }
-      end
-
-      if FILES.count > LIMIT
-        threshold = FILES.select(:id)
-                         .order(Sequel.desc(:id))
-                         .limit(LIMIT)
-                         .map(&:values)
-                         .min
-        FILES.where('id < ?', threshold).delete
-      end
-      # redirect to(@path)
-      status 200
     end
 
-    delete '/*' do |id|
-      delete_num = FILES.where(id: id).delete
-      { id: id, delete_num: delete_num }.to_json
+    def attached?
+      halt 400, 'attached nothing' if Array(params[:files]).empty?
     end
 
-    get %r{\/(\d*)} do |id|
-      row = FILES.where(id: id).first
-      not_found if row.nil?
-
-      content_type row[:type]
-      row[:file]
+    def allowed_type?(type)
+      halt 400, 'not allowed type of image' unless type =~ %r{^image/.*}
     end
 
-    get %r{\/dl/(\d*)} do |id|
-      row = FILES.where(id: id).first
-      not_found if row.nil?
+    def size_over?(size)
+      halt 400, 'file size over' if size > 1.megabyte
+    end
+  end
 
-      content_type row[:type]
-      attachment row[:filename]
-      row[:file]
+  get '' do
+    create_table unless DB.table_exists?(TABLE_NAME)
+    slim :img_upload
+  end
+
+  get '/list' do
+    files = FILES
+            .select(:id, :message, :memo, :filename, :type, :size, :created_at)
+            .order(Sequel.desc(:id))
+    files.map { |r| r.merge( size_human: r[:size].to_s(:human_size) ) }.to_json
+  end
+
+  post '' do
+    # auth
+    auth? unless settings.development?
+    attached?
+
+    files = params[:files].map do |file|
+      filename, type, _name, tempfile, _head = file.values
+      allowed_type?(type)
+      size_over?(tempfile.size)
+      { filename: filename, type: type, tempfile: tempfile }
     end
 
-    get '/drop' do
-      DB.drop_table?(TABLE_NAME, cascade: true)
-      redirect to('sample/img_upload')
+    # TODO: change to  bulk insert!
+    files.each do |file|
+      FILES << { filename:   file[:filename],
+                  message:    params[:message],
+                  memo:       params[:memo],
+                  type:       file[:type],
+                  size:       file[:tempfile].size,
+                  file:       Sequel.blob(file[:tempfile].read),
+                  created_at: Time.now }
     end
+
+    if FILES.count > LIMIT
+      threshold = FILES.select(:id)
+                        .order(Sequel.desc(:id))
+                        .limit(LIMIT)
+                        .map(&:values)
+                        .min
+      FILES.where('id < ?', threshold).delete
+    end
+    # redirect to(@path)
+    status 200
+  end
+
+  delete '/*' do |id|
+    delete_num = FILES.where(id: id).delete
+    { id: id, delete_num: delete_num }.to_json
+  end
+
+  get %r{\/(\d*)} do |id|
+    row = FILES.where(id: id).first
+    not_found if row.nil?
+
+    content_type row[:type]
+    row[:file]
+  end
+
+  get %r{\/dl/(\d*)} do |id|
+    row = FILES.where(id: id).first
+    not_found if row.nil?
+
+    content_type row[:type]
+    attachment row[:filename]
+    row[:file]
+  end
+
+  get '/drop' do
+    DB.drop_table?(TABLE_NAME, cascade: true)
+    redirect to('img_upload')
   end
 end
 
@@ -233,9 +231,24 @@ end
 # /repo
 # ##################################################
 namespace '/repo' do
-  get '/commits' do
-    uri = "https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits"
-    @data = JSON.parse(RestClient.get(uri), symbolize_names: true)
-    slim :commits
+  get '' do
+    slim :repo
+  end
+
+  get '/commits/:sha/?*?' do |sha, sub|
+    uri = 'https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits'
+    param = "?sha=#{sha}#{sub.empty? ? nil : '/' + sub}"
+    json = JSON.parse(RestClient.get("#{uri}#{param}"), symbolize_names: true)
+
+    content_type :json
+    json json
+  end
+
+  get '/branches' do
+    uri = 'https://api.github.com/repos/k-ta-yamada/k-ta-yamada/branches'
+    json = JSON.parse(RestClient.get(uri), symbolize_names: true)
+
+    content_type :json
+    json json
   end
 end
