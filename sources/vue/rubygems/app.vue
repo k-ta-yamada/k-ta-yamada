@@ -1,6 +1,8 @@
 <template lang="pug">
 #my-app
+  vue-progress-bar
   h3 RubyGems
+
   ul
   .row(v-for='gem in this.gemList')
     //- header info.
@@ -15,8 +17,9 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import mixin from '../common/toasted.vue';
+import { mapState } from 'vuex'
+import httpWithProgress from '../common/httpWithProgress.vue'
+import toasted from '../common/toasted.vue'
 import MyGemInfo from './gemInfo.vue'
 import MyChart from './chart.vue'
 
@@ -26,27 +29,29 @@ export default {
     MyGemInfo,
     MyChart,
   },
-  data() {
+  data () {
     return {
-    };
+    }
   },
   computed: mapState({
     gemList: state => state.gemList,
     baseUrl: () => window.location.pathname,
   }),
-  created() {
-    this.getGemList();
+  created () {
+    this.getGemList()
   },
-  mixins: [mixin],
+  mixins: [httpWithProgress, toasted],
   methods: {
     getGemList() {
+
       let successCallback = (response) => {
-        this.$store.commit('setGemList', response.data);
-      };
-      let url = `${this.baseUrl}.json`;
-      return axios.get(url)
+        this.$store.commit('setGemList', response.data)
+      }
+
+      let url = `${this.baseUrl}.json`
+      this.httpGet(url)
         .then(response => successCallback(response))
-        .catch(error => this.errorCallback(error, 'getGemList'));
+        .catch(error => this.errorCallback(error, 'getGemList'))
     },
   },
 }

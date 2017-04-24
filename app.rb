@@ -212,6 +212,7 @@ namespace '/rubygems' do
   end
 
   get '.json' do
+    sleep 2
     content_type :json
     json gem_list
   end
@@ -235,9 +236,10 @@ namespace '/repo' do
     slim :repo
   end
 
-  get '/commits/:sha/?*?' do |sha, sub|
+  get '/commits' do
     uri = 'https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits'
-    param = "?sha=#{sha}#{sub.empty? ? nil : '/' + sub}"
+    branche = params[:branche]
+    param = "?sha=#{branche}"
     json = JSON.parse(RestClient.get("#{uri}#{param}"), symbolize_names: true)
 
     content_type :json

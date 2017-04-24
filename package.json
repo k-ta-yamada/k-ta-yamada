@@ -45,6 +45,7 @@
     "url-loader": "^0.5.8",
     "vue": "^2.2.6",
     "vue-loader": "^11.3.4",
+    "vue-progressbar": "^0.7.1",
     "vue-template-compiler": "^2.2.6",
     "vue-toasted": "^1.0.27",
     "vuex": "^2.3.0",

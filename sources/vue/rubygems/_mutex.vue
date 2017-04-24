@@ -1,6 +1,6 @@
 <script>
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
 Vue.use(Vuex)
 export default new Vuex.Store({
@@ -11,11 +11,11 @@ export default new Vuex.Store({
   },
   mutations: {
     setGemList(state, payload) {
-      state.gemList = payload;
+      state.gemList = payload
     },
     setChart(state, payload) {
-      let { name, c3Object } = payload;
-      state.chart[name] = c3Object;
+      let { name, c3Object } = payload
+      state.chart[name] = c3Object
     },
   },
   getters: {

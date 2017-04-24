@@ -16,33 +16,34 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import mixin from '../common/toasted.vue';
+import { mapState } from 'vuex'
+import httpWithProgress from '../common/httpWithProgress.vue'
+import toasted from '../common/toasted.vue'
 import 'c3-css'
 
 export default {
   name: 'my-chart',
   props: ['gem'],
-  data() {
+  data () {
     return {
       chartTypes:  ['line', 'spline', 'bar', 'area'],
       isShow: false,
-    };
+    }
   },
-  created() {
-    this.generateChart(this.gem.name);
+  created () {
+    this.generateChart(this.gem.name)
   },
   computed: mapState({
     chart: state => state.chart,
   }),
-  mixins: [mixin],
+  mixins: [httpWithProgress, toasted],
   methods: {
     errorCallback(error, message) {
-      this.$toasted.error(`[${message}]<br/>${error}`, { theme: 'bubble',  duration: null });
-      console.group(`errorCallback`);
-      console.error(error);
-      console.error(`message: [${message}]`);
-      console.groupEnd();
+      this.$toasted.error(`[${message}]<br/>${error}`, { theme: 'bubble',  duration: null })
+      console.group(`errorCallback`)
+      console.error(error)
+      console.error(`message: [${message}]`)
+      console.groupEnd()
     },
     generateChart(name) {
       let successCallback = (response) => {
@@ -60,20 +61,20 @@ export default {
           line: { connectNull: true },
           area: { zerobased: false },
           bar:  { zerobased: false, width: { ratio: 0.4 } },
-        });
-        this.$store.commit('setChart', { name: name, c3Object: c3Object });
-        this.isShow = true;
-      };
+        })
+        this.$store.commit('setChart', { name: name, c3Object: c3Object })
+        this.isShow = true
+      }
 
-      let url = `/rubygems/${name}`;
-      axios.get(url, { timeout: 5000 })
+      let url = `/rubygems/${name}`
+      this.httpGet(url)
         .then((response) => successCallback(response))
-        .catch(error => this.errorCallback(error, `generateChart(${name})`));
+        .catch(error => this.errorCallback(error, `generateChart(${name})`))
     },
     transformChart(name, type) {
       let chart = this.chart[name]
-      chart.transform(type);
-      chart.load({ labels: false });
+      chart.transform(type)
+      chart.load({ labels: false })
     },
   }
 }

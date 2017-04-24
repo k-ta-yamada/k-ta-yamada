@@ -23,7 +23,7 @@ nav.navbar.navbar-default.navbar-fixed-top
 import menu from './menu.vue';
 
 export default {
-  // name: 'my-nav',
+  name: 'my-nav',
   data() {
     return {
       menu: menu,

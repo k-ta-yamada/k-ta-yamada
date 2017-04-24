@@ -14,17 +14,17 @@ export default new Vuex.Store({
   },
   mutations: {
     setToasts(state, payload) {
-      state.toasts.push(payload);
+      state.toasts.push(payload)
     },
     clearToasts(state) {
-      _.forEach(state.toasts, t => t.goAway(0));
-      state.toasts = [];
+      _.forEach(state.toasts, t => t.goAway(0))
+      state.toasts = []
     },
     setFiles(state, payload) {
-      state.files = payload;
+      state.files = payload
     },
     toggleInitFlg(state) {
-      state.initFlg = !state.initFlg;
+      state.initFlg = !state.initFlg
     }
   },
   getters: {

@@ -1,6 +1,6 @@
 <script>
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
 Vue.use(Vuex)
 export default new Vuex.Store({
@@ -11,20 +11,18 @@ export default new Vuex.Store({
   },
   mutations: {
     setToasts(state, payload) {
-      state.toasts.push(payload);
+      state.toasts.push(payload)
     },
     clearToasts(state) {
-      _.forEach(state.toasts, t => t.goAway(0));
-      state.toasts = [];
+      _.forEach(state.toasts, t => t.goAway(0))
+      state.toasts = []
     },
     setBranches(state, payload) {
-      state.branches = payload;
+      state.branches = payload
     },
     setCommits(state, payload) {
-      state.commits = payload;
+      state.commits = payload
     },
-  },
-  getters: {
   },
 })
 </script>

@@ -14,13 +14,13 @@ export default {
       this.$store.commit('setToasts',
         this.$toasted.error(`[${message}]<br/>${error}`, { theme: 'bubble',  duration: null })
       );
-      console.group(`errorCallback`);
-      console.error(error);
-      console.error(`message: [${message}]`);
-      console.groupEnd();
+      console.group(`errorCallback`)
+      console.error(error)
+      console.error(`message: [${message}]`)
+      console.groupEnd()
     },
     toastClear() {
-      this.$store.commit('clearToasts');
+      this.$store.commit('clearToasts')
     },
   },
 }

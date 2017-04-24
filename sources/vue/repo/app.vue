@@ -1,5 +1,6 @@
 <template lang="pug">
 #my-app
+  vue-progress-bar
   select(v-model='selectedBranch')
     option(v-for='b in branches' v-bind:value='b.name') {{b.name}}
 
@@ -17,51 +18,52 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import mixin from '../common/toasted.vue';
+import { mapState } from 'vuex'
+import httpWithProgress from '../common/httpWithProgress.vue'
+import toasted from '../common/toasted.vue'
 
 export default {
   name: 'my-app',
-  components: {
-  },
-  data() {
+  data () {
     return {
       selectedBranch: 'master',
-    };
+    }
   },
   watch: {
-    selectedBranch() { this.getCommits(); }
+    selectedBranch() { this.getCommits() }
   },
   computed: mapState({
     branches: state => state.branches,
     commits: state => state.commits,
     baseUrl: () => window.location.pathname,
   }),
-  created() {
-    this.getBranches();
-    this.getCommits();
+  created () {
+    this.getBranches()
   },
-  mixins: [mixin],
+  mixins: [httpWithProgress, toasted],
   methods: {
     getBranches() {
       this.toastClear()
       let successCallback = (response) => {
-        this.$store.commit('setBranches', response.data);
-      };
-      let url = `${this.baseUrl}/branches`;
-      return axios.get(url)
+        this.$store.commit('setBranches', response.data)
+        this.getCommits()
+      }
+      let url = `${this.baseUrl}/branches`
+
+      this.httpGet(url)
         .then(response => successCallback(response))
-        .catch(error => this.errorCallback(error, 'getBranches'));
+        .catch(error => this.errorCallback(error))
     },
     getCommits() {
       this.toastClear()
       let successCallback = (response) => {
-        this.$store.commit('setCommits', response.data);
-      };
-      let url = `${this.baseUrl}/commits`;
-      return axios.get(`${url}/${this.selectedBranch}`)
+        this.$store.commit('setCommits', response.data)
+      }
+      let url = `${this.baseUrl}/commits?branche=${this.selectedBranch}`
+
+      this.httpGet(url)
         .then(response => successCallback(response))
-        .catch(error => this.errorCallback(error, 'getCommits'));
+        .catch(error => this.errorCallback(error))
     },
   },
 }

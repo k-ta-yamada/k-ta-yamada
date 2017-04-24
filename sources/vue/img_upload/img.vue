@@ -1,12 +1,13 @@
 <template lang='pug'>
 #my-img
+  vue-progress-bar
   a(:href='this.imgUrl')
     img.img-responsive.img-thumbnail(
       v-bind='{ src: this.imgUrl, title: this.imgTitle }')
     //- img.img-responsive.img-thumbnail(v-bind='img')
   hr
-  button.btn.btn-danger.btn-block(@click='deleteImg()') delete
-  button.btn.btn-primary.btn-block(@click='download()') download
+  button.btn.btn-danger.btn-block(@click='deleteImg') delete
+  button.btn.btn-primary.btn-block(@click='download') download
   hr
   .word-wrap-break
     dl.dl-horizontal
@@ -32,7 +33,8 @@
 </template>
 
 <script>
-import mixin from '../common/toasted.vue';
+import httpWithProgress from '../common/httpWithProgress.vue'
+import toasted from '../common/toasted.vue'
 
 export default {
   name: 'my-img',
@@ -41,20 +43,19 @@ export default {
     imgUrl() { return `${window.location.pathname}/${this.file.id}` },
     imgTitle() { return this.file.filename },
   },
-  mixins: [mixin],
+  mixins: [httpWithProgress, toasted],
   methods: {
     deleteImg() {
-      this.toastClear();
+      this.toastClear()
 
       if (!window.confirm(`id: [${this.file.id}] is delete ok?`)) return
       let successCallback = (data) => {
-        this.$toasted.success(`id [${data.id}] is deleted.`);
-        this.$store.commit('toggleInitFlg');
+        this.$toasted.success(`id [${data.id}] is deleted.`)
+        this.$store.commit('toggleInitFlg')
       }
-      axios.delete(this.imgUrl, { timeout: 5000 })
+      this.httpDelete(this.imgUrl)
         .then(response => successCallback(response.data))
-        .catch((error) => this.errorCallback(error, 'delete'));
-        // .finally(() => console.warn('----------'));
+        .catch((error) => this.errorCallback(error, 'delete'))
     },
     download() {
       window.open(this.imgUrl, '_blank')

@@ -23,7 +23,7 @@
 export default {
   name: 'my-gem-info',
   props: ['gem'],
-  data() {
+  data () {
     return {
       gemUriList:  ["project_uri", "source_code_uri", "documentation_uri"],
       gemInfoList: ["version", "version_downloads", "downloads"],

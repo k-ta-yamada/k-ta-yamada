@@ -7,18 +7,18 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import MyImg from './img.vue';
+import { mapState } from 'vuex'
+import MyImg from './img.vue'
 
 export default {
   name: 'my-list',
-  props: [`file_data_chunk_size`],
+  props: ['file_data_chunk_size'],
   components: {
     MyImg,
   },
-  data() {
+  data () {
     return {
-    };
+    }
   },
   computed: mapState({
     file_data_chunk_size: state => state.file_data_chunk_size,
@@ -26,8 +26,8 @@ export default {
   }),
   methods: {
     bootstrapColClass() {
-      let size = parseInt(12 / this.file_data_chunk_size);
-      return `col-md-${size} col-xs-${size}`;
+      let size = parseInt(12 / this.file_data_chunk_size)
+      return `col-md-${size} col-xs-${size}`
     },
   },
 }

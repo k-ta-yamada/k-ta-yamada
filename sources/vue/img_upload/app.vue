@@ -1,5 +1,6 @@
 <template lang='pug'>
 #my-img-upload
+  vue-progress-bar
   //- form
   my-form
   //- list
@@ -12,11 +13,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import mixin from '../common/toasted.vue';
-import MyForm from './form.vue';
-import MyList from './list.vue';
-import MyImg from './img.vue';
+import { mapState } from 'vuex'
+import httpWithProgress from '../common/httpWithProgress.vue'
+import toasted from '../common/toasted.vue'
+import MyForm from './form.vue'
+import MyList from './list.vue'
+import MyImg from './img.vue'
 
 export default {
   name: 'my-app',
@@ -25,17 +27,13 @@ export default {
     MyList,
     MyImg,
   },
-  data() {
-    return {
-    };
-  },
   watch: {
     initFlg() { this.getList() },
   },
-  created() {
-    this.$store.commit('toggleInitFlg');
+  created () {
+    this.$store.commit('toggleInitFlg')
   },
-  mixins: [mixin],
+  mixins: [httpWithProgress, toasted],
   computed: mapState({
     file_data_chunk_size: state => state.file_data_chunk_size,
     initFlg: state => state.initFlg,
@@ -43,14 +41,14 @@ export default {
   }),
   methods: {
     getList() {
-      this.$store.commit('clearToasts');
+      this.$store.commit('clearToasts')
       let successCallback = (response) => {
-        this.$store.commit('setFiles', _.chunk(response.data, this.file_data_chunk_size));
-      };
-      let url = `${this.baseUrl}/list`;
-      axios.get(url, { timeout: 5000 })
+        this.$store.commit('setFiles', _.chunk(response.data, this.file_data_chunk_size))
+      }
+      let url = `${this.baseUrl}/list`
+      this.httpGet(url)
         .then(response => successCallback(response))
-        .catch(error => this.errorCallback(error, 'getList'));
+        .catch(error => this.errorCallback(error, 'getList'))
     },
   },
 }

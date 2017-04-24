@@ -6,7 +6,7 @@
 <script>
 export default {
   name: 'my-message',
-  data() {
+  data () {
     return {
       messages: [
         'hello',
@@ -16,16 +16,9 @@ export default {
   },
   computed: {
     computedMessages() {
-      let result = _.map(this.messages, (m, i) => `${m}.`);
-      return result;
+      let result = _.map(this.messages, (m, i) => `${m}.`)
+      return result
     }
-  },
-  methods: {
-  },
-  created() {
   },
 }
 </script>
-
-<style>
-</style>

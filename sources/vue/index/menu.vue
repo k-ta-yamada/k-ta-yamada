@@ -6,16 +6,14 @@
 </template>
 
 <script>
-import menu from '../common/menu.vue';
+import menu from '../common/menu.vue'
 
 export default {
   name: 'my-menu',
-  data() {
+  data () {
       return {
       menu: menu,
     };
   },
-  created() {
-  },
-  }
+}
 </script>
