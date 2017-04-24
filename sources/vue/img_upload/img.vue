@@ -1,8 +1,9 @@
 <template lang='pug'>
 #my-img
-  a(:href='this.downloadUrl')
+  a(:href='this.imgUrl')
     img.img-responsive.img-thumbnail(
-      v-bind='{ src: this.downloadUrl, title: file.filename}')
+      v-bind='{ src: this.imgUrl, title: this.imgTitle }')
+    //- img.img-responsive.img-thumbnail(v-bind='img')
   hr
   button.btn.btn-danger.btn-block(@click='deleteImg()') delete
   button.btn.btn-primary.btn-block(@click='download()') download
@@ -35,30 +36,28 @@ import mixin from '../common/toasted.vue';
 
 export default {
   name: 'my-img',
-  props: [`file`],
-  data() {
-    return {
-      deleteUrl: `${window.location.pathname}/${this.file.id}`,
-      downloadUrl: `${window.location.pathname}/${this.file.id}`,
-    };
+  props: ['file'],
+  computed: {
+    imgUrl() { return `${window.location.pathname}/${this.file.id}` },
+    imgTitle() { return this.file.filename },
   },
   mixins: [mixin],
   methods: {
     deleteImg() {
       this.toastClear();
 
-      if (!window.confirm('ok?')) return;
+      if (!window.confirm(`id: [${this.file.id}] is delete ok?`)) return
       let successCallback = (data) => {
         this.$toasted.success(`id [${data.id}] is deleted.`);
         this.$store.commit('toggleInitFlg');
       }
-      axios.delete(this.deleteUrl, { timeout: 5000 })
+      axios.delete(this.imgUrl, { timeout: 5000 })
         .then(response => successCallback(response.data))
         .catch((error) => this.errorCallback(error, 'delete'));
         // .finally(() => console.warn('----------'));
     },
     download() {
-      window.open(this.downloadUrl, '_blank');
+      window.open(this.imgUrl, '_blank')
     },
   },
 }

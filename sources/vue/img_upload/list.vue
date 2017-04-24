@@ -3,7 +3,7 @@
   .row(v-for='(chunk, rownum) in this.files')
     hr
     div(:class='bootstrapColClass()' v-for='file in chunk')
-      my-img(:file='file')
+      my-img(v-bind:file='file' v-bind:key='file.id')
 </template>
 
 <script>
