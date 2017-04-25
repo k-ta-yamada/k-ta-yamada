@@ -43,6 +43,7 @@
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
     "url-loader": "^0.5.8",
+    "vee-validate": "^2.0.0-beta.25",
     "vue": "^2.2.6",
     "vue-loader": "^11.3.4",
     "vue-progressbar": "^0.7.1",

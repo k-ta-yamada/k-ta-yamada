@@ -8,22 +8,27 @@
           type="text" name="message" v-model="message" placeholder="message")
         input.form-control(
           type="text" name="memo" v-model="memo" placeholder="memo")
+        //- TODO: validator
         input.form-control(
-          type="password" name="pass" v-model="pass" ng-required="true" placeholder="pass")
+          type="password" name="pass" v-validate="validatePass" v-model="pass" placeholder="pass")
+        //- TODO: https://github.com/k-ta-yamada/k-ta-yamada/issues/15
         input.btn.btn-default.btn-block.btn-sm(
-          type="file" name="file" id="file" multiple="" @click='toastClear')
+          type="file" name="file" id="file" multiple @click='toastClear')
         input.btn.btn-warning.btn-block.btn-lg(
-          type="button" value="upload" ng-disabled="uploadForm.$invalid" @click="upload")
-        //- TODO: ng-required and ng-disabled
-        //-       refs:
-        //-         https://github.com/logaretm/vee-validate
-        //-         https://github.com/fergaldoyle/vue-form
+          type="button" value="upload" v-bind:disabled="errors.any()" @click="beforeUpload")
+        ul#errors(v-show='errors.any()')
+          li(v-for='e in errors.errors') {{e.field}}: {{e.msg}}
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import httpWithProgress from '../common/httpWithProgress.vue'
 import toasted from '../common/toasted.vue'
+
+// TODO: validator
+import Vue from 'vue'
+import VeeValidate from 'vee-validate'
+Vue.use(VeeValidate)
 
 export default {
   name: 'my-form',
@@ -32,6 +37,8 @@ export default {
       message: '',
       memo:    '',
       pass:    '',
+      validatePass: { required: true },
+      // validateFile: { required: true, image: true, size: 1024 },
       config: {
         timeout: 10000,
         headers: { 'Content-type': undefined },
@@ -45,8 +52,15 @@ export default {
   }),
   mixins: [httpWithProgress, toasted],
   methods: {
-    upload(id) {
+    beforeUpload() {
+      this.$validator.validateAll()
+        .then(() => this.upload())
+        .catch(() => console.warn('invalid'))
+    },
+    upload() {
       this.$store.commit('clearToasts')
+
+      if (this.errors.any()) { return; }
 
       let files = $('#file').prop('files')
       if (!this.isValid(files)) return
@@ -97,15 +111,24 @@ export default {
       this.memo    = ''
       this.message = ''
       this.pass    = ''
-      // ref: http://stackoverflow.com/a/24282495/6622514
+
+      // TODO: https://github.com/k-ta-yamada/k-ta-yamada/issues/15
       $('#file').replaceWith($('#file').val('').clone(true))
+
+      Vue.nextTick(() => this.$validator.errorBag.clear())
+      // this.$validator.errorBag.clear()
 
       this.$store.commit('toggleInitFlg')
 
-      // setTimeout(
-      //   this.$store.commit('toggleInitFlg'), 3000
-      // )
     },
   },
 }
 </script>
+
+
+<style>
+#errors {
+  color: red;
+  margin-top: 10px;
+}
+</style>
