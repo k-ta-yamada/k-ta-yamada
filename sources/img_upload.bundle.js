@@ -1,15 +1,13 @@
-// libs
-import 'angular';
-import 'angular-flash-alert';
-import 'angular-animate';
-import 'angular-loading-bar';
+import Vue from 'vue';
+import Vuex from 'vuex';
+import store from './vue/img_upload/_mutex.vue';
+import MyApp from './vue/img_upload/app.vue';
 
-// css
-import './css/img_upload.css'
-
-// script
-import ImgUploadController from './js/img_upload_controller.js'
-
-let myApp = angular.module(
-  'myApp', ['angular-loading-bar', 'ngFlash', 'ngAnimate']);
-myApp.controller('ImgUploadController', ImgUploadController);
+const vm = new Vue({
+  el: '#vue-app',
+  store,
+  components: {
+    MyApp,
+  },
+  template: '<my-app/>',
+});
