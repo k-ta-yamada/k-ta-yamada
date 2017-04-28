@@ -22,9 +22,6 @@
   },
   "homepage": "https://github.com/k-ta-yamada/k-ta-yamada#readme",
   "dependencies": {
-    "angular-animate": "^1.6.4",
-    "angular-flash-alert": "^2.4.0",
-    "angular-loading-bar": "^0.9.0",
     "axios": "^0.16.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
