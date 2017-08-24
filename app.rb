@@ -12,20 +12,31 @@ use Rack::Deflater
 if settings.development?
   use Rack::DevMark::Middleware,
       [:title, Rack::DevMark::Theme::GithubForkRibbon.new(position: 'right')]
+  # require 'webrick/https'
+  # set :server_settings,
+  #     SSLEnable: true,
+  #     SSLCertName: [['CN', WEBrick::Utils.getservername]]
 end
 
 configure do
-  _loglevel = settings.development? ? Logger::DEBUG : Logger::INFO
   set :logging, settings.development? ? Logger::DEBUG : Logger::INFO
 end
 
+MY_DOMAIN = 'k-ta-yamada.me'
 before do
-  request.env.each do |k, v|
-    # logger.debug "  #{k.ljust(25)} => [#{v}]"
-  end
-
-  logger.info "Sinatra::Base.environment: #{Sinatra::Base.environment}"
+  request.env.each { |k, v| logger.debug "  #{k.ljust(25)} => [#{v}]" }
+  logger.info "Sinatra::Base.environment: [#{Sinatra::Base.environment}]"
   @path = request.path
+
+  if settings.production?
+    unless request.secure?
+      redirect to("https://#{request.host_with_port}#{request.path}")
+    end
+
+    unless request.host == MY_DOMAIN
+      redirect to("https://#{MY_DOMAIN}#{request.path}")
+    end
+  end
 end
 
 # ##################################################
