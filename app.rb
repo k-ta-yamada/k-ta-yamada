@@ -202,7 +202,7 @@ namespace '/' do
 
   get 'sitemap.txt' do
     content_type :text
-    routes = %w(/ /prof /rubygems)
+    routes = %w(/ /prof /rubygems /repo)
     routes.map { |v| "https://#{MY_DOMAIN}#{v}" }.join("\n")
   end
 end
