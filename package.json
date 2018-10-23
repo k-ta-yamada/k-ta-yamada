@@ -8,8 +8,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "rm -rf public/ && webpack -d --watch",
-    "postinstall": "rm -rf public/ && webpack --optimize-minimize"
+    "watch": "rm -rf public/js/ && webpack -d --watch",
+    "postinstall": "rm -rf public/js/ && webpack --optimize-minimize"
   },
   "repository": {
     "type": "git",

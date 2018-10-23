@@ -1,6 +1,6 @@
 bower_components/
 node_modules/
-public/
+public/js/
 .tags*
 
 ### https://raw.github.com/github/gitignore/master/Global/OSX.gitignore
