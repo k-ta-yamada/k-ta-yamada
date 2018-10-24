@@ -1,47 +1,47 @@
 .container
+
   h1.display-3 30 day plank challenge
 
   hr
 
-  .table-responsive
-    table.table.table-bordered
-      tbody
-        - @list.each_slice(5).with_index do |sliced_list, i|
-          tr
-            - sliced_list.each.with_index(1) do |v, j|
+  table.table.table-bordered
+    tbody
+      - @list.each_slice(5).with_index do |sliced_list, i|
+        tr
+          - sliced_list.each.with_index(1) do |v, j|
 
-              - day = i * 5 + j
+            - day = i * 5 + j
 
-              td class = bg_color(v) class = (today?(day) ? 'warning' : nil)
-                / ##############################
-                / DAY
-                / ##############################
-                p
-                  span.lead
-                    = "day#{day} "
-                  small
-                    = calc_date(day)
-                  - if today?(day)
-                    | &nbsp;
-                    span.glyphicon.glyphicon-calendar aria-hidden="true"
+            td class = bg_color(v) class = (today?(day) ? 'warning' : nil)
+              / ##############################
+              / DAY
+              / ##############################
+              p
+                span.lead
+                  = "day#{day} "
+                small
+                  = calc_date(day)
+                - if today?(day)
+                  | &nbsp;
+                  span.glyphicon.glyphicon-calendar aria-hidden="true"
 
-                / ##############################
-                / TASK
-                / ##############################
-                p.lead.text-center
-                  = v.task
+              / ##############################
+              / TASK
+              / ##############################
+              p.lead.text-center
+                = v.task
 
-                / ##############################
-                / RESULT
-                / ##############################
-                p.text-right
-                  - if v.result && v.task != :rest
-                    = "result: #{v.result} "
-                    span.glyphicon.glyphicon-ok-sign aria-hidden="true"
-                  - elsif v.task == :rest
-                    span.glyphicon.glyphicon-heart aria-hidden="true"
-                  - else
-                    | &nbsp;
+              / ##############################
+              / RESULT
+              / ##############################
+              p.text-right
+                - if v.result && v.task != :rest
+                  = "result: #{v.result} "
+                  span.glyphicon.glyphicon-ok-sign aria-hidden="true"
+                - elsif v.task == :rest
+                  span.glyphicon.glyphicon-heart aria-hidden="true"
+                - else
+                  | &nbsp;
 
   hr
 
