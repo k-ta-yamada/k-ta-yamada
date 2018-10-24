@@ -265,3 +265,47 @@ namespace '/repo' do
     json json
   end
 end
+
+namespace '/30day_plank_challenge' do
+  START_DAY = Date.new(2018, 10, 23)
+  RESULT_FILE_NAME = '30day_plank_challenge.result'
+  A = Struct.new(:task, :result)
+
+  helpers do
+    def bg_color(v)
+      rest?(v.task) || success?(v.result)
+    end
+
+    def rest?(task)
+      return nil if task.kind_of?(Numeric)
+      task == :rest ? "info" : nil
+    end
+
+    def success?(result)
+      result ? "success" : nil
+    end
+
+    def today?(day)
+      START_DAY + day - 1 == Date.today
+    end
+
+    def calc_date(day)
+      date = START_DAY + day - 1
+      mm = format('%02d', date.mon)
+      dd = format('%02d', date.day)
+      wday = %w[sun mon tue wed thu fri sat][date.wday]
+      "#{mm}/#{dd} #{wday}"
+    end
+  end
+
+  get '' do
+    @list = File.readlines(RESULT_FILE_NAME)
+      .map { |v| A.new(*v.split) }
+      .map { |v| v.task = v.task.to_i.zero? ? v.task.to_sym : v.task.to_i; v }
+      .map { |v| v.task = v.task.kind_of?(Numeric) ? "#{v.task} sec" : v.task; v}
+      .map { |v| v.result = v.result.nil? ? nil : v.result.to_i; v }
+      .map { |v| v.result = v.result.kind_of?(Numeric) ? "#{v.result} sec" : v.result; v}
+
+    slim :"30day_plank_challenge"
+  end
+end
