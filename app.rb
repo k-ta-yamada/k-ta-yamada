@@ -91,7 +91,7 @@ namespace '/' do
 
   get 'sitemap.txt' do
     content_type :text
-    routes = %w(/ /prof /rubygems /repo)
+    routes = %w[/ /prof /rubygems /repo]
     routes.map { |v| "https://#{MY_DOMAIN}#{v}" }.join("\n")
   end
 end
@@ -158,20 +158,20 @@ end
 namespace '/30day_plank_challenge' do
   START_DAY = Date.new(2018, 10, 23)
   RESULT_FILE_NAME = '30day_plank_challenge.result'
-  A = Struct.new(:task, :result)
 
   helpers do
-    def bg_color(v)
-      rest?(v.task) || success?(v.result)
+    def bg_color(record)
+      rest?(record.task) || success?(record.result)
     end
 
     def rest?(task)
-      return nil if task.kind_of?(Numeric)
-      task == :rest ? "info" : nil
+      return nil if task.is_a?(Numeric)
+
+      task == :rest ? 'info' : nil
     end
 
     def success?(result)
-      result ? "success" : nil
+      result ? 'success' : nil
     end
 
     def today?(day)
@@ -187,13 +187,23 @@ namespace '/30day_plank_challenge' do
     end
   end
 
+  A = Struct.new(:task, :result)
+
   get '' do
-    @list = File.readlines(RESULT_FILE_NAME)
-      .map { |v| A.new(*v.split) }
-      .map { |v| v.task = v.task.to_i.zero? ? v.task.to_sym : v.task.to_i; v }
-      .map { |v| v.task = v.task.kind_of?(Numeric) ? "#{v.task} sec" : v.task; v}
-      .map { |v| v.result = v.result.nil? ? nil : v.result.to_i; v }
-      .map { |v| v.result = v.result.kind_of?(Numeric) ? "#{v.result} sec" : v.result; v}
+    def to_i_to_sym(task, result)
+      [task.to_i.zero? ? task.to_sym : task.to_i,
+       result.nil? ? nil : result.to_i]
+    end
+
+    def decorate(task, result)
+      [task.is_a?(Numeric) ? "#{task} sec" : task,
+       result.is_a?(Numeric) ? "#{result} sec" : result]
+    end
+
+    @list = File.readlines(RESULT_FILE_NAME).map(&:split)
+                .map { |a, b| to_i_to_sym(a, b) }
+                .map { |a, b| decorate(a, b) }
+                .map { |v| A.new(*v) }
 
     slim :"30day_plank_challenge"
   end
