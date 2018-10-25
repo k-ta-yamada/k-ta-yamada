@@ -4,14 +4,12 @@ const webpack = require('webpack')
 module.exports = {
   entry: {
     app:        './sources/app.bundle.js',
-    index:      './sources/index.bundle.js',
     rubygems:   './sources/rubygems.bundle.js',
     repo:       './sources/repo.bundle.js',
-    img_upload: './sources/img_upload.bundle.js',
   },
   output: {
     path: path.resolve(__dirname, './public/js/'),
-    filename: '[name].js'
+    filename: '[name]-[hash].js'
   },
   module: {
     rules: [

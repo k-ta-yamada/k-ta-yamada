@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import Vuex from 'vuex'
 import store from './vue/rubygems/_mutex.vue';
 import MyApp from './vue/rubygems/app.vue'
 
