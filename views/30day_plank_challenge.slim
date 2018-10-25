@@ -16,7 +16,7 @@
               / ##############################
               / DAY
               / ##############################
-              p
+              div
                 span.lead
                   = "day#{day} "
                 small
@@ -28,20 +28,25 @@
               / ##############################
               / TASK
               / ##############################
-              p.lead.text-center
+              .lead.text-center
                 = v.task
 
               / ##############################
               / RESULT
               / ##############################
-              p.text-right
+              .text-right
                 - if v.result && v.task != :rest
-                  = "result: #{v.result} "
-                  span.glyphicon.glyphicon-ok-sign aria-hidden="true"
+                  dl.text-right
+                    dt result
+                    dd.lead: u = v.result
                 - elsif v.task == :rest
-                  span.glyphicon.glyphicon-heart aria-hidden="true"
+                  dl.text-right
+                    dt &nbsp;
+                    dd.lead: span.glyphicon.glyphicon-heart aria-hidden="true"
                 - else
-                  | &nbsp;
+                  dl.text-right
+                    dt &nbsp;
+                    dd.lead &nbsp;
 
   hr
 
