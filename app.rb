@@ -43,13 +43,19 @@ end
 # helpers
 # ##################################################
 helpers do
-  JS_HASH =
-    File.basename(Dir.glob('./public/js/app*.js').first, '.js').split('-').last
-
   def js(filename)
     basename = File.basename(filename, '.*').to_sym
     name = basename == :layout ? :app : basename
-    "js/#{name}-#{JS_HASH}.js"
+    hash = settings.production? ? JS_HASH : js_hash
+    "js/#{name}-#{hash}.js"
+  end
+
+  JS_HASH = File.basename(Dir.glob('./public/js/app*.js').first, '.js')
+                .split('-').last.freeze
+
+  def js_hash
+    File.basename(Dir.glob('./public/js/app*.js').first, '.js')
+        .split('-').last
   end
 
   # for cache
