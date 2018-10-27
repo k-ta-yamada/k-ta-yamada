@@ -23,6 +23,8 @@ group :production do
 end
 
 group :development do
+  gem "ruby-debug-ide"
+  gem "debase"
   gem 'rubocop'
   gem 'pry'
   gem 'pry-doc'
