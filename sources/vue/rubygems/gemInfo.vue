@@ -5,7 +5,7 @@
     template(v-for='key in gemUriList')
       dt {{key}}
       dd
-        a(:href='gem[key]' target='_blank')
+        a(:href='gem[key]' target='_blank' rel="noopener")
           | {{gem[key]}}&nbsp;
           span.glyphicon.glyphicon-link(aria-hidden='true')
     template(v-for='key in gemInfoList')
@@ -14,7 +14,7 @@
   dl
     dt BestGems
     dd
-      a(:href='"http://bestgems.org/gems/" + gem.name' target='_blank')
+      a(:href='"http://bestgems.org/gems/" + gem.name' target='_blank' rel="noopener")
         | http://bestgems.org/gems/{{gem.name}}&nbsp;
         span.glyphicon.glyphicon-link(aria-hidden='true')
 </template>

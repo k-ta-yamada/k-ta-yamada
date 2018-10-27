@@ -10,7 +10,7 @@
               | to {{type}}
         div(:id='`chart-${gem.name}`')
         small: p.text-right
-          a(href="http://c3js.org/" target="_blank")
+          a(href="http://c3js.org/" target="_blank" rel="noopener")
             | C3.js | D3-based reusable chart library&nbsp;
             span.glyphicon.glyphicon-link(aria-hidden="true")
 </template>

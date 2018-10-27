@@ -13,7 +13,7 @@
           dt {{i + 1}}
           dd.lead {{c.commit.message}}
           dd {{c.commit.author.date}} / {{c.commit.author.name}}
-          dd: a(v-bind="{ href: c.html_url, target: '_blank' }") {{c.sha}}
+          dd: a(v-bind="{ href: c.html_url, target: '_blank',  rel: 'noopener' }") {{c.sha}}
           dd: hr
 </template>
 
