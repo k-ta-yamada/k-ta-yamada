@@ -23,6 +23,7 @@ group :production do
 end
 
 group :development do
+  gem 'rubocop'
   gem 'pry'
   gem 'pry-doc'
   gem 'pry-theme'
