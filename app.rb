@@ -4,7 +4,7 @@ Bundler.require(:default)
 Bundler.require(Sinatra::Base.environment)
 
 require 'json'
-require 'sinatra/reloader'
+require 'sinatra/reloader' if settings.development?
 require 'sinatra/json'
 require 'sinatra/namespace'
 
