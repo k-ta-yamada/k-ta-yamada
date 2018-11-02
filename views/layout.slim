@@ -3,8 +3,6 @@ html
   head
     title #{settings.production? ? "k-ta-yamada" : ""}#{@path == '/' ? nil : @path}
     meta name="viewport" content="width=device-width, initial-scale=1"
-    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    script src=js(__FILE__)
 
   body
 
@@ -27,6 +25,7 @@ html
         | Copyright 2014-#{Time.now.year},
         a href="https://github.com/k-ta-yamada" title="GitHub"
           = settings.production? ? "k-ta-yamada" : Sinatra::Base.environment
+
     javascript:
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -35,3 +34,6 @@ html
 
       ga('create', 'UA-103055759-1', 'auto');
       ga('send', 'pageview');
+
+    script src=js(__FILE__)
+    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"

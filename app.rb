@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'bundler'
 Bundler.require(:default)
 Bundler.require(Sinatra::Base.environment)
@@ -9,22 +10,25 @@ require 'sinatra/json'
 require 'sinatra/namespace'
 
 use Rack::Deflater
-if settings.development?
-  use Rack::DevMark::Middleware,
-      [:title, Rack::DevMark::Theme::GithubForkRibbon.new(position: 'right')]
-  # require 'webrick/https'
-  # set :server_settings,
-  #     SSLEnable: true,
-  #     SSLCertName: [['CN', WEBrick::Utils.getservername]]
-end
+set :logging, settings.development? ? Logger::DEBUG : Logger::INFO
+set :static_cache_control, [max_age: 60 * 60 * 24]
 
-configure do
-  set :logging, settings.development? ? Logger::DEBUG : Logger::INFO
-end
-
+# before
 MY_DOMAIN = 'k-ta-yamada.me'
+
+# /ping
+STARTED_AT = Time.now
+
+# js()
+JS_HASH = File.basename(Dir.glob('./public/js/app*.js').first, '.js')
+              .split('-').last
+
+# /plank
+PLANK_START_DAY = Date.new(2018, 10, 23)
+PLANK_RESULT_FILE_NAME = '30day_plank_challenge.result'
+
 before do
-  request.env.each { |k, v| logger.debug "  #{k.ljust(25)} => [#{v}]" }
+  # request.env.each { |k, v| logger.debug "  #{k.ljust(25)} => [#{v}]" }
   logger.info "Sinatra::Base.environment: [#{Sinatra::Base.environment}]"
   @path = request.path
 
@@ -43,40 +47,16 @@ end
 # helpers
 # ##################################################
 helpers do
-  def js(filename)
-    basename = File.basename(filename, '.*').to_sym
-    name = basename == :layout ? :app : basename
-    hash = settings.production? ? JS_HASH : js_hash
-    "js/#{name}-#{hash}.js"
-  end
-
-  JS_HASH = File.basename(Dir.glob('./public/js/app*.js').first, '.js')
-                .split('-').last.freeze
-
   def js_hash
     File.basename(Dir.glob('./public/js/app*.js').first, '.js')
         .split('-').last
   end
 
-  # for cache
-  set :gem_list, nil
-  RUBYGEMS_ORG_API = 'https://rubygems.org/api/v1'
-
-  def gem_list
-    logger.debug '-' * 50
-    logger.debug "settings.gem_list: #{settings.gem_list}"
-    uri = "#{RUBYGEMS_ORG_API}/owners/k-ta-yamada/gems.json"
-    settings.gem_list ||= JSON.parse(RestClient.get(uri), symbolize_names: true)
-  end
-
-  def clear_gem_list
-    settings.gem_list = nil
-  end
-
-  def gem_versions(gem_name)
-    uri = "#{RUBYGEMS_ORG_API}/versions/#{gem_name}.json"
-    data = JSON.parse(RestClient.get(uri), symbolize_names: true)
-    data.sort_by! { |v| v[:number] }
+  def js(filename)
+    basename = File.basename(filename, '.*').to_sym
+    name = basename == :layout ? :app : basename
+    hash = settings.production? ? JS_HASH : js_hash
+    "js/#{name}-#{hash}.js"
   end
 end
 
@@ -88,16 +68,14 @@ namespace '/' do
     slim :index
   end
 
-  UPDATED_AT = Time.now
   get 'ping' do
     content_type :json
-    { status:     'ok',
-      updated_at: UPDATED_AT }.to_json
+    { status: 'ok', started_at: STARTED_AT }.to_json
   end
 
   get 'sitemap.txt' do
     content_type :text
-    routes = %w[/ /prof /rubygems /repo]
+    routes = %w[/ /ping /sitemap.txt /prof /rubygems /repo]
     routes.map { |v| "https://#{MY_DOMAIN}#{v}" }.join("\n")
   end
 end
@@ -105,67 +83,85 @@ end
 # ##################################################
 # /prof
 # ##################################################
-get '/prof' do
-  slim :prof
+namespace '/prof' do
+  get '' do
+    slim :prof
+  end
 end
 
 # ##################################################
 # /rubygems
 # ##################################################
+require './helpers/rubygems_helper'
+helpers RubygemsHelper
 namespace '/rubygems' do
   get '' do
+    @production = settings.production?
     slim :rubygems
   end
 
   get '.json' do
-    sleep 2
+    data = gem_list
+
+    etag Digest::SHA1.hexdigest(data.to_s)
     content_type :json
-    json gem_list
+    json data
   end
 
   get '/clear-cache' do
-    clear_gem_list
+    clear_gem_cache
     redirect to(:rubygems)
   end
 
   get '/:gem_name' do |gem_name|
+    data = gem_versions(gem_name).last(10)
+
+    etag Digest::SHA1.hexdigest(data.to_s)
     content_type :json
-    json gem_versions(gem_name).last(10)
+    json data
   end
 end
 
 # ##################################################
 # /repo
 # ##################################################
+require './helpers/repo_helper'
+helpers RepoHelper
 namespace '/repo' do
   get '' do
+    @production = settings.production?
     slim :repo
   end
 
-  get '/commits' do
-    uri = 'https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits'
-    branche = params[:branche]
-    param = "?sha=#{branche}"
-    json = JSON.parse(RestClient.get("#{uri}#{param}"), symbolize_names: true)
+  get '/branches' do
+    data = branches
 
+    etag Digest::SHA1.hexdigest(data.to_s)
     content_type :json
-    json json
+    json data
   end
 
-  get '/branches' do
-    uri = 'https://api.github.com/repos/k-ta-yamada/k-ta-yamada/branches'
-    json = JSON.parse(RestClient.get(uri), symbolize_names: true)
+  get '/commits' do
+    data = commits(params[:branche])
 
+    etag Digest::SHA1.hexdigest(data.to_s)
     content_type :json
-    json json
+    json data
+  end
+
+  get '/clear-cache' do
+    clear_repo_cache
+    redirect to(:repo)
   end
 end
 
-namespace '/30day_plank_challenge' do
-  START_DAY = Date.new(2018, 10, 23)
-  RESULT_FILE_NAME = '30day_plank_challenge.result'
-
+# ##################################################
+# /30day_plank_challenge
+# ##################################################
+namespace '/30day_plank_challenge' do # rubocop:disable Metrics/BlockLength
   helpers do
+    A = Struct.new(:task, :result)
+
     def bg_color(record)
       rest?(record.task) || success?(record.result)
     end
@@ -181,19 +177,17 @@ namespace '/30day_plank_challenge' do
     end
 
     def today?(day)
-      START_DAY + day - 1 == Date.today
+      PLANK_START_DAY + day - 1 == Date.today
     end
 
     def calc_date(day)
-      date = START_DAY + day - 1
+      date = PLANK_START_DAY + day - 1
       mm = format('%02d', date.mon)
       dd = format('%02d', date.day)
       wday = %w[sun mon tue wed thu fri sat][date.wday]
       "#{mm}/#{dd} #{wday}"
     end
   end
-
-  A = Struct.new(:task, :result)
 
   get '' do
     def to_i_to_sym(task, result)
@@ -206,7 +200,7 @@ namespace '/30day_plank_challenge' do
        result.is_a?(Numeric) ? "#{result} sec" : result]
     end
 
-    @list = File.readlines(RESULT_FILE_NAME).map(&:split)
+    @list = File.readlines(PLANK_RESULT_FILE_NAME).map(&:split)
                 .map { |a, b| to_i_to_sym(a, b) }
                 .map { |a, b| decorate(a, b) }
                 .map { |v| A.new(*v) }
