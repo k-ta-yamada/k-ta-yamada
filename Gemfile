@@ -23,11 +23,15 @@ group :production do
 end
 
 group :development do
-  gem "ruby-debug-ide"
-  gem "debase"
+  gem 'ruby-debug-ide'
+  gem 'debase'
   gem 'rubocop'
   gem 'pry'
   gem 'pry-doc'
   gem 'pry-theme'
   gem 'awesome_print'
+end
+
+group :production do
+  gem 'puma'
 end

@@ -43,6 +43,7 @@ GEM
       yard (~> 0.9.11)
     pry-theme (1.2.0)
       coderay (~> 1.1)
+    puma (3.12.0)
     rack (2.0.5)
     rack-dev-mark (0.7.7)
       rack (>= 1.1, < 2.1)
@@ -105,6 +106,7 @@ DEPENDENCIES
   pry
   pry-doc
   pry-theme
+  puma
   rack-dev-mark
   rest-client
   rubocop
