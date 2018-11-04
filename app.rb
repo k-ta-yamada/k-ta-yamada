@@ -18,6 +18,14 @@ set :static_cache_control, [max_age: 60 * 60 * 24]
 # before
 MY_DOMAIN = 'k-ta-yamada.me'
 
+META_DESCRIPTION = {
+  '/': "Hi, I'm k-ta-yamada. This is my site.",
+  '/prof': 'My Profile and Skills.',
+  '/rubygems': 'My RubyGems info.',
+  '/repo': 'The commit log of this site.',
+  '/30day_plank_challenge': 'Record of 30 days Planck Challenge.'
+}.freeze
+
 # /ping
 STARTED_AT = Time.now
 
@@ -32,7 +40,9 @@ PLANK_RESULT_FILE_NAME = '30day_plank_challenge.result'
 before do
   # request.env.each { |k, v| logger.debug "  #{k.ljust(25)} => [#{v}]" }
   logger.info "Sinatra::Base.environment: [#{Sinatra::Base.environment}]"
-  @path = request.path
+  path = request.path == '/' ? nil : " | #{request.path.split('/')[1..-1].join('/')}"
+  @title = "#{MY_DOMAIN}#{path}"
+  @meta_description = META_DESCRIPTION[request.path.to_sym]
 
   if settings.production?
     unless request.secure?
