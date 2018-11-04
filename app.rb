@@ -10,6 +10,8 @@ require 'sinatra/json'
 require 'sinatra/namespace'
 
 use Rack::Deflater
+
+set :server, :webrick if settings.development?
 set :logging, settings.development? ? Logger::DEBUG : Logger::INFO
 set :static_cache_control, [max_age: 60 * 60 * 24]
 
