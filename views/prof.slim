@@ -1,118 +1,159 @@
 .container-fluid
   .row
-    .col-sm-12.col-xs-12.lead
-
-  .row
-    .col-sm-6.col-xs-12
-      dl
-        dt NAME
-        dd.lead k-ta-yamada
-        dt D.O.B
-        dd.lead Spring 1980
-        dd.lead: i class="fa fa-mars" style="font-size:20px;"
-
-    .col-sm-6.col-xs-12
-      dl
-        dt online
-        dd.lead
-          ul.list-unstyled.list-inline
-            li: a href="https://twitter.com/key_luvless" target="_blank" rel="noopener"
-              i class="fa fa-twitter" style="font-size:30px"
-            li: a href="https://github.com/k-ta-yamada" target="_blank" rel="noopener"
-              i class="fa fa-github" style="font-size:30px"
-            li: a href="https://bitbucket.org/k-ta-yamada/" target="_blank" rel="noopener"
-              i class="fa fa-bitbucket" style="font-size:30px"
-        dt MISC
-        dd
-          ul.list-unstyled
-            li
-              a href="http://qiita.com/k-ta-yamada" target="_blank" rel="noopener"
-                | Qiita
-
-  .row
-    .col-sm-12.col-xs-12.lead
-      hr
-
-  .row
-    .col-sm-6.col-xs-12
-      dl
-        dt LANG
-        dd
-          ul
-            li Ruby
-            ul
-              li FW
-              ul
-                li Rails
-                li Sinatra
-                li Hanami
-              li gems
-              ul
-                li rubocop
-                li rspec
-                li minitest
-              li: a href="/rubygems" it's mine
-              ul
-                li systemd_service_check
-                li renc
-                li tee_logger
-            li C#
-            ul
-              li dotnet core
-            li JavaScript
-            ul
-              li Angular
-              li Vue.js
-              li d3js
-              li c3js
-
-    .col-sm-6.col-xs-12
-      dl
-        dt DB
-        dd
-          ul
-            li Oracle
-            ul
-              li PL/SQL
-            li PostgreSQL
-            ul
-              li pgpool-II
-            li MongoDB
-            ul
-              li MongoDB University
-              li
-                a [href="http://education.mongodb.com/downloads/certificates/f8c0c72533ef4a52b561eaf299e7c0f9/Certificate.pdf"
-                  target="_blank" rel="noopener"]
-                  | M101P:MongoDB for Developers&nbsp;
-                  span.glyphicon.glyphicon-new-window aria-hidden="true"
-        dt VCS
-        dd
-          ul
-            li Git
-            li VSS
-        dt WEB
-        dd
-          ul
-            li HTML
-            li CSS
-        dt OTHERS
-        dd
-          ul
-            li Data Description Language
-            ul
-              li JSON
-              li YAML
-              li Markdown
-              li slim
-
-  .row
     .col-sm-12.col-xs-12
-      hr
-      dl
+      h3 Profile
+      p.lead I'm Programmer.
+
+  .row
+    .col-sm-6.col-xs-12
+      h4 Name
+      p.lead k-ta-yamada
+      h4 D.O.B
+      p.lead Spring 1980
+
+    .col-sm-6.col-xs-12
+      h4 Online
+      ul.list-unstyled.list-inline
+        li: a href="https://twitter.com/key_luvless" target="_blank" rel="noopener"
+          i class="fa fa-twitter" style="font-size:30px"
+        li: a href="https://github.com/k-ta-yamada" target="_blank" rel="noopener"
+          i class="fa fa-github" style="font-size:30px"
+        li: a href="https://bitbucket.org/k-ta-yamada/" target="_blank" rel="noopener"
+          i class="fa fa-bitbucket" style="font-size:30px"
+      h4 Misc
+      ul.list-unstyled
+        li
+          a href="http://qiita.com/k-ta-yamada" target="_blank" rel="noopener"
+            | Qiita
+
+  .row
+    .col-sm-6.col-xs-12
+      h4 Ruby
+      dl.dl-horizontal
+        dt experience
+        dd: ul.list-unstyled
+          li since 2012
+        dt I like...
+        dd: ul.list-unstyled
+          li ★★★★★
+        dt framework
+        dd: ul.list-unstyled
+          li Sinatra
+          li Rails
+          li Hanami
+        dt gems
+        dd: ul.list-unstyled
+          li Pry
+          li RuboCop
+          li Rspec
+          li minitest
+        dt: a href="/rubygems" my gems
+        dd: ul.list-unstyled
+          li systemd_service_check
+          li renc
+          li tee_logger
+      h4 Python
+      dl.dl-horizontal
+        dt experience
+        dd: ul.list-unstyled
+          li since 2018
+        dt I like...
+        dd: ul.list-unstyled
+          li ★★★☆☆
+        dt framework
+        dd: ul.list-unstyled
+          li Django
+      h4 C#
+      dl.dl-horizontal
+        dt experience
+        dd: ul.list-unstyled
+          li since 2016
+        dt I like...
+        dd: ul.list-unstyled
+          li ★★★☆☆
+        dt framework
+        dd: ul.list-unstyled
+          li dotnet core
+      h4 JavaScript/TypeScript
+      dl.dl-horizontal
+        dt experience
+        dd: ul.list-unstyled
+          li since 2016
+        dt I like...
+        dd: ul.list-unstyled
+          li ★★★☆☆
+        dt framework
+        dd: ul.list-unstyled
+          li Vue.js
+          li Angular
+          li d3.js
+          li c3.js
+
+    .col-sm-6.col-xs-12
+      h4 PostgreSQL
+      dl.dl-horizontal
+        dt experience
+        dd: ul.list-unstyled
+          li since 2016
+        dt I like...
+        dd: ul.list-unstyled
+          li ★★★★☆
+        dt
+        dd: ul.list-unstyled
+          li SQL
+          li PL/pgSQL
+          li
+            | Streaming Replication
+            ul: li
+              a href="https://github.com/k-ta-yamada/postgres-ha-ansible" target="_blank" rel="noopener"
+                | k-ta-yamada/postgres-ha-ansible
+      h4 Oracle
+      dl.dl-horizontal
+        dt experience
+        dd: ul.list-unstyled
+          li since 2006
+        dt I like...
+        dd: ul.list-unstyled
+          li ★★★☆☆
+        dt
+        dd: ul.list-unstyled
+          li SQL
+          li PL/SQL
+      h4 MongoDB
+      dl.dl-horizontal
+        dt experience
+        dd: ul.list-unstyled
+          li since 2014
+        dt I like...
+        dd: ul.list-unstyled
+          li ★★★☆☆
+        dt
+        dd: ul.list-unstyled
+          li
+            | MongoDB University
+            ul: li
+              a href="http://education.mongodb.com/downloads/certificates/f8c0c72533ef4a52b561eaf299e7c0f9/Certificate.pdf" target="_blank" rel="noopener"
+                | M101P:MongoDB for Developers
+      h4 OTHERS
+      dl.dl-horizontal
+        dt VCS
+        dd: ul.list-unstyled
+          li Git
+          li VSS
+        dt Web
+        dd: ul.list-unstyled
+          li HTML
+          li CSS
+        dt Data Description Lang
+        dd: ul.list-unstyled
+          li JSON
+          li YAML
+          li Markdown
+          li Slim
         dt be interested
-        ul.list-inline
+        dd: ul.list-unstyled
           li Docker
           li Go
           li AWS
-          li heroku
+          li Heroku
           li Bootstrap
