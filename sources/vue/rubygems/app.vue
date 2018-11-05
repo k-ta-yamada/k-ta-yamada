@@ -2,6 +2,7 @@
 #my-app
   vue-progress-bar
   h3 RubyGems
+  p.lead My RubyGems info.
 
   ul
   .row(v-for='gem in this.gemList')

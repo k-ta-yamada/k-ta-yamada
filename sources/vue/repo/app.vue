@@ -1,6 +1,9 @@
 <template lang="pug">
 #my-app
   vue-progress-bar
+  h3 commit
+  p.lead The commit log of this site.
+
   select(v-model='selectedBranch')
     option(v-for='b in branches' v-bind:value='b.name') {{b.name}}
 
