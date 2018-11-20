@@ -43,6 +43,9 @@ before do
   path = request.path == '/' ? nil : " | #{request.path.split('/')[1..-1].join('/')}"
   @title = "#{MY_DOMAIN}#{path}"
   @meta_description = META_DESCRIPTION[request.path.to_sym]
+  @scheme = request.scheme
+  @host = request.host
+  @url = request.url
 
   if settings.production?
     unless request.secure?

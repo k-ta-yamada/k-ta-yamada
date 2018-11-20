@@ -2,8 +2,20 @@ doctype html
 html
   head
     title = @title
+
+    meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1"
+
+    meta name="author" content="k-ta-yamada"
     meta name="description" content=@meta_description
+
+    meta name="og:url" content=@url
+    meta property="og:image" content="#{@scheme}://#{@host}/img/avatar.jpg"
+    meta property="og:title" content=@title
+    meta property="og:description" content=@meta_description
+
+    meta name="twitter:site" content="@key_luvless"
+    meta property="twitter:card" content="summary"
 
   body
 
