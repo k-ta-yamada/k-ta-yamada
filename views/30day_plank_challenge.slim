@@ -1,3 +1,14 @@
+css:
+  td.info {
+    background-color: honeydew !important;
+  }
+  td.success {
+    background-color: aliceblue !important;
+  }
+  td.warning {
+    background-color: lightyellow !important;
+  }
+
 .container
   h3 30 day plank challenge
   p Record of 30 days Plank Challenge.
@@ -41,11 +52,12 @@
                 - if v.result && v.task != :rest
                   dl.text-right
                     dt result
-                    dd.lead: u = v.result
+                    dd.lead = v.result
                 - elsif v.task == :rest
                   dl.text-right
                     dt &nbsp;
-                    dd.lead: span.glyphicon.glyphicon-heart aria-hidden="true"
+                    dd.lead
+                      / span.glyphicon.glyphicon-heart aria-hidden="true"
                 - else
                   dl.text-right
                     dt &nbsp;
