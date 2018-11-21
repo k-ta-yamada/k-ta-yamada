@@ -23,7 +23,7 @@ META_DESCRIPTION = {
   '/prof': 'My Profile and Skills.',
   '/rubygems': 'My RubyGems info.',
   '/repo': 'The commit log of this site.',
-  '/30day_plank_challenge': 'Record of 30 days Planck Challenge.'
+  '/30day_plank_challenge': 'Record of 30 days Plank Challenge.'
 }.freeze
 
 # /ping
