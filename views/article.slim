@@ -1,0 +1,30 @@
+.container
+  h3 article
+  p
+    | Articles written on&nbsp;
+    a href="https://qiita.com/k-ta-yamada" target="_blank" rel="noopener" https://qiita.com
+    |.
+
+  hr
+
+  - @articles.sort_by { |v| v['likes_count'] }.reverse.each.with_index(1) do |d, i|
+    p.lead
+      ="##{format('%02d', i)}/#{format('%02d', @articles.size)}"
+      | &nbsp;
+      a href=d["url"] target="blank" rel="noopener" =d["title"]
+    dl.dl-horizontal
+      dt url
+      dd: a href=d["url"] target="blank" rel="noopener" =d["url"]
+      dt tags
+      dd =d["tags"].map{ |v| v["name"] }.join(", ")
+      dt created_at
+      dd =d["created_at"]
+      dt updated_at
+      dd =d["updated_at"]
+      dt likes_count
+      dd =d["likes_count"]
+      / dt body
+      / dd: pre =d["body"]
+
+  / hr
+  / =@articles.to_s
