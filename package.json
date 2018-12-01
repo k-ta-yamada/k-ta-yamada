@@ -8,9 +8,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "rm -rf public/js/ && webpack -d --watch",
-    "build": "rm -rf public/js/ && webpack",
-    "heroku-postbuild": "rm -rf public/js/ && webpack --optimize-minimize --env production"
+    "watch": "rm -rf public/js/*.js* && webpack -d --watch",
+    "build": "rm -rf public/js/*.js* && webpack",
+    "heroku-postbuild": "rm -rf public/js/*.js* && webpack --optimize-minimize --env production"
   },
   "repository": {
     "type": "git",
