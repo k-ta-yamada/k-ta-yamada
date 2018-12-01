@@ -90,7 +90,16 @@ namespace '/' do
 
   get 'sitemap.txt' do
     content_type :text
-    routes = %w[/ /ping /sitemap.txt /prof /rubygems /repo]
+    routes = %w[
+      /
+      /ping
+      /sitemap.txt
+      /prof
+      /articles
+      /rubygems
+      /repo
+      /30day_plank_challenge
+    ]
     routes.map { |v| "https://#{MY_DOMAIN}#{v}" }.join("\n")
   end
 end
@@ -221,5 +230,17 @@ namespace '/30day_plank_challenge' do # rubocop:disable Metrics/BlockLength
                 .map { |v| A.new(*v) }
 
     slim :"30day_plank_challenge"
+  end
+end
+
+# ##################################################
+# /30day_plank_challenge
+# ##################################################
+require './helpers/articles_helper'
+helpers ArticlesHelper
+namespace '/articles' do
+  get '' do
+    @articles ||= articles
+    slim :article
   end
 end
