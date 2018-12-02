@@ -1,7 +1,9 @@
 bower_components/
 node_modules/
-public/js/
+public/js/*.js*
 .tags*
+test/html_reports/
+test/coverage/
 
 ### https://raw.github.com/github/gitignore/master/Global/OSX.gitignore
 

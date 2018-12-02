@@ -35,3 +35,11 @@ end
 group :production do
   gem 'puma'
 end
+
+group :test do
+  gem "minitest-reporters"
+  gem "rack-test"
+  gem "simplecov"
+  gem "simplecov-console"
+  gem "rake"
+end

@@ -47,6 +47,7 @@ before do
   @host = request.host
   @url = request.url
 
+  # :nocov:
   if settings.production?
     unless request.secure?
       redirect to("https://#{request.host_with_port}#{request.path}")
@@ -56,6 +57,7 @@ before do
       redirect to("https://#{MY_DOMAIN}#{request.path}")
     end
   end
+  # :nocov:
 end
 
 # ##################################################
