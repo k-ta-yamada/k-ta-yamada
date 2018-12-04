@@ -22,6 +22,9 @@ Minitest::Reporters.use! [
   Minitest::Reporters::HtmlReporter.new
 ]
 
+require 'webmock/minitest'
+# WebMock.allow_net_connect!
+
 require 'rack/test'
 require 'pry'
 require './app.rb'
@@ -81,6 +84,9 @@ class AppRubygemsTest < TestBase
   end
 
   def test_rubygems_json
+    stub_request(:get, 'https://rubygems.org/api/v1/owners/k-ta-yamada/gems.json')
+      .to_return(body: File.read('./test/for_webmock/rubygems/gems.json'))
+
     get '/rubygems.json'
     assert last_response.ok?
     assert_equal 'application/json', last_response.media_type
@@ -92,6 +98,9 @@ class AppRubygemsTest < TestBase
   end
 
   def test_rubygems_renc
+    stub_request(:get, 'https://rubygems.org/api/v1/versions/renc.json')
+      .to_return(body: File.read('./test/for_webmock/rubygems/renc.json'))
+
     get '/rubygems/renc'
     assert last_response.ok?
     assert_equal 'application/json', last_response.media_type
@@ -107,12 +116,18 @@ class AppRepoTest < TestBase
   end
 
   def test_repo_branches
+    stub_request(:get, 'https://api.github.com/repos/k-ta-yamada/k-ta-yamada/branches')
+      .to_return(body: File.read('./test/for_webmock/repo/branches.json'))
+
     get '/repo/branches'
     assert last_response.ok?
     assert_equal 'application/json', last_response.media_type
   end
 
   def test_repo_commits
+    stub_request(:get, 'https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits?sha=master')
+      .to_return(body: File.read('./test/for_webmock/repo/commits_master.json'))
+
     get '/repo/commits?branche=master'
     assert last_response.ok?
     assert_equal 'application/json', last_response.media_type
