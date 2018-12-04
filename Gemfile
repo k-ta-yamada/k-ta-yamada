@@ -37,9 +37,10 @@ group :production do
 end
 
 group :test do
+  gem "rake"
   gem "minitest-reporters"
   gem "rack-test"
   gem "simplecov"
   gem "simplecov-console"
-  gem "rake"
+  gem "webmock"
 end

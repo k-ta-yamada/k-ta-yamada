@@ -1,0 +1,138 @@
+[
+    {
+        "name": "renc",
+        "downloads": 7050,
+        "version": "2.2.0",
+        "version_downloads": 507,
+        "platform": "ruby",
+        "authors": "k-ta-yamada",
+        "info": "recursive encode for Hash and Array.",
+        "licenses": [
+            "MIT"
+        ],
+        "metadata": {},
+        "sha": "57128bf32752a94ba96489a58f1c5d20f70fa05353b25509d3718d84e04cb10f",
+        "project_uri": "https://rubygems.org/gems/renc",
+        "gem_uri": "https://rubygems.org/gems/renc-2.2.0.gem",
+        "homepage_uri": "https://github.com/k-ta-yamada/renc",
+        "wiki_uri": "",
+        "documentation_uri": "http://www.rubydoc.info/gems/renc/2.2.0",
+        "mailing_list_uri": "",
+        "source_code_uri": "https://github.com/k-ta-yamada/renc",
+        "bug_tracker_uri": "",
+        "changelog_uri": null,
+        "dependencies": {
+            "development": [
+                {
+                    "name": "awesome_print",
+                    "requirements": "\u003e= 0"
+                },
+                {
+                    "name": "bundler",
+                    "requirements": "~\u003e 1.11"
+                },
+                {
+                    "name": "pry",
+                    "requirements": "\u003e= 0"
+                },
+                {
+                    "name": "pry-byebug",
+                    "requirements": "\u003e= 0"
+                },
+                {
+                    "name": "pry-doc",
+                    "requirements": "\u003e= 0"
+                },
+                {
+                    "name": "pry-theme",
+                    "requirements": "\u003e= 0"
+                },
+                {
+                    "name": "rake",
+                    "requirements": "~\u003e 10.0"
+                },
+                {
+                    "name": "rspec",
+                    "requirements": "~\u003e 3.0"
+                },
+                {
+                    "name": "rubocop",
+                    "requirements": "\u003e= 0"
+                }
+            ],
+            "runtime": []
+        }
+    },
+    {
+        "name": "tee_logger",
+        "downloads": 19096,
+        "version": "3.2.2",
+        "version_downloads": 1265,
+        "platform": "ruby",
+        "authors": "k-ta-yamada",
+        "info": "logging to file and standard output. require standard library only.",
+        "licenses": [
+            "MIT"
+        ],
+        "metadata": {},
+        "sha": "ff0be95819590968eb2591fbb2be4c605b02bb45c8e457ed0f6e2c2c02f25a13",
+        "project_uri": "https://rubygems.org/gems/tee_logger",
+        "gem_uri": "https://rubygems.org/gems/tee_logger-3.2.2.gem",
+        "homepage_uri": "https://github.com/k-ta-yamada/tee_logger",
+        "wiki_uri": "",
+        "documentation_uri": "http://www.rubydoc.info/gems/tee_logger/3.2.2",
+        "mailing_list_uri": "",
+        "source_code_uri": "https://github.com/k-ta-yamada/tee_logger",
+        "bug_tracker_uri": "",
+        "changelog_uri": null,
+        "dependencies": {
+            "development": [
+                {
+                    "name": "bundler",
+                    "requirements": "~\u003e 1.10"
+                },
+                {
+                    "name": "capture_stdout",
+                    "requirements": "\u003e= 0"
+                },
+                {
+                    "name": "fakefs",
+                    "requirements": "\u003e= 0"
+                },
+                {
+                    "name": "fuubar",
+                    "requirements": "\u003e= 0"
+                },
+                {
+                    "name": "pry",
+                    "requirements": "\u003e= 0"
+                },
+                {
+                    "name": "pry-byebug",
+                    "requirements": "\u003e= 0"
+                },
+                {
+                    "name": "pry-doc",
+                    "requirements": "\u003e= 0"
+                },
+                {
+                    "name": "pry-theme",
+                    "requirements": "\u003e= 0"
+                },
+                {
+                    "name": "rake",
+                    "requirements": "~\u003e 10.0"
+                },
+                {
+                    "name": "rspec",
+                    "requirements": "\u003e= 0"
+                },
+                {
+                    "name": "rubocop",
+                    "requirements": "\u003e= 0"
+                }
+            ],
+            "runtime": []
+        }
+    }
+]
