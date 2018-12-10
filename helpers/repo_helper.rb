@@ -6,40 +6,41 @@ module RepoHelper
 
   @branches = nil
   @commits = {}
+  @last_update = Time.now
 
   class << self
-    attr_accessor :branches, :commits
+    attr_accessor :branches, :commits, :last_update
   end
 
-  def branches
+  def repo_branches
+    repo_cache_clear if repo_cache_expire?
+
     return RepoHelper.branches if RepoHelper.branches
 
     logger.info '#logging update cache: branches'
-    uri = "#{GITHUB_API}/branches"
-    data = JSON.parse(RestClient.get(uri), symbolize_names: true)
-    RepoHelper.branches = data
+    RepoHelper.branches = JSON.parse(RestClient.get("#{GITHUB_API}/branches"))
   end
 
-  def commits(branche)
-    commits = commits_by(branche)
-    elapsed_time = Time.now - (commits ? commits[:updated_at] : Time.now)
-    return commits[:data] if commits[:data] && elapsed_time < CACHE_EXPIRATION
+  def repo_commits(branche)
+    repo_cache_clear if repo_cache_expire?
+
+    commit = RepoHelper.commits[branche]
+    return commit if commit
 
     logger.info "#logging update cache: commits(#{branche})"
-    uri = "#{GITHUB_API}/commits?sha=#{branche}"
-    data = JSON.parse(RestClient.get(uri), symbolize_names: true)
-
-    RepoHelper.commits[branche] = { data: data, updated_at: Time.now }
-    data
+    RepoHelper.commits[branche] =
+      JSON.parse(RestClient.get("#{GITHUB_API}/commits?sha=#{branche}"))
   end
 
-  def clear_repo_cache
+  def repo_cache_clear
     RepoHelper.branches = nil
-    RepoHelper.commits  = {}
+    RepoHelper.commits = {}
+    RepoHelper.last_update = Time.now
   end
 
   # private
-  def commits_by(branche)
-    RepoHelper.commits[branche] || { data: nil, updated_at: Time.now }
+  def repo_cache_expire?
+    elapsed_time = Time.now - RepoHelper.last_update
+    elapsed_time > CACHE_EXPIRATION
   end
 end

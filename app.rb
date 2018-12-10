@@ -160,7 +160,7 @@ namespace '/repo' do
   end
 
   get '/branches' do
-    data = branches
+    data = repo_branches
 
     etag Digest::SHA1.hexdigest(data.to_s)
     content_type :json
@@ -168,7 +168,7 @@ namespace '/repo' do
   end
 
   get '/commits' do
-    data = commits(params[:branche])
+    data = repo_commits(params[:branche])
 
     etag Digest::SHA1.hexdigest(data.to_s)
     content_type :json
@@ -176,7 +176,7 @@ namespace '/repo' do
   end
 
   get '/clear-cache' do
-    clear_repo_cache
+    repo_cache_clear
     redirect to(:repo)
   end
 end

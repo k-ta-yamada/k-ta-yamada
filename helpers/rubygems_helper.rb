@@ -23,13 +23,12 @@ module RubygemsHelper
   def gem_versions(name)
     gem_cache_clear if gem_cache_expire?
 
-    version = gem_versions_by(name)
-    return version[:data] if version[:data]
+    version = RubygemsHelper.gem_versions[name]
+    return version if version
 
     logger.info "#logging update cache: gem_versions(#{name})"
-    data = Gems.versions(name).sort_by { |v| v['number'] }
-    RubygemsHelper.gem_versions[name] = { data: data, updated_at: Time.now }
-    data
+    RubygemsHelper.gem_versions[name] =
+      Gems.versions(name).sort_by { |v| v['number'] }
   end
 
   def gem_cache_clear
@@ -40,13 +39,7 @@ module RubygemsHelper
 
   # private
   def gem_cache_expire?
-    RubygemsHelper.last_update ||= Time.now
     elapsed_time = Time.now - RubygemsHelper.last_update
     elapsed_time > CACHE_EXPIRATION
-  end
-
-  # private
-  def gem_versions_by(name)
-    RubygemsHelper.gem_versions[name] || { data: nil, updated_at: Time.now }
   end
 end
