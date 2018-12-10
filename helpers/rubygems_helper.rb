@@ -1,50 +1,52 @@
 # frozen_string_literal: true
 
 module RubygemsHelper
-  RUBYGEMS_ORG_API = 'https://rubygems.org/api/v1'
   CACHE_EXPIRATION = 60 * 5
 
   @gem_list = nil
   @gem_versions = {}
+  @last_update = Time.now
 
   class << self
-    attr_accessor :gem_list, :gem_versions
+    attr_accessor :gem_list, :gem_versions, :last_update
   end
 
   def gem_list
+    gem_cache_clear if gem_cache_expire?
+
     return RubygemsHelper.gem_list if RubygemsHelper.gem_list
 
     logger.info '#logging update cache: gem_list'
-    uri = "#{RUBYGEMS_ORG_API}/owners/k-ta-yamada/gems.json"
-    data = JSON.parse(RestClient.get(uri), symbolize_names: true)
-    RubygemsHelper.gem_list = data
+    RubygemsHelper.gem_list = Gems.gems('k-ta-yamada')
   end
 
   def gem_versions(name)
+    gem_cache_clear if gem_cache_expire?
+
     version = gem_versions_by(name)
-    elapsed_time = Time.now - (version ? version[:updated_at] : Time.now)
-    return version[:data] if version[:data] && elapsed_time < CACHE_EXPIRATION
+    return version[:data] if version[:data]
 
     logger.info "#logging update cache: gem_versions(#{name})"
-    data = api_request("#{RUBYGEMS_ORG_API}/versions/#{name}.json")
+    data = Gems.versions(name).sort_by { |v| v['number'] }
     RubygemsHelper.gem_versions[name] = { data: data, updated_at: Time.now }
     data
   end
 
-  def clear_gem_cache
+  def gem_cache_clear
     RubygemsHelper.gem_list = nil
     RubygemsHelper.gem_versions = {}
+    RubygemsHelper.last_update = Time.now
+  end
+
+  # private
+  def gem_cache_expire?
+    RubygemsHelper.last_update ||= Time.now
+    elapsed_time = Time.now - RubygemsHelper.last_update
+    elapsed_time > CACHE_EXPIRATION
   end
 
   # private
   def gem_versions_by(name)
     RubygemsHelper.gem_versions[name] || { data: nil, updated_at: Time.now }
-  end
-
-  # private
-  def api_request(uri)
-    data = JSON.parse(RestClient.get(uri), symbolize_names: true)
-    data.sort_by! { |v| v[:number] }
-    data
   end
 end

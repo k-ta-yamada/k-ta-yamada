@@ -134,8 +134,8 @@ namespace '/rubygems' do
     json data
   end
 
-  get '/clear-cache' do
-    clear_gem_cache
+  get '/cache-clear' do
+    gem_cache_clear
     redirect to(:rubygems)
   end
 
