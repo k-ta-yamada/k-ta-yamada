@@ -9,6 +9,7 @@ gem 'slim'
 # gem 'redcarpet'
 gem 'kramdown'
 gem 'rest-client'
+gem 'gems'
 
 # gem 'activesupport', require: false
 gem 'activesupport', require: 'active_support/all'
