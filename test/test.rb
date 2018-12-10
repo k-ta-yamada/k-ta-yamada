@@ -93,7 +93,7 @@ class AppRubygemsTest < TestBase
   end
 
   def test_rubygems_claer_cache
-    get '/rubygems/clear-cache'
+    get '/rubygems/cache-clear'
     assert last_response.redirect?
   end
 
