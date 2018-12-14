@@ -37,10 +37,22 @@ JS_HASH = File.basename(Dir.glob('./public/js/app*.js').first, '.js')
 PLANK_START_DAY = Date.new(2018, 10, 23)
 PLANK_RESULT_FILE_NAME = '30day_plank_challenge.result'
 
+EXPIRES_IN_MINUTE = ENV['EXPIRES_IN'] || 1
+RACE_CONDITION_TTL = 5
+
+configure do
+  cache = ActiveSupport::Cache::MemoryStore.new(
+    expires_in: EXPIRES_IN_MINUTE.minute,
+    race_condition_ttl: RACE_CONDITION_TTL
+  )
+  set :cache, cache
+end
+
 before do
   # request.env.each { |k, v| logger.debug "  #{k.ljust(25)} => [#{v}]" }
   logger.info "Sinatra::Base.environment: [#{Sinatra::Base.environment}]"
-  path = request.path == '/' ? nil : " | #{request.path.split('/')[1..-1].join('/')}"
+  path =
+    request.path == '/' ? nil : " | #{request.path.split('/')[1..-1].join('/')}"
   @title = "#{MY_DOMAIN}#{path}"
   @meta_description = META_DESCRIPTION[request.path.to_sym]
   @scheme = request.scheme
@@ -118,16 +130,18 @@ end
 # ##################################################
 # /rubygems
 # ##################################################
-require './helpers/rubygems_helper'
-helpers RubygemsHelper
-namespace '/rubygems' do
+namespace '/rubygems' do # rubocop:disable Metrics/BlockLength
   get '' do
     @production = settings.production?
     slim :rubygems
   end
 
   get '.json' do
-    data = gem_list
+    data = settings.cache.fetch(request.path) do
+      data = Gems.gems('k-ta-yamada')
+      logger.info "-- update cache: #{request.path}"
+      data
+    end
 
     etag Digest::SHA1.hexdigest(data.to_s)
     content_type :json
@@ -135,12 +149,16 @@ namespace '/rubygems' do
   end
 
   get '/cache-clear' do
-    gem_cache_clear
+    settings.cache.delete_matched(Regexp.new(File.dirname(request.path)))
     redirect to(:rubygems)
   end
 
   get '/:gem_name' do |gem_name|
-    data = gem_versions(gem_name).last(10)
+    data = settings.cache.fetch(request.path) do
+      data = Gems.versions(gem_name).sort_by { |v| v['number'] }
+      logger.info "-- update cache: #{request.path}"
+      data
+    end
 
     etag Digest::SHA1.hexdigest(data.to_s)
     content_type :json
@@ -151,16 +169,18 @@ end
 # ##################################################
 # /repo
 # ##################################################
-require './helpers/repo_helper'
-helpers RepoHelper
-namespace '/repo' do
+GITHUB_API = 'https://api.github.com/repos/k-ta-yamada/k-ta-yamada'
+namespace '/repo' do # rubocop:disable Metrics/BlockLength
   get '' do
     @production = settings.production?
     slim :repo
   end
 
   get '/branches' do
-    data = repo_branches
+    data = settings.cache.fetch(request.path) do
+      logger.info "-- update cache: #{request.path}"
+      JSON.parse(RestClient.get("#{GITHUB_API}/branches"))
+    end
 
     etag Digest::SHA1.hexdigest(data.to_s)
     content_type :json
@@ -168,7 +188,11 @@ namespace '/repo' do
   end
 
   get '/commits' do
-    data = repo_commits(params[:branche])
+    branche = params[:branche]
+    data = settings.cache.fetch("#{request.path}/#{branche}") do
+      logger.info "-- update cache: #{request.path}/#{branche}"
+      JSON.parse(RestClient.get("#{GITHUB_API}/commits?sha=#{branche}"))
+    end
 
     etag Digest::SHA1.hexdigest(data.to_s)
     content_type :json
@@ -176,7 +200,7 @@ namespace '/repo' do
   end
 
   get '/clear-cache' do
-    repo_cache_clear
+    settings.cache.delete_matched(Regexp.new(File.dirname(request.path)))
     redirect to(:repo)
   end
 end
@@ -236,13 +260,20 @@ namespace '/30day_plank_challenge' do # rubocop:disable Metrics/BlockLength
 end
 
 # ##################################################
-# /30day_plank_challenge
+# /articles
 # ##################################################
-require './helpers/articles_helper'
-helpers ArticlesHelper
+QIITA_API = 'https://qiita.com/api/v2/users/k-ta-yamada/items'
 namespace '/articles' do
   get '' do
-    @articles ||= articles
+    total_count = settings.cache.fetch("#{request.path}/total_count") do
+      logger.info "-- update cache: #{request.path}/total_count"
+      RestClient.get(QIITA_API).headers[:total_count].to_i
+    end
+    @articles = settings.cache.fetch("#{request.path}/articles") do
+      logger.info "-- update cache: #{request.path}/articles"
+      JSON.parse(RestClient.get("#{QIITA_API}?per_page=#{total_count}"))
+    end
+
     slim :article
   end
 end

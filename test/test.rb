@@ -69,6 +69,14 @@ class AppTest < TestBase
   end
 
   def test_articles
+    stub_request(:get, 'https://qiita.com/api/v2/users/k-ta-yamada/items')
+      .to_return(
+        body: File.read('./test/for_webmock/articles/articles.json'),
+        headers: { 'Total-Count' => 2 }
+      )
+    stub_request(:get, 'https://qiita.com/api/v2/users/k-ta-yamada/items?per_page=2')
+      .to_return(body: File.read('./test/for_webmock/articles/articles.json'))
+
     get '/articles'
     assert last_response.ok?
     assert_equal 'text/html', last_response.media_type
