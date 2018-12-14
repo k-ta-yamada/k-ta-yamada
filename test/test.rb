@@ -72,9 +72,9 @@ class AppTest < TestBase
     stub_request(:get, 'https://qiita.com/api/v2/users/k-ta-yamada/items')
       .to_return(
         body: File.read('./test/for_webmock/articles/articles.json'),
-        headers: { 'Total-Count' => 2 }
+        headers: { 'Total-Count' => 1 }
       )
-    stub_request(:get, 'https://qiita.com/api/v2/users/k-ta-yamada/items?per_page=2')
+    stub_request(:get, 'https://qiita.com/api/v2/users/k-ta-yamada/items?per_page=1')
       .to_return(body: File.read('./test/for_webmock/articles/articles.json'))
 
     get '/articles'
