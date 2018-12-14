@@ -17,24 +17,5 @@
         ],
         "requirements": [],
         "sha": "57128bf32752a94ba96489a58f1c5d20f70fa05353b25509d3718d84e04cb10f"
-    },
-    {
-        "authors": "k-ta-yamada",
-        "built_at": "2017-02-19T00:00:00.000Z",
-        "created_at": "2017-02-19T13:56:50.554Z",
-        "description": "recursive encode for Hash and Array.",
-        "downloads_count": 520,
-        "metadata": {},
-        "number": "2.1.0",
-        "summary": "recursive encode for Hash and Array.",
-        "platform": "ruby",
-        "rubygems_version": "\u003e= 0",
-        "ruby_version": "\u003e= 2.0.0",
-        "prerelease": false,
-        "licenses": [
-            "MIT"
-        ],
-        "requirements": [],
-        "sha": "e8bf271ce388d2c8c3f67c866675eefaf567b0b6ac69f6fc0bf30c7110864a62"
     }
 ]
