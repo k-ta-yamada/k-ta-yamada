@@ -4,7 +4,7 @@
   "engines": {
     "node": "6.7.0"
   },
-  "description": "[http://k-ta-yamada.herokuapp.com/](http://k-ta-yamada.herokuapp.com/)",
+  "description": "[https://k-ta-yamada.me/](https://k-ta-yamada.me/)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
