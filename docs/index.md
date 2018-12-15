@@ -4,4 +4,4 @@
 
 here is [my repository](https://github.com/k-ta-yamada/k-ta-yamada)'s GitHub Pages.
 
-my place is [here](https://k-ta-yamada.herokuapp.com).
+my place is [here](https://k-ta-yamada.me).
