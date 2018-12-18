@@ -157,7 +157,7 @@ namespace '/rubygems' do # rubocop:disable Metrics/BlockLength
     data = settings.cache.fetch(request.path) do
       data = Gems.versions(gem_name).sort_by { |v| v['number'] }
       logger.info "-- update cache: #{request.path}"
-      data
+      data.last(10)
     end
 
     etag Digest::SHA1.hexdigest(data.to_s)
@@ -199,7 +199,7 @@ namespace '/repo' do # rubocop:disable Metrics/BlockLength
     json data
   end
 
-  get '/clear-cache' do
+  get '/cache-clear' do
     settings.cache.delete_matched(Regexp.new(File.dirname(request.path)))
     redirect to(:repo)
   end
@@ -275,5 +275,10 @@ namespace '/articles' do
     end
 
     slim :article
+  end
+
+  get '/cache-clear' do
+    settings.cache.delete_matched(Regexp.new(File.dirname(request.path)))
+    redirect to(:articles)
   end
 end

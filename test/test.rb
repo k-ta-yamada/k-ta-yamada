@@ -81,6 +81,11 @@ class AppTest < TestBase
     assert last_response.ok?
     assert_equal 'text/html', last_response.media_type
   end
+
+  def test_articles_claer_cache
+    get '/articles/cache-clear'
+    assert last_response.redirect?
+  end
 end
 
 class AppRubygemsTest < TestBase
@@ -142,7 +147,7 @@ class AppRepoTest < TestBase
   end
 
   def test_repo_claer_cache
-    get '/repo/clear-cache'
+    get '/repo/cache-clear'
     assert last_response.redirect?
   end
 end
