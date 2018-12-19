@@ -1,0 +1,126 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://rubygems.org/api/v1/versions/renc.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Gems 1.1.1
+      - Ruby
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - '30'
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'self'; script-src 'self' https://secure.gaug.es https://www.fastly-insights.com;
+        style-src 'self' https://fonts.googleapis.com; img-src 'self' https://secure.gaug.es
+        https://gravatar.com https://secure.gravatar.com https://*.fastly-insights.com;
+        font-src 'self' https://fonts.gstatic.com; connect-src https://s3-us-west-2.amazonaws.com/rubygems-dumps/
+        https://*.fastly-insights.com https://api.github.com;
+      Last-Modified:
+      - Fri, 11 Aug 2017 12:54:12 GMT
+      Cache-Control:
+      - max-age=0, public
+      X-Request-Id:
+      - 590db900-a956-46b4-a727-11fef4eecadf
+      X-Runtime:
+      - '0.034743'
+      Strict-Transport-Security:
+      - max-age=0; includeSubDomains
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Backend:
+      - F_Rails 54.186.104.15:443
+      Content-Length:
+      - '1008'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Tue, 18 Dec 2018 14:57:24 GMT
+      Via:
+      - 1.1 varnish
+      Age:
+      - '109'
+      Connection:
+      - keep-alive
+      X-Served-By:
+      - cache-nrt6150-NRT
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Timer:
+      - S1545145044.426671,VS0,VE1
+      Vary:
+      - Accept-Encoding,Fastly-SSL
+      Etag:
+      - '"c71b6a8adad275f038b518dea22eae90"'
+      Server:
+      - RubyGems.org
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"authors":"k-ta-yamada","built_at":"2017-08-11T00:00:00.000Z","created_at":"2017-08-11T12:54:11.668Z","description":"recursive
+        encode for Hash and Array.","downloads_count":517,"metadata":{},"number":"2.2.0","summary":"recursive
+        encode for Hash and Array.","platform":"ruby","rubygems_version":"\u003e=
+        0","ruby_version":"\u003e= 2.0.0","prerelease":false,"licenses":["MIT"],"requirements":[],"sha":"57128bf32752a94ba96489a58f1c5d20f70fa05353b25509d3718d84e04cb10f"},{"authors":"k-ta-yamada","built_at":"2017-02-19T00:00:00.000Z","created_at":"2017-02-19T13:56:50.554Z","description":"recursive
+        encode for Hash and Array.","downloads_count":525,"metadata":{},"number":"2.1.0","summary":"recursive
+        encode for Hash and Array.","platform":"ruby","rubygems_version":"\u003e=
+        0","ruby_version":"\u003e= 2.0.0","prerelease":false,"licenses":["MIT"],"requirements":[],"sha":"e8bf271ce388d2c8c3f67c866675eefaf567b0b6ac69f6fc0bf30c7110864a62"},{"authors":"k-ta-yamada","built_at":"2017-02-15T00:00:00.000Z","created_at":"2017-02-15T07:30:49.462Z","description":"recurse
+        encoding for Hash and Array.","downloads_count":441,"metadata":{},"number":"2.0.0","summary":"recurse
+        encoding for Hash and Array.","platform":"ruby","rubygems_version":"\u003e=
+        0","ruby_version":"\u003e= 2.0.0","prerelease":false,"licenses":["MIT"],"requirements":[],"sha":"6262d70c50afe8123cd93faa851654b70b7280d2704249beb0aaa8d5acde1071"},{"authors":"k-ta-yamada","built_at":"2017-02-06T00:00:00.000Z","created_at":"2017-02-06T13:14:37.046Z","description":"recurse
+        encoding for Hash and Array.","downloads_count":456,"metadata":{},"number":"1.3.1","summary":"recurse
+        encoding for Hash and Array.","platform":"ruby","rubygems_version":"\u003e=
+        0","ruby_version":"\u003e= 2.0.0","prerelease":false,"licenses":["MIT"],"requirements":[],"sha":"1953ba941c4695c05027580fa0a3b8f3babc7ad21f37f21cab5aa4d3d817ec92"},{"authors":"k-ta-yamada","built_at":"2016-03-04T00:00:00.000Z","created_at":"2016-03-04T14:49:11.980Z","description":"recurse
+        encoding for Hash and Array.","downloads_count":1345,"metadata":{},"number":"1.3.0","summary":"recurse
+        encoding for Hash and Array.","platform":"ruby","rubygems_version":"\u003e=
+        0","ruby_version":"\u003e= 2.0.0","prerelease":false,"licenses":["MIT"],"requirements":[],"sha":"aa9f37ed42634e3842c726f81a6ebbe41ab5e617b59d9e552a994ed379526ac6"},{"authors":"k-ta-yamada","built_at":"2016-03-02T00:00:00.000Z","created_at":"2016-03-02T14:02:36.009Z","description":"recurse
+        encoding for Hash and Array.","downloads_count":690,"metadata":{},"number":"1.2.0","summary":"recurse
+        encoding for Hash and Array.","platform":"ruby","rubygems_version":"\u003e=
+        0","ruby_version":"\u003e= 2.0.0","prerelease":false,"licenses":["MIT"],"requirements":[],"sha":"4c341b5d4d018ffa16bac88a5e26cbf1badd78ba3c549504d70cf4419d4da43d"},{"authors":"k-ta-yamada","built_at":"2016-02-29T00:00:00.000Z","created_at":"2016-02-29T04:13:53.540Z","description":"recurse
+        encoding for Hash and Array.","downloads_count":639,"metadata":{},"number":"1.1.0","summary":"recurse
+        encoding for Hash and Array.","platform":"ruby","rubygems_version":"\u003e=
+        0","ruby_version":"\u003e= 2.0.0","prerelease":false,"licenses":["MIT"],"requirements":[],"sha":"4dd77805594e3743dd815d9553928fb378f4658a40ca66872de8a1b75e2337c7"},{"authors":"k-ta-yamada","built_at":"2016-02-29T00:00:00.000Z","created_at":"2016-02-29T02:43:24.862Z","description":"recurse
+        encoding for Hash and Array.","downloads_count":614,"metadata":{},"number":"1.0.1","summary":"recurse
+        encoding for Hash and Array.","platform":"ruby","rubygems_version":"\u003e=
+        0","ruby_version":"\u003e= 2.0.0","prerelease":false,"licenses":["MIT"],"requirements":[],"sha":"fad45803aad4cfe4f4de3320f6c2d3a0c29763b6f1bba86f4f18cee0d2e1d7cd"},{"authors":"k-ta-yamada","built_at":"2016-02-27T00:00:00.000Z","created_at":"2016-02-27T14:39:26.663Z","description":"recurse
+        encoding for Hash and Array.","downloads_count":636,"metadata":{},"number":"1.0.0","summary":"recurse
+        encoding for Hash and Array.","platform":"ruby","rubygems_version":"\u003e=
+        0","ruby_version":"\u003e= 2.2.4","prerelease":false,"licenses":["MIT"],"requirements":[],"sha":"004e1945f08230ca64dc91dd79be5fbc89135484927ad7fc9bd05cb5d76b4eca"},{"authors":"k-ta-yamada","built_at":"2016-02-26T00:00:00.000Z","created_at":"2016-02-26T13:34:51.947Z","description":"recurse
+        encoding for Hash and Array.","downloads_count":635,"metadata":{},"number":"0.2.0","summary":"recurse
+        encoding for Hash and Array.","platform":"ruby","rubygems_version":"\u003e=
+        0","ruby_version":"\u003e= 0","prerelease":false,"licenses":["MIT"],"requirements":[],"sha":"83583ef6790e0896644cd6e71a559d9606738f1ea45047d8ac9052b0f8e61132"},{"authors":"k-ta-yamada","built_at":"2016-02-26T00:00:00.000Z","created_at":"2016-02-26T10:51:41.202Z","description":"recurse
+        encoding for Hash and Array.","downloads_count":614,"metadata":{},"number":"0.1.0","summary":"recurse
+        encoding for Hash and Array.","platform":"ruby","rubygems_version":"\u003e=
+        0","ruby_version":"\u003e= 0","prerelease":false,"licenses":["MIT"],"requirements":[],"sha":"ea82dce086c2644a21e2ef34e1620efdf4f224c170f9da143dc2d541b3f3f6ae"}]'
+    http_version: 
+  recorded_at: Tue, 18 Dec 2018 14:57:24 GMT
+recorded_with: VCR 4.0.0

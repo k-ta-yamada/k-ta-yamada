@@ -1,0 +1,114 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://rubygems.org/api/v1/owners/k-ta-yamada/gems.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Gems 1.1.1
+      - Ruby
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - '30'
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'self'; script-src 'self' https://secure.gaug.es https://www.fastly-insights.com;
+        style-src 'self' https://fonts.googleapis.com; img-src 'self' https://secure.gaug.es
+        https://gravatar.com https://secure.gravatar.com https://*.fastly-insights.com;
+        font-src 'self' https://fonts.gstatic.com; connect-src https://s3-us-west-2.amazonaws.com/rubygems-dumps/
+        https://*.fastly-insights.com https://api.github.com;
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - ae1d6fb9-5200-4028-a604-0eb178269c99
+      X-Runtime:
+      - '0.040144'
+      Strict-Transport-Security:
+      - max-age=0; includeSubDomains
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Backend:
+      - F_Rails 54.186.104.15:443
+      Accept-Ranges:
+      - bytes
+      - bytes
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 18 Dec 2018 14:57:42 GMT
+      Via:
+      - 1.1 varnish
+      Age:
+      - '0'
+      Connection:
+      - keep-alive
+      X-Served-By:
+      - cache-nrt6145-NRT
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      X-Timer:
+      - S1545145062.165783,VS0,VE173
+      Vary:
+      - Accept-Encoding,Fastly-SSL
+      Etag:
+      - '"fa770771d3e0c45a1e6ed8bf8f75d36e"'
+      Server:
+      - RubyGems.org
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"name":"systemd_service_check","downloads":1236,"version":"1.1.0","version_downloads":354,"platform":"ruby","authors":"k-ta-yamada","info":"This
+        gem provide `ssc` command to check multiple `systemd service` etc on multiple
+        remote servers using net-ssh.","licenses":["MIT"],"metadata":{},"sha":"56d22e7eef141902d8b527a892a9cba810f5d472df96cd83abba5cd85b80f2e8","project_uri":"https://rubygems.org/gems/systemd_service_check","gem_uri":"https://rubygems.org/gems/systemd_service_check-1.1.0.gem","homepage_uri":"https://github.com/k-ta-yamada/systemd_service_check","wiki_uri":"","documentation_uri":"http://www.rubydoc.info/gems/systemd_service_check/1.1.0","mailing_list_uri":"","source_code_uri":"https://github.com/k-ta-yamada/systemd_service_check","bug_tracker_uri":"","changelog_uri":null,"dependencies":{"development":[{"name":"bundler","requirements":"~\u003e
+        1.16"},{"name":"capture_stdout","requirements":"\u003e= 0"},{"name":"minitest","requirements":"~\u003e
+        5.0"},{"name":"minitest-reporters","requirements":"\u003e= 0"},{"name":"pry-doc","requirements":"\u003e=
+        0"},{"name":"pry-theme","requirements":"\u003e= 0"},{"name":"rake","requirements":"~\u003e
+        10.0"},{"name":"rubocop","requirements":"\u003e= 0"}],"runtime":[{"name":"awesome_print","requirements":"\u003e=
+        0"},{"name":"net-ssh","requirements":"\u003e= 0"},{"name":"pry","requirements":"\u003e=
+        0"},{"name":"table_print","requirements":"\u003e= 0"},{"name":"thor","requirements":"\u003e=
+        0"}]}},{"name":"renc","downloads":7112,"version":"2.2.0","version_downloads":517,"platform":"ruby","authors":"k-ta-yamada","info":"recursive
+        encode for Hash and Array.","licenses":["MIT"],"metadata":{},"sha":"57128bf32752a94ba96489a58f1c5d20f70fa05353b25509d3718d84e04cb10f","project_uri":"https://rubygems.org/gems/renc","gem_uri":"https://rubygems.org/gems/renc-2.2.0.gem","homepage_uri":"https://github.com/k-ta-yamada/renc","wiki_uri":"","documentation_uri":"http://www.rubydoc.info/gems/renc/2.2.0","mailing_list_uri":"","source_code_uri":"https://github.com/k-ta-yamada/renc","bug_tracker_uri":"","changelog_uri":null,"dependencies":{"development":[{"name":"awesome_print","requirements":"\u003e=
+        0"},{"name":"bundler","requirements":"~\u003e 1.11"},{"name":"pry","requirements":"\u003e=
+        0"},{"name":"pry-byebug","requirements":"\u003e= 0"},{"name":"pry-doc","requirements":"\u003e=
+        0"},{"name":"pry-theme","requirements":"\u003e= 0"},{"name":"rake","requirements":"~\u003e
+        10.0"},{"name":"rspec","requirements":"~\u003e 3.0"},{"name":"rubocop","requirements":"\u003e=
+        0"}],"runtime":[]}},{"name":"tee_logger","downloads":19233,"version":"3.2.2","version_downloads":1280,"platform":"ruby","authors":"k-ta-yamada","info":"logging
+        to file and standard output. require standard library only.","licenses":["MIT"],"metadata":{},"sha":"ff0be95819590968eb2591fbb2be4c605b02bb45c8e457ed0f6e2c2c02f25a13","project_uri":"https://rubygems.org/gems/tee_logger","gem_uri":"https://rubygems.org/gems/tee_logger-3.2.2.gem","homepage_uri":"https://github.com/k-ta-yamada/tee_logger","wiki_uri":"","documentation_uri":"http://www.rubydoc.info/gems/tee_logger/3.2.2","mailing_list_uri":"","source_code_uri":"https://github.com/k-ta-yamada/tee_logger","bug_tracker_uri":"","changelog_uri":null,"dependencies":{"development":[{"name":"bundler","requirements":"~\u003e
+        1.10"},{"name":"capture_stdout","requirements":"\u003e= 0"},{"name":"fakefs","requirements":"\u003e=
+        0"},{"name":"fuubar","requirements":"\u003e= 0"},{"name":"pry","requirements":"\u003e=
+        0"},{"name":"pry-byebug","requirements":"\u003e= 0"},{"name":"pry-doc","requirements":"\u003e=
+        0"},{"name":"pry-theme","requirements":"\u003e= 0"},{"name":"rake","requirements":"~\u003e
+        10.0"},{"name":"rspec","requirements":"\u003e= 0"},{"name":"rubocop","requirements":"\u003e=
+        0"}],"runtime":[]}}]'
+    http_version: 
+  recorded_at: Tue, 18 Dec 2018 14:57:42 GMT
+recorded_with: VCR 4.0.0

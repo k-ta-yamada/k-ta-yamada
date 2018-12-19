@@ -11,12 +11,11 @@ class RubygemsTest < TestBase
   end
 
   def test_rubygems_json
-    stub_request(:get, 'https://rubygems.org/api/v1/owners/k-ta-yamada/gems.json')
-      .to_return(body: File.read('./test/for_webmock/rubygems/gems.json'))
-
-    get '/rubygems.json'
-    assert last_response.ok?
-    assert_equal 'application/json', last_response.media_type
+    VCR.use_cassette '/rubygems/.json' do
+      get '/rubygems.json'
+      assert last_response.ok?
+      assert_equal 'application/json', last_response.media_type
+    end
   end
 
   def test_rubygems_claer_cache
@@ -25,11 +24,10 @@ class RubygemsTest < TestBase
   end
 
   def test_rubygems_renc
-    stub_request(:get, 'https://rubygems.org/api/v1/versions/renc.json')
-      .to_return(body: File.read('./test/for_webmock/rubygems/renc.json'))
-
-    get '/rubygems/renc'
-    assert last_response.ok?
-    assert_equal 'application/json', last_response.media_type
+    VCR.use_cassette '/rubygems/renc' do
+      get '/rubygems/renc'
+      assert last_response.ok?
+      assert_equal 'application/json', last_response.media_type
+    end
   end
 end
