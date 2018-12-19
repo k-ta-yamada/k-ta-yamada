@@ -5,25 +5,26 @@ ENV['RACK_ENV'] = 'test'
 require 'simplecov'
 require 'simplecov-console'
 # SimpleCov.formatter = SimpleCov::Formatter::Console
-formatters = [
-  SimpleCov::Formatter::HTMLFormatter,
-  SimpleCov::Formatter::Console
-]
+formatters = [SimpleCov::Formatter::HTMLFormatter,
+              SimpleCov::Formatter::Console]
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(formatters)
-SimpleCov.start do
-  coverage_dir 'test/coverage'
-end
+SimpleCov.start { coverage_dir('test/coverage') }
 
 require 'minitest/autorun'
 require 'minitest/reporters'
-Minitest::Reporters.use! [
-  # Minitest::Reporters::ProgressReporter.new,
-  Minitest::Reporters::SpecReporter.new,
-  Minitest::Reporters::HtmlReporter.new
-]
+reporters = [Minitest::Reporters::SpecReporter.new,
+             # Minitest::Reporters::ProgressReporter.new,
+             Minitest::Reporters::HtmlReporter.new]
+Minitest::Reporters.use!(reporters)
 
-require 'webmock/minitest'
+# require 'webmock/minitest'
 # WebMock.allow_net_connect!
+
+require 'vcr'
+VCR.configure do |c|
+  c.cassette_library_dir = 'test/vcr'
+  c.hook_into :webmock
+end
 
 require 'rack/test'
 require 'pry'

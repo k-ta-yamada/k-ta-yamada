@@ -23,27 +23,25 @@ gem 'tee_logger', require: true
 
 group :production do
   gem 'newrelic_rpm'
+  gem 'puma'
 end
 
 group :development do
   gem 'awesome_print'
   gem 'debase'
-  gem 'pry'
   gem 'pry-doc'
   gem 'pry-theme'
+  gem 'pry'
   gem 'rubocop'
   gem 'ruby-debug-ide'
-end
-
-group :production do
-  gem 'puma'
 end
 
 group :test do
   gem 'minitest-reporters'
   gem 'rack-test'
   gem 'rake'
-  gem 'simplecov'
   gem 'simplecov-console'
+  gem 'simplecov'
+  gem 'vcr'
   gem 'webmock'
 end

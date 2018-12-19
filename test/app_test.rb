@@ -34,17 +34,11 @@ class AppTest < TestBase
   end
 
   def test_articles
-    stub_request(:get, 'https://qiita.com/api/v2/users/k-ta-yamada/items')
-      .to_return(
-        body: File.read('./test/for_webmock/articles/articles.json'),
-        headers: { 'Total-Count' => 1 }
-      )
-    stub_request(:get, 'https://qiita.com/api/v2/users/k-ta-yamada/items?per_page=1')
-      .to_return(body: File.read('./test/for_webmock/articles/articles.json'))
-
-    get '/articles'
-    assert last_response.ok?
-    assert_equal 'text/html', last_response.media_type
+    VCR.use_cassette '/articles/articles' do
+      get '/articles'
+      assert last_response.ok?
+      assert_equal 'text/html', last_response.media_type
+    end
   end
 
   def test_articles_claer_cache

@@ -11,21 +11,19 @@ class RepoTest < TestBase
   end
 
   def test_repo_branches
-    stub_request(:get, 'https://api.github.com/repos/k-ta-yamada/k-ta-yamada/branches')
-      .to_return(body: File.read('./test/for_webmock/repo/branches.json'))
-
-    get '/repo/branches'
-    assert last_response.ok?
-    assert_equal 'application/json', last_response.media_type
+    VCR.use_cassette '/repo/branches' do
+      get '/repo/branches'
+      assert last_response.ok?
+      assert_equal 'application/json', last_response.media_type
+    end
   end
 
   def test_repo_commits
-    stub_request(:get, 'https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits?sha=master')
-      .to_return(body: File.read('./test/for_webmock/repo/commits_master.json'))
-
-    get '/repo/commits?branche=master'
-    assert last_response.ok?
-    assert_equal 'application/json', last_response.media_type
+    VCR.use_cassette '/repo/commits?branche=master' do
+      get '/repo/commits?branche=master'
+      assert last_response.ok?
+      assert_equal 'application/json', last_response.media_type
+    end
   end
 
   def test_repo_claer_cache
