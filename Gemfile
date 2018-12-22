@@ -29,9 +29,9 @@ end
 group :development do
   gem 'awesome_print'
   gem 'debase'
+  gem 'pry'
   gem 'pry-doc'
   gem 'pry-theme'
-  gem 'pry'
   gem 'rubocop'
   gem 'ruby-debug-ide'
 end
@@ -40,8 +40,8 @@ group :test do
   gem 'minitest-reporters'
   gem 'rack-test'
   gem 'rake'
-  gem 'simplecov-console'
   gem 'simplecov'
+  gem 'simplecov-console'
   gem 'vcr'
   gem 'webmock'
 end
