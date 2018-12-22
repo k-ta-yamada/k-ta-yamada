@@ -59,6 +59,8 @@ before do
   @host = request.host
   @url = request.url
 
+  @production = settings.production?
+
   # :nocov:
   if settings.production?
     unless request.secure?
@@ -132,7 +134,6 @@ end
 # ##################################################
 namespace '/rubygems' do # rubocop:disable Metrics/BlockLength
   get '' do
-    @production = settings.production?
     slim :rubygems
   end
 
@@ -172,7 +173,6 @@ end
 GITHUB_API = 'https://api.github.com/repos/k-ta-yamada/k-ta-yamada'
 namespace '/repo' do # rubocop:disable Metrics/BlockLength
   get '' do
-    @production = settings.production?
     slim :repo
   end
 
