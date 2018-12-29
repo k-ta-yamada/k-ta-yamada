@@ -8,7 +8,7 @@ require 'simplecov-console'
 formatters = [SimpleCov::Formatter::HTMLFormatter,
               SimpleCov::Formatter::Console]
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(formatters)
-SimpleCov.start { coverage_dir('test/coverage') }
+SimpleCov.start
 
 require 'minitest/autorun'
 require 'minitest/reporters'
