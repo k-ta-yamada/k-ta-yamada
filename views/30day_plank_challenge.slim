@@ -21,8 +21,7 @@ css:
         | #毎日プランクをやる
 
   .row
-    .col-md-2
-    .col-md-8.col-xs-12
+    .col-md-6.col-xs-12
       table.table
         - @list.each_with_index do |r, i|
           thead
@@ -37,9 +36,54 @@ css:
               td class=r.bg_color ==r.display_date
               td class=r.bg_color ==r.display_task
               td class=r.bg_color ==r.display_result
-    .col-md-2
+    .col-md-6.col-xs-12
+      <!-- Load c3.css -->
+      link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.12/c3.min.css" rel="stylesheet"
+      <!-- Load d3.js and c3.js -->
+      script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js" charset="utf-8"
+      script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.12/c3.min.js" charset="utf-8"
+      #chart
+      javascript:
+        var chart = c3.generate({
+          size: { height: #{{ @list.size * 40 }} },
+          bindto: '#chart',
+          data: {
+            json: #{{ @list.map(&:to_h).to_json }},
+            keys: {
+              x: 'day',
+              value: ['result', 'task'],
+            },
+            types: {
+              result: 'area',
+              task: 'line',
+            }
+          },
+          axis: {
+            rotated: true,
+            x: {
+              type: 'category',
+              tick: {
+                rotate: 90,
+                multiline: false,
+              }
+            }
+          },
+          grid: {
+            x: {
+              show: false,
+              lines: [
+                {
+                  value: #{{ @list.size - (@list.reverse.find_index(&:today?)) - 1 }},
+                  text: 'today'
+                }
+              ]
+            },
+            y: { show: true }
+          },
+        });
+
 
   - if settings.development?
     .row
       .col-xs-12
-        = @list
+        = @list.map(&:to_h)
