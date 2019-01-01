@@ -209,51 +209,79 @@ end
 # /30day_plank_challenge
 # ##################################################
 namespace '/30day_plank_challenge' do # rubocop:disable Metrics/BlockLength
-  helpers do
-    A = Struct.new(:task, :result)
-
-    def bg_color(record)
-      rest?(record.task) || success?(record.result)
+  WEEK = %w[sun mon tue wed thu fri sat].freeze
+  # rubocop:disable Metrics/BlockLength
+  Record = Struct.new(:day, :task, :result) do
+    def display_day
+      format('%03d', day)
     end
 
-    def rest?(task)
-      return nil if task.is_a?(Numeric)
-
-      task == :rest ? 'info' : nil
+    def display_date
+      [date, wday].join(' ')
     end
 
-    def success?(result)
+    def display_task
+      decorate(task.to_i.zero? ? task.to_sym : task.to_i)
+    end
+
+    def display_result
+      decorate(result.nil? ? nil : result.to_i)
+    end
+
+    def bg_color
+      [
+        bg_color_rest,
+        bg_color_success,
+        bg_color_today
+      ].uniq.join(' ')
+    end
+
+    def today?
+      date == Date.today
+    end
+
+    private
+
+    def date
+      PLANK_START_DAY + day - 1
+    end
+
+    def year
+      date.year
+    end
+
+    def mmdd
+      mm = format('%02d', date.month)
+      dd = format('%02d', date.day)
+      "#{mm}/#{dd}"
+    end
+
+    def wday
+      WEEK[date.wday]
+    end
+
+    def decorate(val)
+      val.is_a?(Numeric) ? "#{val} sec" : val
+    end
+
+    def bg_color_rest
+      task == 'rest' ? 'info' : nil
+    end
+
+    def bg_color_success
       result ? 'success' : nil
     end
 
-    def today?(day)
-      PLANK_START_DAY + day - 1 == Date.today
-    end
-
-    def calc_date(day)
-      date = PLANK_START_DAY + day - 1
-      mm = format('%02d', date.mon)
-      dd = format('%02d', date.day)
-      wday = %w[sun mon tue wed thu fri sat][date.wday]
-      "#{mm}/#{dd} #{wday}"
+    def bg_color_today
+      today? ? 'warning' : nil
     end
   end
+  # rubocop:enable Metrics/BlockLength
 
   get '' do
-    def to_i_to_sym(task, result)
-      [task.to_i.zero? ? task.to_sym : task.to_i,
-       result.nil? ? nil : result.to_i]
-    end
-
-    def decorate(task, result)
-      [task.is_a?(Numeric) ? "#{task} sec" : task,
-       result.is_a?(Numeric) ? "#{result} sec" : result]
-    end
-
     @list = File.readlines(PLANK_RESULT_FILE_NAME).map(&:split)
-                .map { |a, b| to_i_to_sym(a, b) }
-                .map { |a, b| decorate(a, b) }
-                .map { |v| A.new(*v) }
+                .map.with_index(1) { |(t, r), i| Record.new(i, t, r) }
+                .reverse
 
     slim :"30day_plank_challenge"
   end
