@@ -23,7 +23,8 @@ META_DESCRIPTION = {
   '/prof': 'My Profile and Skills.',
   '/rubygems': 'My RubyGems info.',
   '/repo': 'The commit log of this site.',
-  '/30day_plank_challenge': 'Record of 30 days Plank Challenge.'
+  '/30day_plank_challenge': 'Record of 30 days Plank Challenge.',
+  '/100daysofcode': 'Record of #100DaysOfCode Challenge.',
 }.freeze
 
 # /ping
@@ -115,6 +116,7 @@ namespace '/' do
       /rubygems
       /repo
       /30day_plank_challenge
+      /100daysofcode
     ]
     routes.map { |v| "https://#{MY_DOMAIN}#{v}" }.join("\n")
   end
@@ -308,5 +310,14 @@ namespace '/articles' do
   get '/cache-clear' do
     settings.cache.delete_matched(Regexp.new(File.dirname(request.path)))
     redirect to(:articles)
+  end
+end
+
+# ##################################################
+# /100daysofcode
+# ##################################################
+namespace '/100daysofcode' do
+  get '' do
+    slim markdown(:"100daysofcode")
   end
 end
