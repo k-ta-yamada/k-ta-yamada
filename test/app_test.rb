@@ -45,4 +45,10 @@ class AppTest < TestBase
     get '/articles/cache-clear'
     assert last_response.redirect?
   end
+
+  def test_100daysofcode
+    get '/100daysofcode'
+    assert last_response.ok?
+    assert_equal 'text/html', last_response.media_type
+  end
 end
