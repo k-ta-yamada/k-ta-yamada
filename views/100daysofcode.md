@@ -13,6 +13,23 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 8: 2019-01-26 sat
+
+##### Progress
+- ドキュメント読んだり調べたり、それを少し試したりでコミットせず
+
+##### Thoughts
+- 今後使えるようになりたいもの
+    - Form(Template, Reactive)
+    - Dialog
+        - => Angular Material?
+    - loading progress and disable elements.
+
+##### Link(s) to work
+- [k-ta-yamada/angular-todo-with-json/compare/100doc/day008](https://github.com/k-ta-yamada/angular-todo-with-json/compare/100doc/day008)
+
+---
+
 #### Day 7: 2019-01-25 fri
 
 ##### Progress
