@@ -13,6 +13,23 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 10: 2019-01-28 mon
+
+##### Progress
+- ReactiveForms
+
+##### Thoughts
+- 今後使えるようになりたいもの
+    - Form(Template, Reactive)
+    - Dialog
+        - => Angular Material?
+    - loading progress and disable elements.
+
+##### Link(s) to work
+- [k-ta-yamada/angular-todo-with-json/compare/100doc/day010](https://github.com/k-ta-yamada/angular-todo-with-json/compare/100doc/day010)
+
+---
+
 #### Day 9: 2019-01-27 sun
 
 ##### Progress
