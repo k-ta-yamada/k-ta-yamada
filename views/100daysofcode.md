@@ -13,6 +13,29 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 12: 2019-01-30 wed
+
+##### Progress
+- Serviceのテスト
+- Componentのテスト
+
+##### Thoughts
+- 久しぶりにテスト書いてみたらCompenentのテストの書き方を忘れていた
+    - まあ見ればすぐ思い出せるレベルにはなってきたからいいか
+- ReactiveFormsとClassのマッピングみたいなのはどうすればいいのかな
+- 今後使えるようになりたいもの
+    - Form(Template, Reactive)
+    - Dialog
+        - => Angular Material?
+    - Routing
+    - loading progress and disable elements.
+
+##### Link(s) to work
+- [k-ta-yamada/angular-todo-with-json/compare/100doc/day012](https://github.com/k-ta-yamada/angular-todo-with-json/compare/100doc/day012)
+- [k-ta-yamada/angular-todo-with-json/pull/5/files](https://github.com/k-ta-yamada/angular-todo-with-json/pull/5/files)
+
+---
+
 #### Day 11: 2019-01-29 tue
 
 ##### Progress
@@ -30,6 +53,7 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ##### Link(s) to work
 - [k-ta-yamada/angular-todo-with-json/compare/100doc/day011](https://github.com/k-ta-yamada/angular-todo-with-json/compare/100doc/day011)
+- [k-ta-yamada/angular-todo-with-json/pull/4/files](https://github.com/k-ta-yamada/angular-todo-with-json/pull/4/files)
 
 ---
 
@@ -100,6 +124,7 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ##### Link(s) to work
 - [k-ta-yamada/angular-todo-with-json/compare/100doc/day007](https://github.com/k-ta-yamada/angular-todo-with-json/compare/100doc/day007)
+- [k-ta-yamada/angular-todo-with-json/pull/3/files](https://github.com/k-ta-yamada/angular-todo-with-json/pull/3/files)
 
 ---
 
@@ -117,6 +142,7 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ##### Link(s) to work
 - [k-ta-yamada/angular-todo-with-json/compare/100doc/day006](https://github.com/k-ta-yamada/angular-todo-with-json/compare/100doc/day006)
+- [k-ta-yamada/angular-todo-with-json/pull/2/files](https://github.com/k-ta-yamada/angular-todo-with-json/pull/2/files)
 
 ---
 
@@ -134,6 +160,7 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ##### Link(s) to work
 - [k-ta-yamada/angular-todo-with-json/compare/100doc/day005](https://github.com/k-ta-yamada/angular-todo-with-json/compare/100doc/day005)
+- [k-ta-yamada/angular-todo-with-json/pull/1/files](https://github.com/k-ta-yamada/angular-todo-with-json/pull/1/files)
 
 ---
 
