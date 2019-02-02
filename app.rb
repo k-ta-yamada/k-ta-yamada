@@ -14,6 +14,7 @@ use Rack::Deflater
 set :server, :webrick if settings.development?
 set :logging, settings.development? ? Logger::DEBUG : Logger::INFO
 set :static_cache_control, [max_age: 60 * 60 * 24]
+set :public_folder, 'client/dist/k-ta-yamada/'
 
 # before
 MY_DOMAIN = 'k-ta-yamada.me'
@@ -29,10 +30,6 @@ META_DESCRIPTION = {
 
 # /ping
 STARTED_AT = Time.now
-
-# js()
-JS_HASH = File.basename(Dir.glob('./public/js/app*.js').first, '.js')
-              .split('-').last
 
 # /plank
 PLANK_START_DAY = Date.new(2018, 10, 23)
@@ -79,17 +76,6 @@ end
 # helpers
 # ##################################################
 helpers do
-  def js_hash
-    File.basename(Dir.glob('./public/js/app*.js').first, '.js')
-        .split('-').last
-  end
-
-  def js(filename)
-    basename = File.basename(filename, '.*').to_sym
-    name = basename == :layout ? :app : basename
-    hash = settings.production? ? JS_HASH : js_hash
-    "js/#{name}-#{hash}.js"
-  end
 end
 
 # ##################################################
@@ -97,7 +83,8 @@ end
 # ##################################################
 namespace '/' do
   get '' do
-    slim :index
+    # MEMO: need fallback
+    redirect 'index.html'
   end
 
   get 'ping' do
