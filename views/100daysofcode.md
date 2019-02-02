@@ -13,6 +13,27 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 15: 2019-02-02 sat
+
+##### Progress
+- Todoに少し飽きたので自サイトにAngularを導入してみる
+- Bootstrapとfont-awesomeも入れてみた
+
+##### Thoughts
+- コンテンツの持ち方とか考えないといかんかな（HTMLに打つのが久々で辛い）
+- ReactiveFormsとClassのマッピングみたいなのはどうすればいいのかな
+- Todo: 今後使えるようになりたいもの
+    - Form(Template, Reactive)
+    - Dialog
+        - => Angular Material?
+    - Routing
+    - loading progress and disable elements.
+
+##### Link(s) to work
+- [k-ta-yamada/k-ta-yamada/compare/feature/angular](https://github.com/k-ta-yamada/k-ta-yamada/compare/feature/angular)
+
+---
+
 #### Day 14: 2019-02-01 fri
 
 ##### Progress
@@ -40,8 +61,6 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 - 体調不良で特に進捗なし
 
 ##### Thoughts
-- 久しぶりにテスト書いてみたらCompenentのテストの書き方を忘れていた
-    - まあ見ればすぐ思い出せるレベルにはなってきたからいいか
 - ReactiveFormsとClassのマッピングみたいなのはどうすればいいのかな
 - 今後使えるようになりたいもの
     - Form(Template, Reactive)
