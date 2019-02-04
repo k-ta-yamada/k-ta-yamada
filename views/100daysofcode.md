@@ -13,6 +13,30 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 17: 2019-02-04 mon
+
+##### Progress
+- Todoに少し飽きたので自サイトにAngularを導入してみる
+- BootstrapV4がいまいちよくわからん
+- リロードした場合にサーバサイドでindex.htmlへのfallbackさせないといかん
+- サーバサイドのAPI関連のrouting切り直したりしないといかん
+- そもそもrouting見直ししないとかな
+
+##### Thoughts
+- コンテンツの持ち方とか考えないといかんかな（HTMLに打つのが久々で辛い）
+- ReactiveFormsとClassのマッピングみたいなのはどうすればいいのかな
+- Todo: 今後使えるようになりたいもの
+    - Form(Template, Reactive)
+    - Dialog
+        - => Angular Material?
+    - Routing
+    - loading progress and disable elements.
+
+##### Link(s) to work
+- [k-ta-yamada/k-ta-yamada/compare/feature/angular](https://github.com/k-ta-yamada/k-ta-yamada/compare/feature/angular)
+
+---
+
 #### Day 16: 2019-02-03 sun
 
 ##### Progress
