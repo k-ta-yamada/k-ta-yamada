@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from './pages/index/index.component';
 import { ProfComponent } from './pages/prof/prof.component';
+import { RubygemsComponent } from './pages/rubygems/rubygems.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -9,14 +10,14 @@ const routes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'prof', component: ProfComponent },
   { path: 'article', component: IndexComponent },
-  { path: 'rubygems', component: IndexComponent },
+  { path: 'rubygems', component: RubygemsComponent },
   { path: 'commit', component: IndexComponent },
   { path: 'plank', component: IndexComponent },
   { path: '100daysofcode', component: IndexComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
