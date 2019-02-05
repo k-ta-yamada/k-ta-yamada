@@ -13,6 +13,29 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 18: 2019-02-05 tue
+
+##### Progress
+- サーバサイドのroutingとか設定し直し
+- index.htmlへのfallback
+- リロードでTOPへ移動してしまうのでuseHash=trueに設定
+
+##### Thoughts/Todo
+- リロードでfallbackしたはいいけど元のパスに移動させるには何が足りないのだろう
+- コンテンツの持ち方とか考えないといかんかな（HTMLに打つのが久々で辛い）
+- ReactiveFormsとClassのマッピングみたいなのはどうすればいいのかな
+- Todo: 今後使えるようになりたいもの
+    - Form(Template, Reactive)
+    - Dialog
+        - => Angular Material?
+    - Routing
+    - loading progress and disable elements.
+
+##### Link(s) to work
+- [k-ta-yamada/k-ta-yamada/compare/feature/angular](https://github.com/k-ta-yamada/k-ta-yamada/compare/feature/angular)
+
+---
+
 #### Day 17: 2019-02-04 mon
 
 ##### Progress
