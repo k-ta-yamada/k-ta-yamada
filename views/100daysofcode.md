@@ -13,6 +13,30 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 19: 2019-02-06 wed
+
+##### Progress
+- 一転して「[これからWebをはじめる人のHTML&CSS、JavaScriptのきほんのきほん](https://www.amazon.co.jp/dp/4839959714)」
+- chapter-3の途中まで
+- CSSの`@media`が出てきたあたりでめんどくさくなってきてしまった
+- でも続けるけど
+
+##### Thoughts/Todo
+- Angular
+    - リロードでfallbackしたはいいけど元のパスに移動させるには何が足りないのだろう
+    - コンテンツの持ち方とか考えないといかんかな（HTMLに打つのが久々で辛い）
+    - ReactiveFormsとClassのマッピングみたいなのはどうすればいいのかな
+    - Todo: 今後使えるようになりたいもの
+        - Form(Template, Reactive)
+        - Modal Dialog
+        - Routing
+        - loading progress and disable elements.
+
+##### Link(s) to work
+- [k-ta-yamada/html-css-js/commits/master](https://github.com/k-ta-yamada/html-css-js/commits/master)
+
+---
+
 #### Day 18: 2019-02-05 tue
 
 ##### Progress
