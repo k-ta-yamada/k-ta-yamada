@@ -13,6 +13,38 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 20: 2019-02-07 thu
+
+##### Progress
+- 一転して「[これからWebをはじめる人のHTML&CSS、JavaScriptのきほんのきほん](https://www.amazon.co.jp/dp/4839959714)」
+- chapter-3の途中まで（前日から進まず）
+- レイアウトって`float`でやるんだっけ？ってとこから`flex`, `grid`との格闘を始める
+- まだ理解しきってないけど使い分けと全体レイアウトで`grid`使うと結構楽なことに気がついた
+
+##### Thoughts/Todo
+- Angular
+    - リロードでfallbackしたはいいけど元のパスに移動させるには何が足りないのだろう
+    - コンテンツの持ち方とか考えないといかんかな（HTMLに打つのが久々で辛い）
+    - ReactiveFormsとClassのマッピングみたいなのはどうすればいいのかな
+    - Todo: 今後使えるようになりたいもの
+        - Form(Template, Reactive)
+        - Modal Dialog
+        - Routing
+        - loading progress and disable elements.
+- HTML/CSS
+    - flex
+    - grid
+        - grid-template-columns
+        - grid-template-rows
+        - grid-template-areas
+    - box-shadow
+    - @media
+
+##### Link(s) to work
+- [k-ta-yamada/html-css-js/commits/master](https://github.com/k-ta-yamada/html-css-js/commits/master)
+
+---
+
 #### Day 19: 2019-02-06 wed
 
 ##### Progress
