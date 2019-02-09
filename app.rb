@@ -72,6 +72,15 @@ before do
   # :nocov:
 end
 
+set :index_html, File.read('./client/dist/k-ta-yamada/index.html')
+def index_html
+  if settings.production?
+    settings.index_html
+  else
+    File.read('./client/dist/k-ta-yamada/index.html')
+  end
+end
+
 # ##################################################
 # helpers
 # ##################################################
@@ -83,8 +92,8 @@ end
 # ##################################################
 namespace '/' do
   get '' do
-    # MEMO: need fallback
-    redirect 'index.html'
+    etag Digest::SHA1.hexdigest(index_html)
+    index_html
   end
 
   get 'ping' do
@@ -110,6 +119,12 @@ namespace '/' do
   end
 end
 
+# get '*' do
+get %r{\/(?!api)(.*)} do
+  etag Digest::SHA1.hexdigest(index_html)
+  index_html
+end
+
 # # ##################################################
 # # /prof
 # # ##################################################
@@ -119,12 +134,11 @@ end
 #   end
 # end
 
-
-namespace '/api' do
+namespace '/api' do # rubocop:disable Metrics/BlockLength
   # ##################################################
   # /rubygems
   # ##################################################
-  namespace '/rubygems' do # rubocop:disable Metrics/BlockLength
+  namespace '/rubygems' do
     get '.json' do
       data = settings.cache.fetch(request.path) do
         data = Gems.gems('k-ta-yamada')
@@ -159,7 +173,7 @@ namespace '/api' do
   # /commit
   # ##################################################
   GITHUB_API = 'https://api.github.com/repos/k-ta-yamada/k-ta-yamada'
-  namespace '/commit' do # rubocop:disable Metrics/BlockLength
+  namespace '/commit' do
     get '/branches' do
       data = settings.cache.fetch(request.path) do
         logger.info "-- update cache: #{request.path}"
@@ -263,9 +277,10 @@ namespace '/api' do
     # rubocop:enable Metrics/BlockLength
 
     get '' do
-      @list = File.readlines(PLANK_RESULT_FILE_NAME).map(&:split)
-      .map.with_index(1) { |(t, r), i| Record.new(i, t, r) }
-      .reverse
+      @list = File.readlines(PLANK_RESULT_FILE_NAME)
+                  .map(&:split)
+                  .map.with_index(1) { |(t, r), i| Record.new(i, t, r) }
+                  .reverse
 
       # slim :"30day_plank_challenge"
 
@@ -279,20 +294,33 @@ namespace '/api' do
   # /articles
   # ##################################################
   QIITA_API = 'https://qiita.com/api/v2/users/k-ta-yamada/items'
-  namespace '/articles' do
+  namespace '/articles' do # rubocop:disable Metrics/BlockLength
     get '' do
       total_count = settings.cache.fetch("#{request.path}/total_count") do
         logger.info "-- update cache: #{request.path}/total_count"
         RestClient.get(QIITA_API).headers[:total_count].to_i
       end
-      @articles = settings.cache.fetch("#{request.path}/articles") do
+
+      articles = settings.cache.fetch("#{request.path}/articles") do
         logger.info "-- update cache: #{request.path}/articles"
         JSON.parse(RestClient.get("#{QIITA_API}?per_page=#{total_count}"))
       end
 
-      # slim :article
+      articles.map! do |a|
+        { title: a['title'],
+          url: a['url'],
+          tags: a['tags'].map { |t| t['name'] }.join(', '),
+          created_at: a['created_at'],
+          updated_at: a['updated_at'],
+          likes_count: a['likes_count'] }
+      end
+
+      articles.sort_by! { |v| v[:likes_count] }
+      articles.reverse!
+
+      etag Digest::SHA1.hexdigest(articles.to_s)
       content_type :json
-      json @articles
+      json articles
     end
 
     get '/cache-clear' do
@@ -311,9 +339,8 @@ namespace '/api' do
       json markdown(:"100daysofcode")
     end
   end
-
 end
 
-not_found do
-  redirect to('index.html')
-end
+# get '*' do
+#   File.read('./client/dist/k-ta-yamada/index.html')
+# end
