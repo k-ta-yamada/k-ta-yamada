@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ArticleService, Article } from 'src/app/services/article.service';
 
 @Component({
   selector: 'app-articles',
@@ -8,15 +8,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ArticlesComponent implements OnInit {
 
-  articles;
+  articles: Article[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private service: ArticleService) { }
 
   ngOnInit() {
-    this.http.get('api/articles').subscribe(r => {
-      this.articles = r;
-      console.log(r);
-    });
+    this.service.get().subscribe(
+      (articles) => { this.articles = articles; },
+      (error) => { console.error(error); },
+    );
   }
 
   zeroPadding(i: number, c: number): string {

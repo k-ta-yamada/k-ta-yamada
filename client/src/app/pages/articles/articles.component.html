@@ -5,30 +5,30 @@
   </p>
 </section>
 
-<section *ngFor="let item of articles; let i = index; let c = count">
+<section *ngFor="let article of articles; let i = index; let c = count">
 
   <hr>
 
   <h3 class="lead">
     #{{ zeroPadding(i + 1, c) }}/{{ c }}
     &nbsp;
-    <a href="item.url">{{ item.title }}</a>
+    <a href="article.url">{{ article.title }}</a>
   </h3>
 
   <dl class="row">
     <dt class="col-sm-2">url</dt>
-    <dd class="col-sm-10"><a href="item.url">{{ item.url }}</a></dd>
+    <dd class="col-sm-10"><a href="article.url">{{ article.url }}</a></dd>
 
     <dt class="col-sm-2">tags</dt>
-    <dd class="col-sm-10">{{ item.tags }}</dd>
+    <dd class="col-sm-10">{{ article.tags }}</dd>
 
     <dt class="col-sm-2">created_at</dt>
-    <dd class="col-sm-10">{{ item.created_at }}</dd>
+    <dd class="col-sm-10">{{ article.created_at }}</dd>
 
     <dt class="col-sm-2">updated_at</dt>
-    <dd class="col-sm-10">{{ item.updated_at }}</dd>
+    <dd class="col-sm-10">{{ article.updated_at }}</dd>
 
     <dt class="col-sm-2">likes_count</dt>
-    <dd class="col-sm-10">{{ item.likes_count }}</dd>
+    <dd class="col-sm-10">{{ article.likes_count }}</dd>
   </dl>
 </section>
