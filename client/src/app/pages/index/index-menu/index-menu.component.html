@@ -1,0 +1,11 @@
+<div class="row" *ngFor="let menu of menus">
+
+  <div class="col-md-4">
+    <a [routerLink]="menu.path">{{ menu.path }}</a>
+  </div>
+
+  <div class="col-md-8">
+    <span class="description" [innerHTML]="menu.desc"></span>
+  </div>
+
+</div>

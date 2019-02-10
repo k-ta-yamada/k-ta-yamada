@@ -1,0 +1,37 @@
+:host {
+  display: grid;
+  grid-gap: 20px;
+  grid-template:
+    "site-message site-menu" auto
+    "site-status  site-menu" auto
+    /0.4fr        0.6fr
+  ;
+}
+
+app-index-message {
+  grid-area: site-message;
+}
+
+app-index-status {
+  grid-area: site-status;
+}
+
+app-index-menu {
+  grid-area: site-menu;
+}
+
+// https://getbootstrap.com/docs/4.2/layout/grid/#grid-options
+$width-col-md: calc(768px - 1px);
+$width-col-sm: calc(576px - 1px);
+$max-width: $width-col-sm;
+
+@media only screen and (max-width: $max-width) {
+  :host {
+    grid-template:
+      "site-message"
+      "site-menu"
+      "site-status"
+      /1fr
+    ;
+  }
+}

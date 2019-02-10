@@ -8,7 +8,7 @@ import { CommitComponent } from './pages/commit/commit.component';
 import { PlankComponent } from './pages/plank/plank.component';
 import { XdaysofcodeComponent } from './pages/xdaysofcode/xdaysofcode.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   // { path: '', redirectTo: 'index', pathMatch: 'full' },
   // { path: 'index', component: IndexComponent },
   { path: '', component: IndexComponent },
@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'rubygems', component: RubygemsComponent },
   { path: 'commit', component: CommitComponent },
   { path: 'plank', component: PlankComponent },
-  { path: '100daysofcode', component: XdaysofcodeComponent },
+  { path: 'xdaysofcode', component: XdaysofcodeComponent },
 ];
 
 @NgModule({
