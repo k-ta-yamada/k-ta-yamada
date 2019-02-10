@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { RubygemsService } from 'src/app/services/rubygems.service';
 
 @Component({
   selector: 'app-rubygems',
@@ -10,17 +10,13 @@ export class RubygemsComponent implements OnInit {
 
   gems;
 
-  constructor(private http: HttpClient) { }
+  constructor(private service: RubygemsService) { }
 
   ngOnInit() {
-    this.http.get('api/rubygems.json').subscribe(r => {
-    // this.http.get('api/commit/branches').subscribe(r => {
-    // this.http.get('api/30day_plank_challenge').subscribe(r => {
-    // this.http.get('api/articles').subscribe(r => {
-    // this.http.get('api/100daysofcode').subscribe(r => {
-        console.log(r);
-        this.gems = r;
-      });
+    this.service.get().subscribe(
+      (gems) => { this.gems = gems; },
+      (error) => { console.error(error); },
+    );
   }
 
 }
