@@ -143,18 +143,16 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
       data = settings.cache.fetch(request.path) do
         data = Gems.gems('k-ta-yamada')
         logger.info "-- update cache: #{request.path}"
-        data
-      end
-
-      data.map! do |d|
-        { name: d['name'],
-          info: d['info'],
-          project_uri: d['project_uri'],
-          source_code_uri: d['source_code_uri'],
-          documentation_uri: d['documentation_uri'],
-          version: d['version'],
-          version_downloads: d['version_downloads'],
-          downloads: d['downloads'] }
+        data.map do |d|
+          { name: d['name'],
+            info: d['info'],
+            project_uri: d['project_uri'],
+            source_code_uri: d['source_code_uri'],
+            documentation_uri: d['documentation_uri'],
+            version: d['version'],
+            version_downloads: d['version_downloads'],
+            downloads: d['downloads'] }
+        end
       end
 
       etag Digest::SHA1.hexdigest(data.to_s)
@@ -171,13 +169,12 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
       data = settings.cache.fetch(request.path) do
         data = Gems.versions(gem_name).sort_by { |v| v['number'] }
         logger.info "-- update cache: #{request.path}"
-        data.last(10)
+        data.last(10).map do |d|
+          { number: d['number'],
+            downloads_count: d['downloads_count'] }
+        end
       end
 
-      data.map! do |d|
-        { number: d['number'],
-          downloads_count: d['downloads_count'] }
-      end
 
       etag Digest::SHA1.hexdigest(data.to_s)
       content_type :json
@@ -194,9 +191,8 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
       data = settings.cache.fetch(request.path) do
         logger.info "-- update cache: #{request.path}"
         JSON.parse(RestClient.get("#{GITHUB_API}/branches"))
+            .map { |d| d['name'] }
       end
-
-      data.map! { |d| d['name'] }
 
       etag Digest::SHA1.hexdigest(data.to_s)
       content_type :json
@@ -322,17 +318,17 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
       articles = settings.cache.fetch("#{request.path}/articles") do
         logger.info "-- update cache: #{request.path}/articles"
         JSON.parse(RestClient.get("#{QIITA_API}?per_page=#{total_count}"))
+            .map do |a|
+          { title: a['title'],
+            url: a['url'],
+            tags: a['tags'].map { |t| t['name'] }.join(', '),
+            created_at: a['created_at'],
+            updated_at: a['updated_at'],
+            likes_count: a['likes_count'] }
+        end
       end
 
-      articles.map! do |a|
-        { title: a['title'],
-          url: a['url'],
-          tags: a['tags'].map { |t| t['name'] }.join(', '),
-          created_at: a['created_at'],
-          updated_at: a['updated_at'],
-          likes_count: a['likes_count'] }
-      end
-
+      # TODO: innner #fetch ... ?
       articles.sort_by! { |v| v[:likes_count] }
       articles.reverse!
 
