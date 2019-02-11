@@ -13,7 +13,36 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
-#### Day 22: 2019-02-10 sun
+#### Day 24: 2019-02-11 mon
+
+##### Progress
+- Angularのサイトにcss grid使ってみたり
+
+##### Thoughts/Todo
+- Angular
+    - リロードでfallbackしたはいいけど元のパスに移動させるには何が足りないのだろう
+    - コンテンツの持ち方とか考えないといかんかな（HTMLに打つのが久々で辛い）
+    - ReactiveFormsとClassのマッピングみたいなのはどうすればいいのかな
+    - Todo: 今後使えるようになりたいもの
+        - Form(Template, Reactive)
+        - Modal Dialog
+        - Routing
+        - loading progress and disable elements.
+- HTML/CSS
+    - flex
+    - grid
+        - grid-template-columns
+        - grid-template-rows
+        - grid-template-areas
+    - box-shadow
+    - @media
+
+##### Link(s) to work
+- [k-ta-yamada/k-ta-yamada/compare/feature/angular](https://github.com/k-ta-yamada/k-ta-yamada/compare/feature/angular)
+
+---
+
+#### Day 23: 2019-02-10 sun
 
 ##### Progress
 - Angularのサイトにcss grid使ってみたり
