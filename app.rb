@@ -196,6 +196,8 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
         JSON.parse(RestClient.get("#{GITHUB_API}/branches"))
       end
 
+      data.map! { |d| d['name'] }
+
       etag Digest::SHA1.hexdigest(data.to_s)
       content_type :json
       json data

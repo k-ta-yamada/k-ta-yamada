@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommitService } from 'src/app/services/commit.service';
 
 @Component({
   selector: 'app-commit',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommitComponent implements OnInit {
 
-  constructor() { }
+  branches: string[];
+
+  selectedBrancheName = 'master';
+
+  constructor(private service: CommitService) { }
 
   ngOnInit() {
+    this.service.getBranches().subscribe(
+      (branches) => {
+        this.branches = branches;
+        this.service.getBranche(this.selectedBrancheName).subscribe(
+          (r) => { console.log(r); },
+          (error) => { console.error(error); },
+        );
+      },
+      (error) => { console.error(error); },
+    );
   }
 
 }

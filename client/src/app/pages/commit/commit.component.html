@@ -1,3 +1,13 @@
-<p>
-  commit works!
-</p>
+<p class="lead">The commit log of this site.</p>
+
+<hr>
+
+<select [(ngModel)]="selectedBrancheName">
+  <option [value]="branche" *ngFor="let branche of branches">{{ branche }}</option>
+</select>
+
+{{ selectedBrancheName }}
+
+<pre>
+  {{ branches | json}}
+</pre>
