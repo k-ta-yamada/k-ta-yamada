@@ -1,7 +1,16 @@
-<p>
-  rubygems works!
-</p>
+<p class="lead">My RubyGems info.</p>
 
-<pre>
-  {{ gems | json }}
-</pre>
+<section *ngIf="!gems">loading...</section>
+<section *ngFor="let gem of gems">
+  <div class="row">
+    <div class="col-sm">
+      <h5>{{ gem.name }}</h5>
+      <p class="lead">{{ gem.info }}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <app-rubygems-info [gem]="gem"           class="col-sm-12 col-lg-4"></app-rubygems-info>
+    <app-rubygems-chart [gemname]="gem.name" class="col-sm-12 col-lg-8"></app-rubygems-chart>
+  </div>
+</section>

@@ -7,16 +7,31 @@ import { Observable } from 'rxjs';
 })
 export class RubygemsService {
 
-  url = 'api/rubygems.json';
+  url = 'api/rubygems';
 
   constructor(private http: HttpClient) { }
 
-  get(): Observable<any> {
-    return this.http.get(this.url);
+  get(): Observable<GemInfo[]> {
+    return this.http.get<GemInfo[]>(this.url);
+  }
+
+  getVersions(gemname: string): Observable<GemVersion[]> {
+    return this.http.get<GemVersion[]>(`${this.url}/${gemname}`);
   }
 }
 
-// TODO: create interface
-export interface Xxx {
-  xxx: string;
+export interface GemInfo {
+  name: string;
+  info: string;
+  project_uri: string;
+  source_code_uri: string;
+  documentation_uri: string;
+  version: number;
+  version_downloads: number;
+  downloads: number;
+}
+
+export interface GemVersion {
+  number: string;
+  downloads_count: number;
 }

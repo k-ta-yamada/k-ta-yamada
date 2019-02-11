@@ -139,11 +139,22 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
   # /rubygems
   # ##################################################
   namespace '/rubygems' do
-    get '.json' do
+    get '' do
       data = settings.cache.fetch(request.path) do
         data = Gems.gems('k-ta-yamada')
         logger.info "-- update cache: #{request.path}"
         data
+      end
+
+      data.map! do |d|
+        { name: d['name'],
+          info: d['info'],
+          project_uri: d['project_uri'],
+          source_code_uri: d['source_code_uri'],
+          documentation_uri: d['documentation_uri'],
+          version: d['version'],
+          version_downloads: d['version_downloads'],
+          downloads: d['downloads'] }
       end
 
       etag Digest::SHA1.hexdigest(data.to_s)
@@ -161,6 +172,11 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
         data = Gems.versions(gem_name).sort_by { |v| v['number'] }
         logger.info "-- update cache: #{request.path}"
         data.last(10)
+      end
+
+      data.map! do |d|
+        { number: d['number'],
+          downloads_count: d['downloads_count'] }
       end
 
       etag Digest::SHA1.hexdigest(data.to_s)
