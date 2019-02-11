@@ -1,19 +1,19 @@
 <section>
-  <p>
+  <p class="lead">
     Articles written on
     <a href="https://qiita.com">https://qiita.com</a>.
   </p>
 </section>
 
+
+<section *ngIf="!articles">loading...</section>
 <section *ngFor="let article of articles; let i = index; let c = count">
 
-  <hr>
-
-  <h3 class="lead">
+  <h5 class="lead">
     #{{ zeroPadding(i + 1, c) }}/{{ c }}
     &nbsp;
     <a href="article.url">{{ article.title }}</a>
-  </h3>
+  </h5>
 
   <dl class="row">
     <dt class="col-sm-2">url</dt>
