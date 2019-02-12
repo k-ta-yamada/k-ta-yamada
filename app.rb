@@ -354,7 +354,3 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
     end
   end
 end
-
-# get '*' do
-#   File.read(INDEX_HTML)
-# end
