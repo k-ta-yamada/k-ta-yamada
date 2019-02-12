@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfSkillComponent } from './prof-skill.component';
+import { ProfileSkillComponent } from './profile-skill.component';
 
-describe('ProfSkillComponent', () => {
-  let component: ProfSkillComponent;
-  let fixture: ComponentFixture<ProfSkillComponent>;
+describe('ProfileSkillComponent', () => {
+  let component: ProfileSkillComponent;
+  let fixture: ComponentFixture<ProfileSkillComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfSkillComponent ]
+      declarations: [ ProfileSkillComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfSkillComponent);
+    fixture = TestBed.createComponent(ProfileSkillComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

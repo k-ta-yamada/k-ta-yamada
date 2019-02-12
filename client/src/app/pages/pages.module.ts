@@ -10,7 +10,7 @@ import { PlankComponent } from './plank/plank.component';
 import { XdaysofcodeComponent } from './xdaysofcode/xdaysofcode.component';
 
 import { IndexModule } from './index/index.module';
-import { ProfModule } from './prof/prof.module';
+import { ProfileModule } from './profile/profile.module';
 import { RubygemsModule } from './rubygems/rubygems.module';
 
 @NgModule({
@@ -26,7 +26,7 @@ import { RubygemsModule } from './rubygems/rubygems.module';
     FormsModule,
     HttpClientModule,
     IndexModule,
-    ProfModule,
+    ProfileModule,
     RubygemsModule,
   ]
 })
