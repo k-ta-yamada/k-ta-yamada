@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private renderer: Renderer) { }
 
   ngOnInit() {
+    document.querySelectorAll('a').forEach(a => {
+      this.renderer.listen(a, 'click', this.collapseHide);
+    });
+  }
+
+  private collapseHide() {
+    document.querySelector('#navbarSupportedContent').classList.remove('show');
+
+    // https://stackoverflow.com/questions/16680543/hide-twitter-bootstrap-nav-collapse-on-click/16680604#16680604
+    // document.querySelector('button').click();
   }
 
 }
