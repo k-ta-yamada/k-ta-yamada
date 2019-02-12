@@ -12,4 +12,8 @@ export class IndexMessageComponent implements OnInit {
   ngOnInit() {
   }
 
+  get windowInnerWidth() {
+    return window.innerWidth;
+  }
+
 }
