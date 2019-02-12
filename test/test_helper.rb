@@ -28,12 +28,12 @@ end
 
 require 'rack/test'
 require 'pry'
-require './app.rb'
+# require './app.rb'
 
 class TestBase < Minitest::Test
   include Rack::Test::Methods
 
-  def app
-    Sinatra::Application
-  end
+  # def app
+  #   Sinatra::Application
+  # end
 end

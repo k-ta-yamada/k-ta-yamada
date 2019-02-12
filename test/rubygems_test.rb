@@ -4,6 +4,7 @@ require_relative './test_helper'
 
 class RubygemsTest < TestBase
   def test_rubygems
+    skip
     get '/rubygems'
     assert last_response.ok?
     assert(/script.*app.*\.js/.match?(last_response.body))
@@ -11,6 +12,7 @@ class RubygemsTest < TestBase
   end
 
   def test_rubygems_json
+    skip
     VCR.use_cassette '/rubygems/.json' do
       get '/rubygems.json'
       assert last_response.ok?
@@ -19,11 +21,13 @@ class RubygemsTest < TestBase
   end
 
   def test_rubygems_claer_cache
+    skip
     get '/rubygems/cache-clear'
     assert last_response.redirect?
   end
 
   def test_rubygems_renc
+    skip
     VCR.use_cassette '/rubygems/renc' do
       get '/rubygems/renc'
       assert last_response.ok?
