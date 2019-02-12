@@ -10,7 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class IndexMenuComponent implements OnInit {
 
   desc = {
-    prof:        'My Profile and Skills.',
+    profile:     'My Profile and Skills.',
     articles:    'Articles written on <a href="https://qiita.com">https://qiita.com</a>.',
     rubygems:    'My RubyGems info.',
     commit:      'The commit log of this site.',

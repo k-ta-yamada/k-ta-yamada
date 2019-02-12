@@ -12,7 +12,7 @@ export const routes: Routes = [
   // { path: '', redirectTo: 'index', pathMatch: 'full' },
   // { path: 'index', component: IndexComponent },
   { path: '', component: IndexComponent },
-  { path: 'prof', component: ProfComponent },
+  { path: 'profile', component: ProfComponent },
   { path: 'articles', component: ArticlesComponent },
   { path: 'rubygems', component: RubygemsComponent },
   { path: 'commit', component: CommitComponent },
