@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +7,7 @@ import { Component, OnInit, Renderer } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private renderer: Renderer) { }
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit() {
     document.querySelectorAll('a').forEach(a => {
