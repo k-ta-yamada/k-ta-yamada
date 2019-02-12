@@ -14,7 +14,6 @@ use Rack::Deflater
 set :server, :webrick if settings.development?
 set :logging, settings.development? ? Logger::DEBUG : Logger::INFO
 set :static_cache_control, [max_age: 60 * 60 * 24]
-set :public_folder, 'dist/client/'
 
 # before
 MY_DOMAIN = 'k-ta-yamada.me'
@@ -72,12 +71,13 @@ before do
   # :nocov:
 end
 
-set :index_html, File.read('dist/client/index.html')
+INDEX_HTML = 'public/index.html'
+set :index_html, File.read(INDEX_HTML)
 def index_html
   if settings.production?
     settings.index_html
   else
-    File.read('dist/client/index.html')
+    File.read(INDEX_HTML)
   end
 end
 
@@ -356,5 +356,5 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
 end
 
 # get '*' do
-#   File.read('dist/client/index.html')
+#   File.read(INDEX_HTML)
 # end

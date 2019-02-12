@@ -96,3 +96,4 @@ build-iPhoneSimulator/
 .rvmrc
 
 /test/html_reports
+/public

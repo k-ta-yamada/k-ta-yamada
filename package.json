@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start": "concurrently --kill-others \"npm run serve:proxy\" \"bundle exec ruby app.rb\"",
+    "start": "npm run build; concurrently --kill-others \"npm run serve:proxy\" \"bundle exec ruby app.rb\"",
     "heroku-postbuild": "ng build --prod"
   },
   "private": true,
