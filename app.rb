@@ -224,9 +224,9 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
   end
 
   # ##################################################
-  # /30day_plank_challenge
+  # /plank
   # ##################################################
-  namespace '/30day_plank_challenge' do # rubocop:disable Metrics/BlockLength
+  namespace '/plank' do # rubocop:disable Metrics/BlockLength
     WEEK = %w[sun mon tue wed thu fri sat].freeze
     # rubocop:disable Metrics/BlockLength
     Record = Struct.new(:day, :task, :result) do
@@ -297,16 +297,19 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
     # rubocop:enable Metrics/BlockLength
 
     get '' do
-      @list = File.readlines(PLANK_RESULT_FILE_NAME)
-                  .map(&:split)
-                  .map.with_index(1) { |(t, r), i| Record.new(i, t, r) }
-                  .reverse
+      data = File.readlines(PLANK_RESULT_FILE_NAME)
+                 .map(&:split)
+                 .map.with_index(1) { |(t, r), i| Record.new(i, t, r) }
+                 .reverse
+      data.map! do |r|
+        { day: r.display_day,
+          date: r.display_date,
+          task: r.display_task,
+          result: r.display_result }
+      end
 
-      # slim :"30day_plank_challenge"
-
-      # TODO: add date: yyyy-mm-dd wday, and more...
       content_type :json
-      json @list
+      json data
     end
   end
 
