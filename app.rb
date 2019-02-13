@@ -141,9 +141,9 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
   namespace '/rubygems' do
     get '' do
       data = settings.cache.fetch(request.path) do
-        data = Gems.gems('k-ta-yamada')
+        response = Gems.gems('k-ta-yamada')
         logger.info "-- update cache: #{request.path}"
-        data.map do |d|
+        response.map do |d|
           { name: d['name'],
             info: d['info'],
             project_uri: d['project_uri'],
@@ -167,14 +167,13 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
 
     get '/:gem_name' do |gem_name|
       data = settings.cache.fetch(request.path) do
-        data = Gems.versions(gem_name).sort_by { |v| v['number'] }
+        response = Gems.versions(gem_name).sort_by { |v| v['number'] }
         logger.info "-- update cache: #{request.path}"
-        data.last(10).map do |d|
+        response.last(10).map do |d|
           { number: d['number'],
             downloads_count: d['downloads_count'] }
         end
       end
-
 
       etag Digest::SHA1.hexdigest(data.to_s)
       content_type :json
