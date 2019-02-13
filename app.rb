@@ -32,7 +32,7 @@ STARTED_AT = Time.now
 
 # /plank
 PLANK_START_DAY = Date.new(2018, 10, 23)
-PLANK_RESULT_FILE_NAME = '30day_plank_challenge.result'
+PLANK_RESULT_FILE_NAME = './30day_plank_challenge.result'
 
 EXPIRES_IN_MINUTE = ENV['EXPIRES_IN_MINUTE'] || 60
 RACE_CONDITION_TTL = 5
@@ -71,7 +71,7 @@ before do
   # :nocov:
 end
 
-INDEX_HTML = 'public/index.html'
+INDEX_HTML = './public/index.html'
 set :index_html, File.read(INDEX_HTML)
 def index_html
   if settings.production?
@@ -250,8 +250,9 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
         [
           bg_color_rest,
           bg_color_success,
+          bg_color_danger,
           bg_color_today
-        ].uniq.join(' ')
+        ].compact.map { |v| "table-#{v}" }.join(' ')
       end
 
       def today?
@@ -287,7 +288,11 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
       end
 
       def bg_color_success
-        result ? 'success' : nil
+        (bg_color_danger.nil? && result) ? 'success' : nil
+      end
+
+      def bg_color_danger
+        (!result.nil? && result.to_i.zero?) ? 'danger' : nil
       end
 
       def bg_color_today
@@ -305,7 +310,9 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
         { day: r.display_day,
           date: r.display_date,
           task: r.display_task,
-          result: r.display_result }
+          result: r.display_result,
+          today: r.today?,
+          bg_color: r.bg_color }
       end
 
       content_type :json
