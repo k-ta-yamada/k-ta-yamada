@@ -324,8 +324,8 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
 
       articles = settings.cache.fetch("#{request.path}/articles") do
         logger.info "-- update cache: #{request.path}/articles"
-        JSON.parse(RestClient.get("#{QIITA_API}?per_page=#{total_count}"))
-            .map do |a|
+        respose = JSON.parse(RestClient.get("#{QIITA_API}?per_page=#{total_count}"))
+        respose.map do |a|
           { title: a['title'],
             url: a['url'],
             tags: a['tags'].map { |t| t['name'] }.join(', '),
@@ -333,11 +333,9 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
             updated_at: a['updated_at'],
             likes_count: a['likes_count'] }
         end
+        respose.sort_by! { |v| v[:likes_count] }
+        respose.reverse!
       end
-
-      # TODO: innner #fetch ... ?
-      articles.sort_by! { |v| v[:likes_count] }
-      articles.reverse!
 
       etag Digest::SHA1.hexdigest(articles.to_s)
       content_type :json
