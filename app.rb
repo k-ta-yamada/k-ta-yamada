@@ -190,8 +190,8 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
     get '/branches' do
       data = settings.cache.fetch(request.path) do
         logger.info "-- update cache: #{request.path}"
-        JSON.parse(RestClient.get("#{GITHUB_API}/branches"))
-            .map { |d| d['name'] }
+        response =JSON.parse(RestClient.get("#{GITHUB_API}/branches"))
+        response.map { |d| d['name'] }
       end
 
       etag Digest::SHA1.hexdigest(data.to_s)
@@ -203,7 +203,14 @@ namespace '/api' do # rubocop:disable Metrics/BlockLength
       branche = params[:branche]
       data = settings.cache.fetch("#{request.path}/#{branche}") do
         logger.info "-- update cache: #{request.path}/#{branche}"
-        JSON.parse(RestClient.get("#{GITHUB_API}/commits?sha=#{branche}"))
+        response = JSON.parse(RestClient.get("#{GITHUB_API}/commits?sha=#{branche}"))
+        response.map do |d|
+          { sha: d['sha'],
+            commit_message: d['commit']['message'],
+            commit_author_date: d['commit']['author']['date'],
+            commit_author_name: d['commit']['author']['name'],
+            html_url: d['html_url'] }
+        end
       end
 
       etag Digest::SHA1.hexdigest(data.to_s)

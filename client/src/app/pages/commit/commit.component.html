@@ -1,13 +1,30 @@
 <p class="lead">The commit log of this site.</p>
 
-<hr>
+<div *ngIf="!branche else loaded">loading...</div>
+<ng-template #loaded>
+  <select [(ngModel)]="selectedBrancheName" (change)="onChange()">
+    <option [value]="brancheName" *ngFor="let brancheName of brancheNames">{{ brancheName }}</option>
+  </select>
 
-<select [(ngModel)]="selectedBrancheName">
-  <option [value]="branche" *ngFor="let branche of branches">{{ branche }}</option>
-</select>
+  <hr>
 
-{{ selectedBrancheName }}
-
-<pre>
-  {{ branches | json}}
-</pre>
+  <dl>
+    <ng-container *ngFor="let b of branche; let i = index;">
+      <dt>
+        {{ ('00' + (i + 1)).slice(-2) }}
+      </dt>
+      <dd>
+        {{ b.commitMessage }}
+      </dd>
+      <dd>
+        {{ b.commitAuthorDate }} / {{ b.commitAuthorName }}
+      </dd>
+      <dd>
+        <a [href]="b.htmlUrl">{{ b.sha }}</a>
+      </dd>
+      <dd>
+        <hr>
+      </dd>
+    </ng-container>
+  </dl>
+</ng-template>
