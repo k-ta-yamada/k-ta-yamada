@@ -1,0 +1,79 @@
+th, td {
+  font-size: small;
+}
+
+$info:    aliceblue;
+$success: honeydew;
+$warning: lightyellow;
+$danger:  lavenderblush;
+
+.table-info {
+  background-color: $info;
+  td {
+    background-color: $info;
+  }
+}
+
+.table-success {
+  background-color: $success;
+  td {
+    background-color: $success;
+  }
+}
+
+.table-warning {
+  background-color: $warning;
+  td {
+    background-color: $warning;
+  }
+}
+
+.table-danger {
+  background-color: $danger;
+  td {
+    background-color: $danger;
+  }
+}
+
+
+
+
+// ref: html - Table fixed header and scrollable body - Stack Overflow
+//      https://stackoverflow.com/a/21175120/6622514
+table {
+  width: 100%;
+}
+
+thead, tbody, tr, td, th { display: block; }
+
+tr:after {
+  content: ' ';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+
+thead th {
+  // height: 30px;
+
+  /*text-align: left;*/
+}
+
+tbody {
+  // height: 120px;
+  // height: calc(100vh - 300px);
+  // MEMO: should i use `@media` query?
+  height: 300px;
+  overflow-y: auto;
+}
+
+thead {
+  /* fallback */
+}
+
+
+tbody td, thead th {
+  // width: 19.2%;
+  width: 25%;
+  float: left;
+}
