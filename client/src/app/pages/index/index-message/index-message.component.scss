@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  align-items: flex-start;
+}
+
+.base {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+img {
+  width: 100px;
+  margin-right: 10px;
+}
+
+p {
+  margin: 0;
+}

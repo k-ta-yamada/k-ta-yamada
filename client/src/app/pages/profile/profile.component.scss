@@ -1,0 +1,28 @@
+:host {
+  display: grid;
+  grid-row-gap: 10px;
+  grid-template:
+    "desc " auto
+    "bio  " auto
+    "skill" auto
+    /1fr
+  ;
+}
+
+#desc {
+  grid-area: desc;
+}
+
+app-prof-bio {
+  grid-area: bio;
+  // padding: 30px;
+  // border: 1px dotted lightgray;
+  // box-shadow: 5px 5px 5px lightgray;
+}
+
+app-prof-skill {
+  grid-area: skill;
+  // padding: 30px 0;
+  // border: 1px solid lightgray;
+  // box-shadow: 5px 5px 5px lightgray;
+}
