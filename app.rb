@@ -38,7 +38,7 @@ JS_HASH = File.basename(Dir.glob('./public/js/app*.js').first, '.js')
 PLANK_START_DAY = Date.new(2018, 10, 23)
 PLANK_RESULT_FILE_NAME = '30day_plank_challenge.result'
 
-EXPIRES_IN_MINUTE = ENV['EXPIRES_IN_MINUTE'] || 1
+EXPIRES_IN_MINUTE = ENV['EXPIRES_IN_MINUTE'] || 60
 RACE_CONDITION_TTL = 5
 
 configure do
