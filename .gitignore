@@ -2,7 +2,7 @@ bower_components/
 node_modules/
 public/js/*.js*
 .tags*
-test/html_reports/
+/server/test/html_reports/
 
 ### https://raw.github.com/github/gitignore/master/Global/OSX.gitignore
 

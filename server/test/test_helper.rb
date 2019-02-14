@@ -12,9 +12,11 @@ SimpleCov.start
 
 require 'minitest/autorun'
 require 'minitest/reporters'
-reporters = [Minitest::Reporters::SpecReporter.new,
-             # Minitest::Reporters::ProgressReporter.new,
-             Minitest::Reporters::HtmlReporter.new]
+reporters = [
+  Minitest::Reporters::SpecReporter.new,
+  # Minitest::Reporters::ProgressReporter.new,
+  # Minitest::Reporters::HtmlReporter.new
+]
 Minitest::Reporters.use!(reporters)
 
 # require 'webmock/minitest'
@@ -22,7 +24,7 @@ Minitest::Reporters.use!(reporters)
 
 require 'vcr'
 VCR.configure do |c|
-  c.cassette_library_dir = 'test/vcr'
+  c.cassette_library_dir = '../test/vcr'
   c.hook_into :webmock
 end
 

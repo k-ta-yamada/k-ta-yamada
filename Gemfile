@@ -42,6 +42,7 @@ group :test do
   gem 'rake'
   gem 'simplecov'
   gem 'simplecov-console'
+  gem 'timecop'
   gem 'vcr'
   gem 'webmock'
 end
