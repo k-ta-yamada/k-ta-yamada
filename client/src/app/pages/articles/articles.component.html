@@ -1,0 +1,35 @@
+<section>
+  <p class="lead">
+    Articles written on
+    <a href="https://qiita.com">https://qiita.com</a>.
+  </p>
+</section>
+
+<section *ngIf="!articles else loaded">loading...</section>
+<ng-template #loaded>
+  <section *ngFor="let article of articles; let i = index; let c = count">
+
+    <h5 class="lead">
+      #{{ zeroPadding(i + 1, c) }}/{{ c }}
+      &nbsp;
+      <a href="article.url">{{ article.title }}</a>
+    </h5>
+
+    <dl class="row">
+      <dt class="col-sm-2">url</dt>
+      <dd class="col-sm-10"><a href="article.url">{{ article.url }}</a></dd>
+
+      <dt class="col-sm-2">tags</dt>
+      <dd class="col-sm-10">{{ article.tags }}</dd>
+
+      <dt class="col-sm-2">created_at</dt>
+      <dd class="col-sm-10">{{ article.created_at }}</dd>
+
+      <dt class="col-sm-2">updated_at</dt>
+      <dd class="col-sm-10">{{ article.updated_at }}</dd>
+
+      <dt class="col-sm-2">likes_count</dt>
+      <dd class="col-sm-10">{{ article.likes_count }}</dd>
+    </dl>
+  </section>
+</ng-template>

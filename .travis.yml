@@ -1,10 +1,22 @@
-language: ruby
-rvm: 2.6.0
-cache: bundler
-before_install:
-  - touch ./public/js/app-dummy.js
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
-after_script:
-  - ./cc-test-reporter after-build -t simplecov --exit-code $TRAVIS_TEST_RESULT
+matrix:
+  include:
+    - language: ruby
+      rvm: 2.6.0
+      cache: bundler
+      before_install:
+        - mkdir ./public; touch ./public/index.html
+        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        - chmod +x ./cc-test-reporter
+        - ./cc-test-reporter before-build
+      after_script:
+        - ./cc-test-reporter after-build -t simplecov --exit-code $TRAVIS_TEST_RESULT
+    - language: node_js
+      node_js:
+        - "stable"
+      cache: npm
+      addons:
+        chrome: stable
+      script:
+        - npm run lint
+        - npm run test:headless
+        # - npm run e2e

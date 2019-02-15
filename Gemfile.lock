@@ -115,6 +115,7 @@ GEM
     temple (0.8.0)
     thread_safe (0.3.6)
     tilt (2.0.9)
+    timecop (0.9.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     unf (0.1.4)
@@ -155,6 +156,7 @@ DEPENDENCIES
   sinatra-contrib
   slim
   tee_logger
+  timecop
   vcr
   webmock
 
