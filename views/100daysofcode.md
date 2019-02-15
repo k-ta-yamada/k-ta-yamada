@@ -13,6 +13,38 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 28: 2019-02-15 fri
+
+##### Progress
+- 貯まっていたコミットを意味のある単位にまとめ直すため、ブランチ別途作成
+- skipしていたRubyのテストを作成
+
+##### Thoughts/Todo
+- Angular
+    - リロードでfallbackしたはいいけど元のパスに移動させるには何が足りないのだろう
+        - 今更だけどredirectしちゃだめで、常にindex.htmlを返せばOKっぽい
+    - コンテンツの持ち方とか考えないといかんかな（HTMLに打つのが久々で辛い）
+        - もう慣れたしEmmetの使い方に気づいた
+    - ReactiveFormsとClassのマッピングみたいなのはどうすればいいのかな
+    - Todo: 今後使えるようになりたいもの
+        - Form(Template, Reactive)
+        - Modal Dialog
+        - Routing
+        - loading progress and disable elements.
+- HTML/CSS
+    - flex
+    - grid
+        - grid-template-columns
+        - grid-template-rows
+        - grid-template-areas
+    - box-shadow
+    - @media
+
+##### Link(s) to work
+- [k-ta-yamada/k-ta-yamada/compare/feature/angular-app](https://github.com/k-ta-yamada/k-ta-yamada/compare/feature/angular-app)
+
+---
+
 #### Day 27: 2019-02-14 thu
 
 ##### Progress
