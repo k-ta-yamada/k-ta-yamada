@@ -6,6 +6,7 @@
     "serve": "ng serve",
     "serve:proxy": "ng serve --proxy-config angular.proxy-config.json",
     "build": "ng build",
+    "build:prod": "ng build --prod",
     "test": "ng test",
     "test:headless": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
@@ -13,7 +14,7 @@
     "compodoc": "npx compodoc -p client/src/tsconfig.app.json",
     "start": "concurrently --kill-others \"npm run serve:proxy\" \"bundle exec ruby app.rb\"",
     "start:build": "npm run build; concurrently --kill-others \"npm run serve:proxy\" \"bundle exec ruby app.rb\"",
-    "heroku-postbuild": "ng build --prod"
+    "heroku-postbuild": "npm run build:prod"
   },
   "private": true,
   "dependencies": {

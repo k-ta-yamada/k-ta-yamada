@@ -20,3 +20,4 @@ matrix:
         - npm run lint
         - npm run test:headless
         # - npm run e2e
+        - npm run build:prod
