@@ -15,6 +15,10 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  onClickOutside(e: MouseEvent) {
+    this.collapseHide();
+  }
+
   private collapseHide() {
     document.querySelector('#navbarSupportedContent').classList.remove('show');
 
