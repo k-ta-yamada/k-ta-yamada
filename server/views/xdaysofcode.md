@@ -13,6 +13,42 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 31: 2019-02-18 mon
+
+##### Progress
+- HEADER（メニュー）外をクリックしたらメニューを閉じるようにする対応
+    - `ng-click-outside`をインストールしただけな感じ
+
+##### Thoughts/Todo
+- mypage
+    - Angularのテスト
+    - Lighthouseの結果への対応
+    - Load中なのをもう少しかっこよくするやつ
+- Angular
+    - リロードでfallbackしたはいいけど元のパスに移動させるには何が足りないのだろう
+        - 今更だけどredirectしちゃだめで、常にindex.htmlを返せばOKっぽい
+    - コンテンツの持ち方とか考えないといかんかな（HTMLに打つのが久々で辛い）
+        - もう慣れたしEmmetの使い方に気づいた
+    - ReactiveFormsとClassのマッピングみたいなのはどうすればいいのかな
+    - Todo: 今後使えるようになりたいもの
+        - Form(Template, Reactive)
+        - Modal Dialog
+        - Routing
+        - loading progress and disable elements.
+- HTML/CSS
+    - flex
+    - grid
+        - grid-template-columns
+        - grid-template-rows
+        - grid-template-areas
+    - box-shadow
+    - @media
+
+##### Link(s) to work
+- [k-ta-yamada/k-ta-yamada/pull/41](https://github.com/k-ta-yamada/k-ta-yamada/pull/41)
+
+---
+
 #### Day 30: 2019-02-17 sun
 
 ##### Progress
