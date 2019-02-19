@@ -24,7 +24,7 @@ Minitest::Reporters.use!(reporters)
 
 require 'vcr'
 VCR.configure do |c|
-  c.cassette_library_dir = '../test/vcr'
+  c.cassette_library_dir = './server/test/vcr'
   c.hook_into :webmock
 end
 
