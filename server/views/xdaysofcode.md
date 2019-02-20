@@ -13,6 +13,42 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 32: 2019-02-19 tue
+
+##### Progress
+- `ng-click-outside`でスマホ向けに`touchstart`イベントの追加が必要だった
+- 久しぶりにテスト書いてたら大分忘れてる。またTODOアプリを作る日々を再開しようかな。
+
+##### Thoughts/Todo
+- mypage
+    - Angularのテスト
+    - Lighthouseの結果への対応
+    - Load中なのをもう少しかっこよくするやつ
+- Angular
+    - リロードでfallbackしたはいいけど元のパスに移動させるには何が足りないのだろう
+        - 今更だけどredirectしちゃだめで、常にindex.htmlを返せばOKっぽい
+    - コンテンツの持ち方とか考えないといかんかな（HTMLに打つのが久々で辛い）
+        - もう慣れたしEmmetの使い方に気づいた
+    - ReactiveFormsとClassのマッピングみたいなのはどうすればいいのかな
+    - Todo: 今後使えるようになりたいもの
+        - Form(Template, Reactive)
+        - Modal Dialog
+        - Routing
+        - loading progress and disable elements.
+- HTML/CSS
+    - flex
+    - grid
+        - grid-template-columns
+        - grid-template-rows
+        - grid-template-areas
+    - box-shadow
+    - @media
+
+##### Link(s) to work
+- [k-ta-yamada/k-ta-yamada/commit/67eb7865edc2a2368a93959d6b7a9074955901f4](https://github.com/k-ta-yamada/k-ta-yamada/commit/67eb7865edc2a2368a93959d6b7a9074955901f4)
+
+---
+
 #### Day 31: 2019-02-18 mon
 
 ##### Progress
