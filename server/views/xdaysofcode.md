@@ -13,6 +13,45 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 33: 2019-02-20 wed
+
+##### Progress
+- `travis-ci`の設定をrubyとnode_js個別でなく1つにまとめる
+    - codeclimateのtest coverageへの対応のため
+- なぜか`travis-ci`で実行すると失敗するテストの修正
+    - というか`VCR`のディレクトリの参照が正しくなく、機能していなかったため
+
+##### Thoughts/Todo
+- mypage
+    - Angularのテスト
+    - Lighthouseの結果への対応
+    - Load中なのをもう少しかっこよくするやつ
+- Angular
+    - リロードでfallbackしたはいいけど元のパスに移動させるには何が足りないのだろう
+        - 今更だけどredirectしちゃだめで、常にindex.htmlを返せばOKっぽい
+    - コンテンツの持ち方とか考えないといかんかな（HTMLに打つのが久々で辛い）
+        - もう慣れたしEmmetの使い方に気づいた
+    - ReactiveFormsとClassのマッピングみたいなのはどうすればいいのかな
+    - Todo: 今後使えるようになりたいもの
+        - Form(Template, Reactive)
+        - Modal Dialog
+        - Routing
+        - loading progress and disable elements.
+- HTML/CSS
+    - flex
+    - grid
+        - grid-template-columns
+        - grid-template-rows
+        - grid-template-areas
+    - box-shadow
+    - @media
+
+##### Link(s) to work
+- [k-ta-yamada/k-ta-yamada/commit/dc9e5893078dd17c7b29a984a527528f84a7413d](https://github.com/k-ta-yamada/k-ta-yamada/commit/dc9e5893078dd17c7b29a984a527528f84a7413d)
+- [k-ta-yamada/k-ta-yamada/commit/dd178dda27342418c35c0b9e43767c1b339f5db2](https://github.com/k-ta-yamada/k-ta-yamada/commit/dd178dda27342418c35c0b9e43767c1b339f5db2)
+
+---
+
 #### Day 32: 2019-02-19 tue
 
 ##### Progress
