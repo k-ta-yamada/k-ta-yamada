@@ -13,6 +13,42 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 39: 2019-02-26 tue
+
+##### Progress
+- [Railsガイド](https://railsguides.jp/)を再度眺め始める
+    - まあ近々ついにやることになりそうだし
+    - なんか昔見た頃とちょいちょい変わってんなー
+
+##### Thoughts/Todo/Memo
+- mypage
+    - Angularのテスト
+    - Lighthouseの結果への対応
+    - Load中なのをもう少しかっこよくするやつ
+- Angular
+    - ReactiveFormsとClassのマッピングみたいなのはどうすればいいのかな
+    - Todo: 今後使えるようになりたいもの
+        - Form(Template, Reactive)
+        - Modal Dialog
+        - Routing
+        - loading progress and disable elements.
+    - Componentクラスで`http.get().subscribe()`するより  
+      template側で`async`パイプ使うほうがいいっぽい？
+    - ref: [Angular Reactive Templates with ngIf and the Async Pipe](https://blog.angular-university.io/angular-reactive-templates/)
+- HTML/CSS
+    - flex
+    - grid
+        - grid-template-columns
+        - grid-template-rows
+        - grid-template-areas
+    - box-shadow
+    - @media
+
+##### Link(s) to work
+- n/a
+
+---
+
 #### Day 38: 2019-02-25 mon
 
 ##### Progress
