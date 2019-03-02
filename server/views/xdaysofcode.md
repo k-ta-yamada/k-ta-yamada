@@ -1087,7 +1087,7 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ##### Thoughts
 - 今後使えるようになりたいもの
-    - Form(Template, Reactive)
+    - Form(Template, Reactive)
     - Dialog
         - => Angular Material?
     - loading progress and disable elements.
