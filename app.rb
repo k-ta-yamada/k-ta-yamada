@@ -94,7 +94,17 @@ end
 
 get '/ping' do
   content_type :json
-  { status: 'ok', app_started_at: settings.app_started_at }.to_json
+  {
+    status: 'ok',
+    app_started_at: settings.app_started_at,
+    # heroku_app_id: ENV['HEROKU_APP_ID'],
+    # heroku_app_name: ENV['HEROKU_APP_NAME'],
+    # heroku_dyno_id: ENV['HEROKU_DYNO_ID'],
+    heroku_release_created_at: ENV['HEROKU_RELEASE_CREATED_AT'],
+    heroku_release_version: ENV['HEROKU_RELEASE_VERSION'],
+    # heroku_slug_commit: ENV['HEROKU_SLUG_COMMIT'],
+    heroku_slug_description: ENV['HEROKU_SLUG_DESCRIPTION']
+  }.to_json
 end
 
 get '/sitemap.txt' do
