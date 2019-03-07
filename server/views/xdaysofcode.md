@@ -13,6 +13,11 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 48: 2019-03-07 thu
+- n/a
+
+---
+
 #### Day 47: 2019-03-06 wed
 - n/a いかん、もう一週間以上何もしてない感
 
