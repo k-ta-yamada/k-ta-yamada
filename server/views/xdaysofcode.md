@@ -13,6 +13,16 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 52: 2019-03-11 mon
+- n/a
+
+---
+
+#### Day 51: 2019-03-10 sun
+- n/a
+
+---
+
 #### Day 50: 2019-03-09 sat
 - n/a
 
