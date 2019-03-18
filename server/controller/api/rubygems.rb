@@ -15,7 +15,7 @@ namespace '/api/rubygems' do # rubocop:disable Metrics/BlockLength
           version: d['version'],
           version_downloads: d['version_downloads'],
           downloads: d['downloads'] }
-      end
+      end.reverse
     end
 
     etag Digest::SHA1.hexdigest(data.to_s)
