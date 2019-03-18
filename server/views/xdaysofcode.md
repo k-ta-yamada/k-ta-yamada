@@ -13,6 +13,21 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 58: 2019-03-17 sun
+- n/a
+
+---
+
+#### Day 57: 2019-03-16 sat
+- n/a
+
+---
+
+#### Day 56: 2019-03-15 fri
+- n/a
+
+---
+
 #### Day 55: 2019-03-14 thu
 - n/a
 
@@ -112,7 +127,7 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
         - Modal Dialog
         - Routing
         - loading progress and disable elements.
-    - Componentクラスで`http.get().subscribe()`するより  
+    - Componentクラスで`http.get().subscribe()`するより
       template側で`async`パイプ使うほうがいいっぽい？
     - ref: [Angular Reactive Templates with ngIf and the Async Pipe](https://blog.angular-university.io/angular-reactive-templates/)
 - HTML/CSS
@@ -147,7 +162,7 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
         - Modal Dialog
         - Routing
         - loading progress and disable elements.
-    - Componentクラスで`http.get().subscribe()`するより  
+    - Componentクラスで`http.get().subscribe()`するより
       template側で`async`パイプ使うほうがいいっぽい？
     - ref: [Angular Reactive Templates with ngIf and the Async Pipe](https://blog.angular-university.io/angular-reactive-templates/)
 - HTML/CSS
@@ -182,7 +197,7 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
         - Modal Dialog
         - Routing
         - loading progress and disable elements.
-    - Componentクラスで`http.get().subscribe()`するより  
+    - Componentクラスで`http.get().subscribe()`するより
       template側で`async`パイプ使うほうがいいっぽい？
     - ref: [Angular Reactive Templates with ngIf and the Async Pipe](https://blog.angular-university.io/angular-reactive-templates/)
 - HTML/CSS
@@ -216,7 +231,7 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
         - Modal Dialog
         - Routing
         - loading progress and disable elements.
-    - Componentクラスで`http.get().subscribe()`するより  
+    - Componentクラスで`http.get().subscribe()`するより
       template側で`async`パイプ使うほうがいいっぽい？
     - ref: [Angular Reactive Templates with ngIf and the Async Pipe](https://blog.angular-university.io/angular-reactive-templates/)
 - HTML/CSS
@@ -252,7 +267,7 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
         - Modal Dialog
         - Routing
         - loading progress and disable elements.
-    - Componentクラスで`http.get().subscribe()`するより  
+    - Componentクラスで`http.get().subscribe()`するより
       template側で`async`パイプ使うほうがいいっぽい？
     - ref: [Angular Reactive Templates with ngIf and the Async Pipe](https://blog.angular-university.io/angular-reactive-templates/)
 - HTML/CSS
@@ -272,7 +287,7 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ##### Progress
 - Loadingとかの調査
-- Componentクラスで`http.get().subscribe()`するより  
+- Componentクラスで`http.get().subscribe()`するより
   template側で`async`パイプ使うほうがいいっぽい？
     - ref: [Angular Reactive Templates with ngIf and the Async Pipe](https://blog.angular-university.io/angular-reactive-templates/)
 
