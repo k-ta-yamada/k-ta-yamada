@@ -13,6 +13,25 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 60: 2019-03-19 tue
+
+##### Progress: to read
+- [x] Promiseを使う - JavaScript | MDN
+    - https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Using_promises
+- [ ] Promise - JavaScript | MDN
+    - https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise
+- [ ] 非同期関数 - Promise をわかりやすくする  |  Web  |  Google Developers
+    - https://developers.google.com/web/fundamentals/primers/async-functions
+- [ ] JavaScript の Promise: 概要  |  Web Fundamentals  |  Google Developers
+    - https://developers.google.com/web/fundamentals/primers/promises
+
+---
+
+#### Day 59: 2019-03-18 mon
+- n/a
+
+---
+
 #### Day 58: 2019-03-17 sun
 - n/a
 
