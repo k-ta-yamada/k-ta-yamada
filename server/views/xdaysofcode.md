@@ -13,6 +13,21 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 60: 2019-03-22 fri
+- n/a
+
+---
+
+#### Day 60: 2019-03-21 thu
+- n/a
+
+---
+
+#### Day 60: 2019-03-20 wed
+- n/a
+
+---
+
 #### Day 60: 2019-03-19 tue
 
 ##### Progress: to read
