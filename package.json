@@ -12,8 +12,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "compodoc": "npx compodoc -p client/src/tsconfig.app.json",
-    "start": "concurrently --kill-others \"npm run serve:proxy\" \"bundle exec ruby app.rb\"",
-    "start:build": "npm run build; concurrently --kill-others \"npm run serve:proxy\" \"bundle exec ruby app.rb\"",
+    "start": "concurrently --kill-others \"npm run serve:proxy\" \"bundle exec ruby ./server/app.rb\"",
+    "start:build": "npm run build; npm start",
     "heroku-postbuild": "npm run build:prod"
   },
   "private": true,

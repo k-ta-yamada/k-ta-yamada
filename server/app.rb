@@ -47,6 +47,7 @@ configure do
 
   set :app_started_at, Time.now
   set :index_html, File.read(INDEX_HTML)
+  set :public_folder, File.expand_path('../public', __dir__)
 end
 
 # ##################################################
@@ -81,11 +82,11 @@ end
 # ##################################################
 # routing
 # ##################################################
-require_relative './server/controller/api/articles'
-require_relative './server/controller/api/rubygems'
-require_relative './server/controller/api/commit'
-require_relative './server/controller/api/plank'
-require_relative './server/controller/api/xdaysofcode'
+require_relative './controller/api/articles'
+require_relative './controller/api/rubygems'
+require_relative './controller/api/commit'
+require_relative './controller/api/plank'
+require_relative './controller/api/xdaysofcode'
 
 get '/' do
   etag Digest::SHA1.hexdigest(index_html)

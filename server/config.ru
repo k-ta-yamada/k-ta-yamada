@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-require './app.rb'
+require_relative './app.rb'
 run Sinatra::Application
