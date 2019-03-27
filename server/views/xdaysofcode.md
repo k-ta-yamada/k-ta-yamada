@@ -16,13 +16,15 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 #### Day 65: 2019-03-27 wed
 - [x] chore: fix typo todoapp/README.md by k-ta-yamada · Pull Request #744 · asciidwango/js-primer
     - https://github.com/asciidwango/js-primer/pull/744
+- [ ] fix: typo setup.md by k-ta-yamada · Pull Request #339 · angular/angular-ja
+    - https://github.com/angular/angular-ja/pull/339
 
 ---
 
 #### Day 64: 2019-03-26 tue
 - [ ] この書籍について · JavaScriptの入門書 #jsprimer
     - https://jsprimer.net
-- [ ] fix: typo testing.md by k-ta-yamada · Pull Request #338 · angular/angular-ja
+- [x] fix: typo testing.md by k-ta-yamada · Pull Request #338 · angular/angular-ja
     - https://github.com/angular/angular-ja/pull/338
 
 ---
