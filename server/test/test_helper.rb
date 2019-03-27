@@ -30,7 +30,7 @@ end
 
 require 'rack/test'
 require 'pry'
-require './app.rb'
+require_relative '../app.rb'
 
 class TestBase < Minitest::Test
   include Rack::Test::Methods
