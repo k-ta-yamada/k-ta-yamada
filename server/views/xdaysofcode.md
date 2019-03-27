@@ -13,12 +13,26 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
-#### Day 61: 2019-03-25 mon
+#### Day 65: 2019-03-27 wed
+- [x] chore: fix typo todoapp/README.md by k-ta-yamada · Pull Request #744 · asciidwango/js-primer
+    - https://github.com/asciidwango/js-primer/pull/744
+
+---
+
+#### Day 64: 2019-03-26 tue
+- [ ] この書籍について · JavaScriptの入門書 #jsprimer
+    - https://jsprimer.net
+- [ ] fix: typo testing.md by k-ta-yamada · Pull Request #338 · angular/angular-ja
+    - https://github.com/angular/angular-ja/pull/338
+
+---
+
+#### Day 63: 2019-03-25 mon
 - n/a
 
 ---
 
-#### Day 61: 2019-03-24 sun
+#### Day 62: 2019-03-24 sun
 - n/a
 
 ---
