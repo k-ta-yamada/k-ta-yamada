@@ -13,6 +13,20 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 68: 2019-03-30 sat
+- [ ] この書籍について · JavaScriptの入門書 #jsprimer
+    - https://jsprimer.net
+
+---
+
+#### Day 67: 2019-03-29 fri
+
+---
+
+#### Day 66: 2019-03-28 thu
+
+---
+
 #### Day 65: 2019-03-27 wed
 - [x] chore: fix typo todoapp/README.md by k-ta-yamada · Pull Request #744 · asciidwango/js-primer
     - https://github.com/asciidwango/js-primer/pull/744
