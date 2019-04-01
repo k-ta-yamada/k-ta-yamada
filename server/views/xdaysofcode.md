@@ -13,6 +13,14 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 70: 2019-04-01 mon
+
+---
+
+#### Day 69: 2019-03-31 sun
+
+---
+
 #### Day 68: 2019-03-30 sat
 - [ ] この書籍について · JavaScriptの入門書 #jsprimer
     - https://jsprimer.net
