@@ -13,7 +13,13 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 71: 2019-04-02 tue
+
+---
+
 #### Day 70: 2019-04-01 mon
+- [ ] translate: tutorial/toh-pt5.md 未翻訳の注記部分を翻訳 by k-ta-yamada · Pull Request #341 · angular/angular-ja
+    - [https://github.com/angular/angular-ja/pull/341](https://github.com/angular/angular-ja/pull/341)
 
 ---
 
@@ -28,6 +34,8 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 ---
 
 #### Day 67: 2019-03-29 fri
+- [ ] Fix/toh-pt3 by k-ta-yamada · Pull Request #340 · angular/angular-ja
+    - [https://github.com/angular/angular-ja/pull/340](https://github.com/angular/angular-ja/pull/340)
 
 ---
 
@@ -37,9 +45,9 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 #### Day 65: 2019-03-27 wed
 - [x] chore: fix typo todoapp/README.md by k-ta-yamada · Pull Request #744 · asciidwango/js-primer
-    - https://github.com/asciidwango/js-primer/pull/744
-- [ ] fix: typo setup.md by k-ta-yamada · Pull Request #339 · angular/angular-ja
-    - https://github.com/angular/angular-ja/pull/339
+    - [https://github.com/asciidwango/js-primer/pull/744](https://github.com/asciidwango/js-primer/pull/744)
+- [x] fix: typo setup.md by k-ta-yamada · Pull Request #339 · angular/angular-ja
+    - [https://github.com/angular/angular-ja/pull/339](https://github.com/angular/angular-ja/pull/339)
 
 ---
 
@@ -47,7 +55,7 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 - [ ] この書籍について · JavaScriptの入門書 #jsprimer
     - https://jsprimer.net
 - [x] fix: typo testing.md by k-ta-yamada · Pull Request #338 · angular/angular-ja
-    - https://github.com/angular/angular-ja/pull/338
+    - [https://github.com/angular/angular-ja/pull/338](https://github.com/angular/angular-ja/pull/338)
 
 ---
 
