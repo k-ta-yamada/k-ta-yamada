@@ -13,6 +13,12 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 72: 2019-04-03 wed
+- [x] chore: fix typo basic/array/README.md by k-ta-yamada · Pull Request #749 · asciidwango/js-primer
+  - [https://github.com/asciidwango/js-primer/pull/749](https://github.com/asciidwango/js-primer/pull/749)
+
+---
+
 #### Day 71: 2019-04-02 tue
 
 ---
