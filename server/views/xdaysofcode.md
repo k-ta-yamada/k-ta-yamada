@@ -13,6 +13,10 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 73: 2019-04-04 thu
+
+---
+
 #### Day 72: 2019-04-03 wed
 - [x] chore: fix typo basic/array/README.md by k-ta-yamada · Pull Request #749 · asciidwango/js-primer
   - [https://github.com/asciidwango/js-primer/pull/749](https://github.com/asciidwango/js-primer/pull/749)
@@ -40,7 +44,7 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 ---
 
 #### Day 67: 2019-03-29 fri
-- [ ] Fix/toh-pt3 by k-ta-yamada · Pull Request #340 · angular/angular-ja
+- [x] Fix/toh-pt3 by k-ta-yamada · Pull Request #340 · angular/angular-ja
     - [https://github.com/angular/angular-ja/pull/340](https://github.com/angular/angular-ja/pull/340)
 
 ---
