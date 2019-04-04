@@ -8,7 +8,7 @@ import { ArticleService, Article } from 'src/app/services/article.service';
 })
 export class ArticlesComponent implements OnInit {
 
-  articles: Article[];
+  articles: Article[] = [];
 
   constructor(private service: ArticleService) { }
 
@@ -19,8 +19,8 @@ export class ArticlesComponent implements OnInit {
     );
   }
 
-  zeroPadding(i: number, c: number): string {
-    return ('0'.repeat(c.toString().length) + i).slice(-(c.toString().length));
+  zeroPadding(target: number, count: number): string {
+    return ('0'.repeat(count.toString().length) + target).slice(-(count.toString().length));
   }
 
 }

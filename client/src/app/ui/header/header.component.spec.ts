@@ -24,4 +24,14 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('onClickOutside', () => {
+    it('should behave...', () => {
+      component.onClickOutside();
+      fixture.detectChanges();
+
+      // TODO: Do meaningful tests
+      expect().nothing();
+    });
+  });
 });

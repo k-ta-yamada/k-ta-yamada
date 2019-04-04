@@ -8,18 +8,18 @@ import { CommitService, Branch } from 'src/app/services/commit.service';
 })
 export class CommitComponent implements OnInit {
 
-  selectedBrancheName = 'master';
+  selectedBranchName = 'master';
 
-  brancheNames: string[];
+  branchNames: string[];
 
-  branche: Branch[];
+  branch: Branch[];
 
   constructor(private service: CommitService) { }
 
   ngOnInit() {
-    this.service.getBrancheNames().subscribe(
+    this.service.getBranchNames().subscribe(
       (value) => {
-        this.brancheNames = value;
+        this.branchNames = value;
         this.onChange();
       },
       (error) => { console.error(error); },
@@ -27,9 +27,9 @@ export class CommitComponent implements OnInit {
   }
 
   onChange() {
-    this.branche = [];
-    this.service.getBranche(this.selectedBrancheName).subscribe(
-      (value) => { this.branche = value; },
+    this.branch = [];
+    this.service.getBranch(this.selectedBranchName).subscribe(
+      (value) => { this.branch = value; },
       (error) => { console.error(error); },
     );
   }

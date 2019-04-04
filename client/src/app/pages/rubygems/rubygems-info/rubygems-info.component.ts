@@ -8,7 +8,7 @@ import { GemInfo } from 'src/app/services/rubygems.service';
 })
 export class RubygemsInfoComponent implements OnInit {
 
-  @Input() gem: GemInfo;
+  @Input() gem = new GemInfo;
 
   constructor() { }
 

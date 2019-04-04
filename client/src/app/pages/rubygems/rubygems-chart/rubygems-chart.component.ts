@@ -14,23 +14,23 @@ export class RubygemsChartComponent implements OnInit {
 
   chart: c3.ChartAPI;
 
-  constructor(private service: RubygemsService) { }
+  constructor(private rubygemsService: RubygemsService) { }
 
   ngOnInit() {
-    this.service.getVersions(this.gemname).subscribe(
-      (gem) => { this.generateChart(gem); },
-      (error) => { console.error(error); },
+    this.rubygemsService.getVersions(this.gemname).subscribe(
+      gemVersions => this.generateChart(gemVersions),
+      console.error
     );
   }
 
-  private generateChart(gem: GemVersion[]) {
+  generateChart(gemVersions: GemVersion[]) {
     this.chart = c3.generate({
       bindto: `#chart-${this.gemname}`,
       size: {
         height: 375,
       },
       data: {
-        json: gem,
+        json: gemVersions,
         keys: { value: ['number', 'downloads_count'] },
         x: 'number',
         labels: true,
@@ -45,7 +45,7 @@ export class RubygemsChartComponent implements OnInit {
       grid: { y: { show: true } },
       line: { connectNull: true },
       area: { zerobased: false },
-      bar:  { zerobased: false, width: { ratio: 0.4 } },
+      bar: { zerobased: false, width: { ratio: 0.4 } },
     });
   }
 

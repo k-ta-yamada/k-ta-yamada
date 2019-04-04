@@ -1,15 +1,15 @@
 <p class="lead">The commit log of this site.</p>
 
-<div *ngIf="!branche else loaded">loading...</div>
+<div *ngIf="!branch else loaded">loading...</div>
 <ng-template #loaded>
-  <select [(ngModel)]="selectedBrancheName" (change)="onChange()">
-    <option [value]="brancheName" *ngFor="let brancheName of brancheNames">{{ brancheName }}</option>
+  <select [(ngModel)]="selectedBranchName" (change)="onChange()">
+    <option [value]="branchName" *ngFor="let branchName of branchNames">{{ branchName }}</option>
   </select>
 
   <hr>
 
   <dl>
-    <ng-container *ngFor="let b of branche; let i = index;">
+    <ng-container *ngFor="let b of branch; let i = index;">
       <dt>
         {{ ('00' + (i + 1)).slice(-2) }}
       </dt>

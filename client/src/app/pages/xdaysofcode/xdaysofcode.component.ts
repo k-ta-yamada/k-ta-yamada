@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { XdaysofcodeService } from 'src/app/services/xdaysofcode.service';
 
 @Component({
@@ -10,14 +9,17 @@ import { XdaysofcodeService } from 'src/app/services/xdaysofcode.service';
 })
 export class XdaysofcodeComponent implements OnInit {
 
-  html: any;
+  html: SafeHtml;
 
-  constructor(private service: XdaysofcodeService, private sanitizer: DomSanitizer) { }
+  constructor(
+    private service: XdaysofcodeService,
+    private sanitizer: DomSanitizer
+  ) { }
 
   ngOnInit() {
-    this.service.get().subscribe(r => {
-      this.html = this.sanitizer.bypassSecurityTrustHtml(r.toString());
-    });
+    this.service.get().subscribe(r =>
+      this.html = this.sanitizer.bypassSecurityTrustHtml(r.toString())
+    );
   }
 
 }

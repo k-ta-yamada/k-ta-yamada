@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { RubygemsService } from './rubygems.service';
 
-xdescribe('RubygemsService', () => {
+describe('RubygemsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {

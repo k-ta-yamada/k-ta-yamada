@@ -10,10 +10,13 @@ export class PlankComponent implements OnInit {
 
   record: Plank[];
 
-  constructor(private service: PlankService) { }
+  constructor(private plankService: PlankService) { }
 
   ngOnInit() {
-    this.service.get().subscribe(value => this.record = value);
+    this.plankService.get().subscribe(
+      record => this.record = record,
+      console.error
+    );
   }
 
 }

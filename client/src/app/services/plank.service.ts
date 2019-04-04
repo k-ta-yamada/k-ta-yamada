@@ -14,7 +14,8 @@ export class PlankService {
   constructor(private http: HttpClient) { }
 
   get(): Observable<Plank[]> {
-    const mapper = map((response: []) => response.map(obj => humps.camelizeKeys(obj) as Plank));
+    const mapper = map((response: []) =>
+      response.map(obj => humps.camelizeKeys(obj) as Plank));
     return this.http.get<Plank[]>(this.url).pipe(mapper);
   }
 

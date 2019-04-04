@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  onClickOutside(e: MouseEvent) {
+  onClickOutside() {
     this.collapseHide();
   }
 
