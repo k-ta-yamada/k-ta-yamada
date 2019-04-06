@@ -13,6 +13,14 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 75: 2019-04-06 sat
+
+---
+
+#### Day 74: 2019-04-05 fri
+
+---
+
 #### Day 73: 2019-04-04 thu
 
 ---
@@ -28,7 +36,7 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 ---
 
 #### Day 70: 2019-04-01 mon
-- [ ] translate: tutorial/toh-pt5.md 未翻訳の注記部分を翻訳 by k-ta-yamada · Pull Request #341 · angular/angular-ja
+- [x] translate: tutorial/toh-pt5.md 未翻訳の注記部分を翻訳 by k-ta-yamada · Pull Request #341 · angular/angular-ja
     - [https://github.com/angular/angular-ja/pull/341](https://github.com/angular/angular-ja/pull/341)
 
 ---
