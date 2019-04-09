@@ -13,6 +13,18 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 78: 2019-04-09 tue
+
+---
+
+#### Day 77: 2019-04-08 mon
+
+---
+
+#### Day 76: 2019-04-07 sun
+
+---
+
 #### Day 75: 2019-04-06 sat
 
 ---
