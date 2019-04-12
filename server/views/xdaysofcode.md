@@ -13,6 +13,10 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 81: 2019-04-12 fri
+
+---
+
 #### Day 80: 2019-04-11 thu
 
 ---
