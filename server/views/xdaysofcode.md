@@ -13,6 +13,10 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 88: 2019-04-19 fri
+
+---
+
 #### Day 87: 2019-04-18 thu
 
 ---
