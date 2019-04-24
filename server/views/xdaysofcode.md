@@ -13,6 +13,10 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 94: 2019-04-24 wed
+
+---
+
 #### Day 93: 2019-04-23 tue
 
 ---
