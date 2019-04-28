@@ -13,6 +13,10 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 98: 2019-04-28 sun
+
+---
+
 #### Day 97: 2019-04-27 sat
 
 ---
