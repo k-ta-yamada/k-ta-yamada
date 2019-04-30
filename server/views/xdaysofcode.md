@@ -13,6 +13,10 @@ Record of [#100DaysOfCode](https://www.100daysofcode.com/) Challenge.
 
 ---
 
+#### Day 100: 2019-04-30 tue
+
+---
+
 #### Day 99: 2019-04-29 mon
 
 ---
