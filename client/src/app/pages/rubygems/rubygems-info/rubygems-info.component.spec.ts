@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RubygemsInfoComponent } from './rubygems-info.component';
+import { GemInfo } from 'src/app/services/rubygems.service';
 
-xdescribe('RubygemsInfoComponent', () => {
+describe('RubygemsInfoComponent', () => {
   let component: RubygemsInfoComponent;
   let fixture: ComponentFixture<RubygemsInfoComponent>;
 

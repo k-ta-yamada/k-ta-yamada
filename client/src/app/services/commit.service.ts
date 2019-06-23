@@ -13,16 +13,16 @@ export class CommitService {
 
   constructor(private http: HttpClient) { }
 
-  getBrancheNames(): Observable<string[]> {
+  getBranchNames(): Observable<string[]> {
     return this.http.get<string[]>(`${this.url}/branches`);
   }
 
-  getBranche(branche: string): Observable<Branch[]> {
-    const params = { branche };
-    const mapper = map((response: []) => response.map(obj => humps.camelizeKeys(obj) as Branch));
-    return this.http
-      .get<any[]>(`${this.url}/commits`, { params })
-      .pipe(mapper);
+  getBranch(branch: string): Observable<Branch[]> {
+    const params = { branch };
+    return this.http.get<any[]>(`${this.url}/commits`, { params }).pipe(
+      map((response: []) =>
+        response.map(obj => humps.camelizeKeys(obj) as Branch))
+    );
   }
 }
 

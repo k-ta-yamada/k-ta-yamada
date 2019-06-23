@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IndexMenuComponent } from './index-menu.component';
 
-xdescribe('IndexMenuComponent', () => {
+describe('IndexMenuComponent', () => {
   let component: IndexMenuComponent;
   let fixture: ComponentFixture<IndexMenuComponent>;
 

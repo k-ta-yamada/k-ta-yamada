@@ -20,7 +20,7 @@ export class RubygemsService {
   }
 }
 
-export interface GemInfo {
+export class GemInfo {
   name: string;
   info: string;
   project_uri: string;

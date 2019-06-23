@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { XdaysofcodeService } from './xdaysofcode.service';
 
-xdescribe('XdaysofcodeService', () => {
+describe('XdaysofcodeService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
