@@ -25,12 +25,6 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should behave...', () => {
-    spyOn(window, 'scroll');
-    component.onActive(new Event('dummy'));
-    expect(window.scroll).toHaveBeenCalledWith(0, 0);
-  });
-
   // it(`should have as title 'k-ta-yamada'`, () => {
   //   const fixture = TestBed.createComponent(AppComponent);
   //   const app = fixture.debugElement.componentInstance;
