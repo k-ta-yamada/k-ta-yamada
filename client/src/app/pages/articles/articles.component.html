@@ -1,7 +1,7 @@
 <section>
   <p class="lead">
     Articles written on
-    <a href="https://qiita.com">https://qiita.com</a>.
+    <app-anchor href="https://qiita.com">https://qiita.com</app-anchor>.
   </p>
 </section>
 
@@ -12,12 +12,12 @@
     <h5 class="lead">
       #{{ zeroPadding(i + 1, c) }}/{{ c }}
       &nbsp;
-      <a [href]="article.url">{{ article.title }}</a>
+      <app-anchor [href]="article.url">{{ article.title }}</app-anchor>
     </h5>
 
     <dl class="row">
       <dt class="col-sm-2">url</dt>
-      <dd class="col-sm-10"><a [href]="article.url">{{ article.url }}</a></dd>
+      <dd class="col-sm-10"><app-anchor [href]="article.url"></app-anchor></dd>
 
       <dt class="col-sm-2">tags</dt>
       <dd class="col-sm-10">{{ article.tags }}</dd>

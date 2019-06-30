@@ -1,0 +1,14 @@
+<!--
+  ref: No ability to check if <ng-content> was provided to the component · Issue #26083 · angular/angular
+       https://github.com/angular/angular/issues/26083#issuecomment-425227938
+ -->
+
+<a #ref [href]="href" [target]="target" [rel]="rel">
+  <ng-content></ng-content>
+</a>
+
+<ng-container *ngIf="ref.childNodes.length === 0">
+  <a [href]="href" [target]="target" [rel]="rel">
+    {{ href }}
+  </a>
+</ng-container>

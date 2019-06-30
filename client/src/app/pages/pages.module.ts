@@ -12,6 +12,7 @@ import { XdaysofcodeComponent } from './xdaysofcode/xdaysofcode.component';
 import { IndexModule } from './index/index.module';
 import { ProfileModule } from './profile/profile.module';
 import { RubygemsModule } from './rubygems/rubygems.module';
+import { LibsModule } from '../libs/libs.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { RubygemsModule } from './rubygems/rubygems.module';
     IndexModule,
     ProfileModule,
     RubygemsModule,
+    LibsModule,
   ]
 })
 export class PagesModule { }
