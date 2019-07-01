@@ -1,23 +1,17 @@
 <dl>
   <dt>project_uri</dt>
   <dd>
-    <a href="{{ gem.project_uri }}">
-      {{ gem.project_uri }}
-    </a>
+    <app-anchor [href]="gem.project_uri"></app-anchor>
   </dd>
 
   <dt>source_code_uri</dt>
   <dd>
-    <a href="{{ gem.source_code_uri }}">
-      {{ gem.source_code_uri }}
-    </a>
+    <app-anchor [href]="gem.source_code_uri"></app-anchor>
   </dd>
 
   <dt>documentation_uri</dt>
   <dd>
-    <a href="{{ gem.documentation_uri }}">
-      {{ gem.documentation_uri }}
-    </a>
+    <app-anchor [href]="gem.documentation_uri"></app-anchor>
   </dd>
 
   <dt>version</dt>
@@ -31,8 +25,6 @@
 
   <dt>BestGems</dt>
   <dd>
-    <a href="http://bestgems.org/gems/{{gem.name}}" rel="noopener">
-      http://bestgems.org/gems/{{gem.name}}
-    </a>
+    <app-anchor href="http://bestgems.org/gems/{{gem.name}}"></app-anchor>
   </dd>
 </dl>

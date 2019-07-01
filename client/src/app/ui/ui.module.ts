@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { LibsModule } from '../libs/libs.module';
 
 @NgModule({
   declarations: [LayoutComponent, HeaderComponent, FooterComponent],
@@ -12,6 +13,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
     CommonModule,
     RouterModule,
     ClickOutsideModule,
+    LibsModule,
   ],
   exports: [LayoutComponent]
 })

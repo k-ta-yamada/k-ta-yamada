@@ -5,6 +5,7 @@ import { IndexStatusComponent } from './index-status/index-status.component';
 import { IndexMenuComponent } from './index-menu/index-menu.component';
 import { IndexMessageComponent } from './index-message/index-message.component';
 import { RouterModule } from '@angular/router';
+import { LibsModule } from 'src/app/libs/libs.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
+    LibsModule,
   ],
 })
 export class IndexModule { }

@@ -9,6 +9,7 @@ import {
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
+import { LibsModule } from './app/libs/libs.module';
 
 declare const require: any;
 
@@ -19,6 +20,7 @@ getTestBed().initTestEnvironment(
     HttpClientTestingModule,
     RouterTestingModule,
     FormsModule,
+    LibsModule,
   ],
   platformBrowserDynamicTesting()
 );

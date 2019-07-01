@@ -11,11 +11,11 @@ export class IndexMenuComponent implements OnInit {
 
   desc = {
     profile:     'My Profile and Skills.',
-    articles:    'Articles written on <a href="https://qiita.com">https://qiita.com</a>.',
+    articles:    'Articles written on <a href="https://qiita.com" target="_blank" rel="noopener">https://qiita.com</a>.',
     rubygems:    'My RubyGems info.',
     commit:      'The commit log of this site.',
     plank:       'Record of 30 days Plank Challenge.',
-    xdaysofcode: 'Record of <a href="https://www.100daysofcode.com/">#100DaysOfCode</a> Challenge.',
+    xdaysofcode: 'Record of <a href="https://www.100daysofcode.com/" target="_blank" rel="noopener">#100DaysOfCode</a> Challenge.',
   };
 
   menus = routes.filter(r => r.path !== '').map(r => {
