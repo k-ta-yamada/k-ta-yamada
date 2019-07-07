@@ -16,3 +16,4 @@ exclude_patterns:
 - "**/*.d.ts"
 - "**/*.spec.ts"
 - "client/src/karma.conf.js"
+- "client/src/polyfills.ts"
