@@ -18,7 +18,6 @@ import { trigger, transition, style, animate } from '@angular/animations';
 export class AppComponent {
 
   prepareRoute(outlet: RouterOutlet) {
-    console.log(outlet)
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 
