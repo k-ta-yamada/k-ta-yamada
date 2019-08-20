@@ -12,12 +12,12 @@ export const routes: Routes = [
   // { path: '', redirectTo: 'index', pathMatch: 'full' },
   // { path: 'index', component: IndexComponent },
   { path: '', component: IndexComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'articles', component: ArticlesComponent },
-  { path: 'rubygems', component: RubygemsComponent },
-  { path: 'commit', component: CommitComponent },
-  { path: 'plank', component: PlankComponent },
-  { path: 'xdaysofcode', component: XdaysofcodeComponent },
+  { path: 'profile', component: ProfileComponent, data: { animation: 'profile' } },
+  { path: 'articles', component: ArticlesComponent, data: { animation: 'articles' } },
+  { path: 'rubygems', component: RubygemsComponent, data: { animation: 'rubygems' } },
+  { path: 'commit', component: CommitComponent, data: { animation: 'commit' } },
+  { path: 'plank', component: PlankComponent, data: { animation: 'plank' } },
+  { path: 'xdaysofcode', component: XdaysofcodeComponent, data: { animation: 'xdaysofcode' } },
 ];
 
 @NgModule({

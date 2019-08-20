@@ -1,3 +1,9 @@
-<app-layout>
-  <router-outlet></router-outlet>
-</app-layout>
+<!--
+  TODO: HEADERとかもanimation対象に含まれちゃう。どうしようか。
+        単純にapp-layoutの中に入れても上手くいかない。
+-->
+<div [@routeAnimations]="prepareRoute(outlet)">
+  <app-layout>
+    <router-outlet #outlet="outlet"></router-outlet>
+  </app-layout>
+</div>
