@@ -20,6 +20,7 @@ gem 'activesupport', require: 'active_support/all'
 # gem 'sequel', require: true
 gem 'rack-dev-mark'
 gem 'tee_logger', require: true
+gem 'rake'
 
 group :production do
   gem 'newrelic_rpm'
@@ -39,7 +40,6 @@ end
 group :test do
   gem 'minitest-reporters'
   gem 'rack-test'
-  gem 'rake'
   gem 'simplecov'
   gem 'simplecov-console'
   gem 'timecop'
