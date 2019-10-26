@@ -9,10 +9,10 @@ http_interactions:
     headers:
       Accept:
       - "*/*"
-      Accept-Encoding:
-      - gzip, deflate
       User-Agent:
-      - rest-client/2.0.2 (darwin18.0.0 x86_64) ruby/2.5.1p57
+      - rest-client/2.1.0 (darwin18.7.0 x86_64) ruby/2.6.5p114
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Host:
       - api.github.com
   response:
@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 18 Dec 2018 14:59:38 GMT
+      - Sat, 26 Oct 2019 01:33:27 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -33,16 +33,16 @@ http_interactions:
       X-Ratelimit-Limit:
       - '60'
       X-Ratelimit-Remaining:
-      - '41'
+      - '51'
       X-Ratelimit-Reset:
-      - '1545145288'
+      - '1572054521'
       Cache-Control:
       - public, max-age=60, s-maxage=60
       Vary:
       - Accept
       - Accept-Encoding
       Etag:
-      - W/"fb407dd07bdb889d6266dbfbe5ceb4d9"
+      - W/"0b00b698348c9179c62c445030ebb28a"
       X-Github-Media-Type:
       - github.v3; format=json
       Access-Control-Expose-Headers:
@@ -63,14 +63,11 @@ http_interactions:
       - origin-when-cross-origin, strict-origin-when-cross-origin
       Content-Security-Policy:
       - default-src 'none'
-      Content-Encoding:
-      - gzip
       X-Github-Request-Id:
-      - D3C4:8E04:498D22A:5A1B484:5C190B59
+      - A410:2A10:2CF746:3A2038:5DB3A266
     body:
       encoding: ASCII-8BIT
-      string: !binary |-
-        H4sIAAAAAAAAA62Qu27DMAxF/0VzEutBiVJ+JehAUVJjNE4CSx6KwP9eAV1aNAU8ZCPAx7mHp4e40pTFUZRMbZnzwJdMV7ETfJumsYnjQ9Qz9X5wRnlIkYNEp0EqzKnkXJxWlkzApNEhMPXVZb70hXNr93ocBrqPh/exnZd46DeHOd9vdfjYN9p/0kSJftXf1Dpspq3r7o/CWOuSNT6RUIohSgicvHcAyKC1KbYk0+1AWuP7gIzqNRKbaf9LhCcSEHJK0UQrWSJZmwMYGQt74uAdWVSSUmJ+jcRm2k+JiWrL85Ps2mdMrAN7n3pQhTFYNhq9i6X/nsAgEKrymuybaev69gWdYR1aCgMAAA==
+      string: '[{"name":"feature/anchor-component","commit":{"sha":"5c57f2261d77cce722a31225efd421ae261c33d2","url":"https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits/5c57f2261d77cce722a31225efd421ae261c33d2"},"protected":false},{"name":"feature/angular","commit":{"sha":"2dc3cde50c477efd14d25d114d9a58e329ff8546","url":"https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits/2dc3cde50c477efd14d25d114d9a58e329ff8546"},"protected":false},{"name":"feature/fix-specs","commit":{"sha":"f288529881452d549693dd5e4b78a0941031748f","url":"https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits/f288529881452d549693dd5e4b78a0941031748f"},"protected":false},{"name":"feature/issue-47-scrollPositionRestoration","commit":{"sha":"9224da5cc2e38e953dcdda9f35f910108e6414ca","url":"https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits/9224da5cc2e38e953dcdda9f35f910108e6414ca"},"protected":false},{"name":"feature/ng-update","commit":{"sha":"90ae097ad74fcf3cf796a197c40c71417dac90cf","url":"https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits/90ae097ad74fcf3cf796a197c40c71417dac90cf"},"protected":false},{"name":"feature/plank-chart","commit":{"sha":"4d9ba51e0633a8701de5f6be9c62d50f36618d39","url":"https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits/4d9ba51e0633a8701de5f6be9c62d50f36618d39"},"protected":false},{"name":"feature/route-animation","commit":{"sha":"0b4e98bd929e9c64893abd77f35d5b8960852fb5","url":"https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits/0b4e98bd929e9c64893abd77f35d5b8960852fb5"},"protected":false},{"name":"fix/gem-rake","commit":{"sha":"710f4e5de77ad9da8b844f38d01f30bc40211701","url":"https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits/710f4e5de77ad9da8b844f38d01f30bc40211701"},"protected":false},{"name":"master","commit":{"sha":"2161756cee50356a3bb553a9dd2dfae9a8dcdc76","url":"https://api.github.com/repos/k-ta-yamada/k-ta-yamada/commits/2161756cee50356a3bb553a9dd2dfae9a8dcdc76"},"protected":false}]'
     http_version: 
-  recorded_at: Tue, 18 Dec 2018 14:59:38 GMT
-recorded_with: VCR 4.0.0
+  recorded_at: Sat, 26 Oct 2019 01:33:27 GMT
+recorded_with: VCR 5.0.0

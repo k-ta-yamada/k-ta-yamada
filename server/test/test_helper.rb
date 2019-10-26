@@ -13,7 +13,7 @@ SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/reporters'
 reporters = [
-  Minitest::Reporters::SpecReporter.new,
+  Minitest::Reporters::SpecReporter.new
   # Minitest::Reporters::ProgressReporter.new,
   # Minitest::Reporters::HtmlReporter.new
 ]

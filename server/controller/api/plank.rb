@@ -38,7 +38,7 @@ class Plank
   end
 
   def display_day
-    format('%03d', day)
+    format('%<day>03d', day: day)
   end
 
   def display_date
