@@ -21,7 +21,7 @@ describe('PlankComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    plankService = TestBed.get(PlankService);
+    plankService = TestBed.inject(PlankService);
   });
 
   it('should create', () => {

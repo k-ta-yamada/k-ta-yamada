@@ -22,7 +22,7 @@ describe('RubygemsChartComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    rubygemsService = TestBed.get(RubygemsService);
+    rubygemsService = TestBed.inject(RubygemsService);
   });
 
   it('should create', () => {
