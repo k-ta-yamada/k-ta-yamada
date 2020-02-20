@@ -13,11 +13,11 @@ describe('CommitService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.get(CommitService);
-    httpClient = TestBed.get(HttpClient);
+    service = TestBed.inject(CommitService);
+    httpClient = TestBed.inject(HttpClient);
     // MEMO: get is deprecated: from v8.0.0 use Type<T> or InjectionToken<T> (deprecation)
     //       refs: https://github.com/angular/angular/issues/29905
-    httpTestingController = TestBed.get(HttpTestingController);
+    httpTestingController = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {

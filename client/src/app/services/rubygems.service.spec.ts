@@ -6,7 +6,7 @@ describe('RubygemsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: RubygemsService = TestBed.get(RubygemsService);
+    const service: RubygemsService = TestBed.inject(RubygemsService);
     expect(service).toBeTruthy();
   });
 });

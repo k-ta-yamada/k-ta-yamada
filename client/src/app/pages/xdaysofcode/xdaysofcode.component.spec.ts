@@ -20,7 +20,7 @@ describe('XdaysofcodeComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    xdaysofcodeService = TestBed.get(XdaysofcodeService);
+    xdaysofcodeService = TestBed.inject(XdaysofcodeService);
   });
 
   it('should create', () => {
