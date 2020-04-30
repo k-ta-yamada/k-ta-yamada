@@ -31,7 +31,7 @@
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "humps": "^2.0.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng-click-outside": "^4.0.0",
     "popper.js": "^1.14.7",
     "rxjs": "~6.5.4",
