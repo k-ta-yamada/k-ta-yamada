@@ -29,7 +29,7 @@ VCR.configure do |c|
 end
 
 require 'rack/test'
-require 'pry'
+# require 'pry'
 require_relative '../app.rb'
 
 class TestBase < Minitest::Test

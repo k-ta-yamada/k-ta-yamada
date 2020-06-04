@@ -17,7 +17,8 @@ before_install:
   - chmod +x ./cc-test-reporter
 
 install:
-  - bundle install --without production
+  - bundle config set without 'development production'
+  - bundle install
   - npm install
 
 before_script:

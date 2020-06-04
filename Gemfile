@@ -40,7 +40,14 @@ group :test do
   gem 'minitest-reporters'
   gem 'rack-test'
   gem 'rake'
-  gem 'simplecov'
+
+  # Workaround for cc-test-reporter with SimpleCov 0.18.
+  # Stop upgrading SimpleCov until the following issue will be resolved.
+  # https://github.com/codeclimate/test-reporter/issues/418
+  # ref: Code Climate Test ReporterとSimpleCov 0.18で起きるエラーを回避する - koicの日記
+  #       https://koic.hatenablog.com/entry/workaround-for-cc-test-reporter-with-simplecov-18
+  gem 'simplecov', '~> 0.10', '< 0.18'
+
   gem 'simplecov-console'
   gem 'timecop'
   gem 'vcr'
