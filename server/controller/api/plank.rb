@@ -24,6 +24,31 @@ get '/api/plank' do
   json data
 end
 
+get '/api/plank/statistics' do
+  data = File.readlines(PLANK_RESULT_FILE_NAME)
+             .map(&:split)
+             .map.with_index(1) { |(t, r), i| Plank.new(i, t, r) }
+             .reverse
+
+  rest = data.select { |d| d.task == "rest" }.count
+  down = data.select { |d| d.result }.select { |d| d.result.to_i == 0}.count
+  fix =  data.select { |d| d.result }.select { |d| d.result.to_i >  0}.count
+  total = rest + down + fix
+  rest_p = format('%.03g', rest / total.to_f * 100) + '%'
+  down_p = format('%.03g', down / total.to_f * 100) + '%'
+  fix_p =  format('%.03g', fix / total.to_f * 100) + '%'
+
+  {
+    total:  total,
+    rest:   rest,
+    rest_p: rest_p,
+    down:   down,
+    down_p: down_p,
+    fix:    fix,
+    fix_p:  fix_p,
+  }.to_json
+end
+
 # week names
 WEEK = %w[sun mon tue wed thu fri sat].freeze
 
@@ -71,16 +96,6 @@ class Plank
   def date
     PLANK_START_DAY + day - 1
   end
-
-  # def year
-  #   date.year
-  # end
-
-  # def mmdd
-  #   mm = format('%02d', date.month)
-  #   dd = format('%02d', date.day)
-  #   "#{mm}/#{dd}"
-  # end
 
   def wday
     WEEK[date.wday]
