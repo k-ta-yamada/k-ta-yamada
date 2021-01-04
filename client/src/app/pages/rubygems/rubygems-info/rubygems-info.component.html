@@ -15,13 +15,50 @@
   </dd>
 
   <dt>version</dt>
-  <dd>{{ gem.version }}</dd>
+  <dd>
+    <!-- {{ gem.version }} -->
+    <app-anchor href="https://badge.fury.io/rb/{{ gem.name }}">
+      <img src="https://badge.fury.io/rb/{{ gem.name }}.svg" alt="Gem Version">
+    </app-anchor>
+  </dd>
 
   <dt>version_downloads</dt>
-  <dd>{{ gem.version_downloads }}</dd>
+  <dd>
+    {{ gem.version_downloads }}
+  </dd>
 
   <dt>downloads</dt>
-  <dd>{{ gem.downloads }}</dd>
+  <dd>
+    <!-- {{ gem.downloads }} -->
+    <app-anchor href="https://badge.fury.io/rb/{{ gem.name }}">
+      <img src="https://ruby-gem-downloads-badge.herokuapp.com/{{ gem.name }}?type=total&total_label=&color=brightgreen" alt="Downloads">
+    </app-anchor>
+  </dd>
+
+  <dt>Build Status</dt>
+  <dd>
+    <app-anchor href="https://travis-ci.com/k-ta-yamada/{{ gem.name }}">
+      <img src="https://travis-ci.com/k-ta-yamada/{{ gem.name }}.svg?branch=master" alt="Build Status">
+    </app-anchor>
+  </dd>
+
+  <dt>Code Climate</dt>
+  <dd>
+    <app-anchor href="https://codeclimate.com/github/k-ta-yamada/{{ gem.name }}">
+      <img src="https://codeclimate.com/github/k-ta-yamada/{{ gem.name }}/badges/gpa.svg" alt="codeclimate: maintainability">
+    </app-anchor>
+    &nbsp;
+    <app-anchor href="https://codeclimate.com/github/k-ta-yamada/{{ gem.name }}">
+      <img src="https://codeclimate.com/github/k-ta-yamada/{{ gem.name }}/badges/coverage.svg" alt="codeclimate: test_coverage">
+    </app-anchor>
+  </dd>
+
+  <dt>Documentaion Status</dt>
+  <dd>
+    <app-anchor href="https://inch-ci.org/github/k-ta-yamada/{{ gem.name }}">
+      <img src="http://inch-ci.org/github/k-ta-yamada/{{ gem.name }}.svg?branch=master" alt="Documentaion Status">
+    </app-anchor>
+  </dd>
 
   <dt>BestGems</dt>
   <dd>
