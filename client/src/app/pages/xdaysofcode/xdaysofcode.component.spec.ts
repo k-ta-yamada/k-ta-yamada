@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { XdaysofcodeComponent } from './xdaysofcode.component';
 import { XdaysofcodeService } from 'src/app/services/xdaysofcode.service';
@@ -9,7 +9,7 @@ describe('XdaysofcodeComponent', () => {
   let fixture: ComponentFixture<XdaysofcodeComponent>;
   let xdaysofcodeService: XdaysofcodeService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [XdaysofcodeComponent]
     }).compileComponents();
@@ -30,7 +30,7 @@ describe('XdaysofcodeComponent', () => {
   describe('ngOnInit', () => {
     it('should behave...', () => {
       const dummy_result = 'dummy_result';
-      spyOn(xdaysofcodeService, 'get').and.returnValue(of(dummy_result));
+      spyOn(xdaysofcodeService, 'get').and.returnValue(of([dummy_result]));
       component.ngOnInit();
       expect(component.html['changingThisBreaksApplicationSecurity']).toBe(dummy_result);
     });

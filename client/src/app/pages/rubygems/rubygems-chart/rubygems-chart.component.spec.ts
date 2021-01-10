@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RubygemsChartComponent } from './rubygems-chart.component';
 import { RubygemsService, GemVersion } from 'src/app/services/rubygems.service';
@@ -10,7 +10,7 @@ describe('RubygemsChartComponent', () => {
   let fixture: ComponentFixture<RubygemsChartComponent>;
   let rubygemsService: RubygemsService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ RubygemsChartComponent ]
     })
@@ -49,7 +49,7 @@ describe('RubygemsChartComponent', () => {
       component.ngOnInit();
       expect(rubygemsService.getVersions).toHaveBeenCalled();
       expect(console.error).toHaveBeenCalledWith('error');
-      expect(component.generateChart).not.toHaveBeenCalledWith();
+      expect(component.generateChart).not.toHaveBeenCalled();
     });
   });
 
