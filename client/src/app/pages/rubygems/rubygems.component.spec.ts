@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RubygemsComponent } from './rubygems.component';
 import { RubygemsModule } from './rubygems.module';
@@ -10,7 +10,7 @@ describe('RubygemsComponent', () => {
   let fixture: ComponentFixture<RubygemsComponent>;
   let rubygemsService: RubygemsService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [RubygemsModule]
     })

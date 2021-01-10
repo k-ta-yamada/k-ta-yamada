@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { XdaysofcodeComponent } from './xdaysofcode.component';
 import { XdaysofcodeService } from 'src/app/services/xdaysofcode.service';
@@ -9,7 +9,7 @@ describe('XdaysofcodeComponent', () => {
   let fixture: ComponentFixture<XdaysofcodeComponent>;
   let xdaysofcodeService: XdaysofcodeService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [XdaysofcodeComponent]
     }).compileComponents();

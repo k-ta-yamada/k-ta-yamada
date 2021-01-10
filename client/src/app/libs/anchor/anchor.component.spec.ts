@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AnchorComponent } from './anchor.component';
 import { By } from '@angular/platform-browser';
@@ -24,7 +24,7 @@ describe('AComponent', () => {
 
   let anchorEl: HTMLAnchorElement;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       // declarations: [ AnchorComponent ]
       declarations: [ DummyComponent ]
