@@ -49,7 +49,7 @@ describe('RubygemsChartComponent', () => {
       component.ngOnInit();
       expect(rubygemsService.getVersions).toHaveBeenCalled();
       expect(console.error).toHaveBeenCalledWith('error');
-      expect(component.generateChart).not.toHaveBeenCalledWith();
+      expect(component.generateChart).not.toHaveBeenCalled();
     });
   });
 

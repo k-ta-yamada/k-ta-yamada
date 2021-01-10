@@ -30,7 +30,7 @@ describe('XdaysofcodeComponent', () => {
   describe('ngOnInit', () => {
     it('should behave...', () => {
       const dummy_result = 'dummy_result';
-      spyOn(xdaysofcodeService, 'get').and.returnValue(of(dummy_result));
+      spyOn(xdaysofcodeService, 'get').and.returnValue(of([dummy_result]));
       component.ngOnInit();
       expect(component.html['changingThisBreaksApplicationSecurity']).toBe(dummy_result);
     });
