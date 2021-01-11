@@ -17,11 +17,10 @@ namespace '/api/commit' do # rubocop:disable Metrics/BlockLength
   end
 
   get '/commits' do
-    branche = params[:branche]
-    data = settings.cache.fetch("#{request.path}/#{branche}") do
-      logger.info "-- update cache: #{request.path}/#{branche}"
-      response =
-        JSON.parse(RestClient.get("#{GITHUB_API}/commits?sha=#{branche}"))
+    branch = params[:branch]
+    data = settings.cache.fetch("#{request.path}/#{branch}") do
+      logger.info "-- update cache: #{request.path}/#{branch}"
+      response = JSON.parse(RestClient.get("#{GITHUB_API}/commits?sha=#{branch}"))
       response.map do |d|
         { sha: d['sha'],
           commit_message: d['commit']['message'],

@@ -12,8 +12,8 @@ class CommitTest < TestBase
   end
 
   def test_api_commit_commits
-    VCR.use_cassette '/commit/commits?branche=master' do
-      get '/api/commit/commits?branche=master'
+    VCR.use_cassette '/commit/commits?branch=master' do
+      get '/api/commit/commits?branch=master'
       assert last_response.ok?
       assert_equal 'application/json', last_response.media_type
     end
