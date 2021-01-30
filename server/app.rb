@@ -69,12 +69,8 @@ before do
 
   # :nocov:
   if settings.production?
-    unless request.secure?
-      redirect to("https://#{request.host_with_port}#{request.path}")
-    end
-    unless request.host == MY_DOMAIN
-      redirect to("https://#{MY_DOMAIN}#{request.path}")
-    end
+    redirect to("https://#{request.host_with_port}#{request.path}") unless request.secure?
+    redirect to("https://#{MY_DOMAIN}#{request.path}") unless request.host == MY_DOMAIN
   end
   # :nocov:
 end
@@ -117,7 +113,7 @@ get '/sitemap.txt' do
 end
 
 # for SPA fallback
-get %r{\/(?!api)(.*)} do
+get %r{/(?!api)(.*)} do
   etag Digest::SHA1.hexdigest(index_html)
   index_html
 end

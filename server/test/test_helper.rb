@@ -13,7 +13,7 @@ SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/reporters'
 reporters = [
-  Minitest::Reporters::SpecReporter.new,
+  Minitest::Reporters::SpecReporter.new
   # Minitest::Reporters::ProgressReporter.new,
   # Minitest::Reporters::HtmlReporter.new
 ]
@@ -30,7 +30,7 @@ end
 
 require 'rack/test'
 # require 'pry'
-require_relative '../app.rb'
+require_relative '../app'
 
 class TestBase < Minitest::Test
   include Rack::Test::Methods

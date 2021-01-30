@@ -34,6 +34,7 @@ group :development do
   gem 'pry-theme'
   gem 'rubocop'
   gem 'ruby-debug-ide'
+  # gem 'solargraph'
 end
 
 group :test do
@@ -53,3 +54,7 @@ group :test do
   gem 'vcr'
   gem 'webmock'
 end
+
+gem "sequel", "~> 5.40"
+
+gem "pg", "~> 1.2"
